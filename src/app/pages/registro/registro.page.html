@@ -1,0 +1,276 @@
+
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button text="" color="dark"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-progress-bar mode="ios" [value]="index / 10"></ion-progress-bar>
+
+  <ion-slides (ionSlideWillChange)="slides_changed ()" pager="false" [options]="slideOpts">
+    <ion-slide>
+      <form [formGroup]="form_usernick">
+      <ion-grid class="grid-pagging">
+        <ion-row style="display: flex;">
+          <ion-col size="12" class="ion-no-padding">
+            <h1 class="ion-text-center">¿Cómo te llamas?</h1>
+            <ion-item class="item-llamas" lines="none">
+              <ion-label position="stacked" class="label-campo">Así es como aparecerás en Seeking</ion-label>
+              <ion-input (keyup.enter)="next_step ()" formControlName="usernick" type="text" class="input-llmas"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      </form>
+    </ion-slide>
+
+    <ion-slide>
+      <form [formGroup]="form_birthday">
+      <ion-grid class="grid-pagging">
+        <ion-row style="display: flex;">
+          <ion-col size="12">
+            <h1 class="ion-text-center">Great! {{ form_usernick.value.usernick }}! Your date of birth?</h1>
+            <p class="color-plomo ion-text-center">
+              We require this to confirm that you are over 18 years of age
+            </p>
+          </ion-col>
+          <ion-col size="12" class="ion-no-padding">
+            <ion-row class="ion-justify-content-center">
+              <ion-col size="3" class="col-padding-dia">
+                <p class="p-dia-mes-ano">Día</p>
+                <ion-item lines="none" class="item-dias">
+                  <ion-input #day_input (keyup.enter)="set_input_focus ('month_input')" formControlName="day" type="tel" maxlength="2" placeholder="DD" class="input-dia"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="3" class="col-padding-mes">
+                <p class="p-dia-mes-ano">Mes</p>
+                <ion-item lines="none" class="item-dias">
+                  <ion-input #month_input (keyup.enter)="set_input_focus ('year_input')" formControlName="month" type="tel" maxlength="2" placeholder="MM" class="input-dia"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6" class="col-padding-ano" >
+                <p class="p-dia-mes-ano">Año</p>
+                <ion-item lines="none" class="item-dias">
+                  <ion-input #year_input (keyup.enter)="next_step ()" formControlName="year" type="tel" maxlength="4" placeholder="AAAA" class="input-dia"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      </form>
+    </ion-slide>
+
+    <ion-slide>
+      <form [formGroup]="form_sexo">
+      <ion-grid class="grid-pagging">
+        <ion-row style="display: flex;">
+          <ion-col size="12">
+            <h1 class="ion-text-center">Your gender</h1>
+          </ion-col>
+          <ion-col size="12" class="ion-no-padding">
+            <ion-list>
+              <ion-radio-group formControlName="sexo">            
+                <ion-item *ngFor="let item of generos">
+                  <ion-label>{{ item.nombre }}</ion-label>
+                  <ion-radio color="dark" slot="start" [value]="item.id"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      </form>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-grid class="grid-pagging">
+        <ion-row style="display: flex;">
+          <ion-col size="12">
+            <h1 class="ion-text-center">Interested In</h1>
+          </ion-col>
+          <ion-col size="12" class="ion-no-padding">
+            <ion-list>
+              <ion-item *ngFor="let item of generos">
+                <ion-label>{{ item.nombre }}</ion-label>
+                <ion-checkbox (ionChange)="checkbox_changed ($event, item.id, generos_map)" color="dark" slot="start"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-grid class="grid-pagging">
+        <ion-row style="display: flex;">
+          <ion-col size="12">
+            <h1 class="ion-text-center">What kind of relationships I seek</h1>
+          </ion-col>
+          <ion-col size="12" class="ion-no-padding">
+            <ion-list>
+              <ion-item *ngFor="let item of relaciones">
+                <ion-label>{{ item.nombre }}</ion-label>
+                <ion-checkbox (ionChange)="checkbox_changed ($event, item.id, relaciones_map)" color="dark" slot="start"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide>
+      <form [formGroup]="form_email">
+        <ion-grid class="grid-pagging">
+          <ion-row style="display: flex;">
+            <ion-col size="12" class="ion-no-padding">
+              <h1 class="ion-text-center">¿What is your email address?</h1>
+              <!-- <p class="color-plomo ion-text-center">O regístrate con tu número de teléfono</p> -->
+              <ion-item class="item-llamas" lines="none">
+                <ion-input formControlName="email" placeholder="Email" type="email" class="input-llmas"></ion-input>
+              </ion-item>
+  
+              <ion-item class="item-llamas" lines="none">
+                <ion-input formControlName="confirm_email" placeholder="Confirm Email" type="email" class="input-llmas"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </ion-slide>
+
+    <ion-slide>
+      <form [formGroup]="form_password">
+      <ion-grid class="grid-pagging">
+        <ion-row style="display: flex;">
+          <ion-col size="12" class="ion-no-padding">
+            <h1 class="ion-text-center">¡Ya falta poco!<br>Crea una contraseña</h1>
+            <ion-item class="item-llamas" lines="none">
+              <ion-input formControlName="password" type="text" class="input-llmas"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      </form>
+    </ion-slide>
+
+    <ion-slide>
+      <form [formGroup]="form_location">
+      <ion-grid class="grid-pagging">
+        <ion-row style="display: flex;">
+          <ion-col size="12" class="ion-no-padding">
+            <h1 class="ion-text-center">Location</h1>
+            <ion-item (click)="select_country ()" class="item-llamas" lines="none">
+              <ion-input readonly placeholder="Country" formControlName="pais_nombre" type="text" class="input-llmas">
+              </ion-input>
+              <ion-icon style="font-size: 16px;" slot="end" name="caret-down-outline"></ion-icon>
+            </ion-item>
+
+            <ion-item class="item-llamas" lines="none">
+              <ion-select formControlName="id_region" (ionChange)="region_changed ($event)" interface="popover" placeholder="Region">
+                <ion-select-option *ngFor="let item of regions" [value]="item">
+                  {{ item.name }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item class="item-llamas" lines="none">
+              <ion-select formControlName="ciudad" interface="popover" placeholder="City">
+                <ion-select-option *ngFor="let item of cities" [value]="item">
+                  {{ item.name }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      </form>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-grid class="grid-pagging">
+        <ion-row style="display: flex;">
+          <ion-col size="12" class="ion-no-padding">
+            <h1 class="ion-text-center">¡Una sonrisita!<br>Necesitas al menos una foto para poder utilizar Seeking</h1>
+            <ion-card (click)="selectImageSource ('profile', 0, fileInput)" class="card-foto">
+              <img *ngIf="profile_image === ''" src="assets/img/iconos_Photo.png">
+              <img *ngIf="profile_image !== ''" [src]="get_profile_image ()" alt="">
+              <p class="p-subir-foto">Subir una foto</p>
+              <input hidden multiple type="file" accept="image/*" #fileInput (change)="changeListener($event)">
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-grid class="grid-pagging">
+        <ion-row>
+          <ion-col size="12" class="ion-no-padding">
+            <h1 class="ion-text-center">¡Muy buena foto!<br>Cuentas más fotos tengas, mejor</h1>
+            <div class="div-fotos">
+              <ion-card class="card-fotos">
+                <ion-avatar>
+                  <img [src]="profile_image">
+                </ion-avatar>
+              </ion-card>
+              <ion-card (click)="selectImageSource ('photos', 0)" class="card-fotos">
+                <ion-icon *ngIf="photos [0] === ''" name="add-outline" class="icon-add"></ion-icon>
+                <img *ngIf="photos [0] !== ''" [src]="get_photos_index (0)">
+              </ion-card>
+              <ion-card (click)="selectImageSource ('photos', 1)" class="card-fotos">
+                <ion-icon *ngIf="photos [1] === ''" name="add-outline" class="icon-add"></ion-icon>
+                <img *ngIf="photos [1] !== ''" [src]="get_photos_index (1)">
+              </ion-card>
+              <ion-card (click)="selectImageSource ('photos', 2)" class="card-fotos">
+                <ion-icon *ngIf="photos [2] === ''" name="add-outline" class="icon-add"></ion-icon>
+                <img *ngIf="photos [2] !== ''" [src]="get_photos_index (2)">
+              </ion-card>
+              <ion-card (click)="selectImageSource ('photos', 3)" class="card-fotos">
+                <ion-icon *ngIf="photos [3] === ''" name="add-outline" class="icon-add"></ion-icon>
+                <img *ngIf="photos [3] !== ''" [src]="get_photos_index (3)">
+              </ion-card>
+              <ion-card (click)="selectImageSource ('photos', 4)" class="card-fotos">
+                <ion-icon *ngIf="photos [4] === ''" name="add-outline" class="icon-add"></ion-icon>
+                <img *ngIf="photos [4] !== ''" [src]="get_photos_index (4)">
+              </ion-card>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide>
+      <form [formGroup]="form_terms">
+      <ion-grid class="grid-pagging">
+        <ion-row>
+          <ion-col size="12" class="ion-no-padding">
+            <h1 class="ion-text-center">Terms and Conditions</h1>
+            <p>
+              Promoting illegal commercial activities (such as prostitution) is prohibited. If you are an ESCORT, DO NOT use this website.
+            </p>
+          </ion-col>
+
+          <ion-col size="12" class="ion-no-padding">
+            <ion-list>
+              <ion-item>
+                <ion-label>I agree to the Terms & Privacy Policy.</ion-label>
+                <ion-checkbox formControlName="terms" color="dark" slot="start"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      </form>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+<ion-footer class="ion-no-border ion-text-center">
+  <ion-button (click)="next_step ()" class="btn-continuar-footer">Continuar</ion-button>
+  <p class="p-footer">Continuar con Facebook</p>
+</ion-footer>

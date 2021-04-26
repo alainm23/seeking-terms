@@ -1,0 +1,654 @@
+@font-face{
+    font-family: AvenirMedium;
+    src : url('/assets/font/Avenir-Medium.ttf')
+}
+@font-face{
+    font-family: AvenirHeavy;
+    src : url('/assets/font/Avenir Heavy.ttf')
+}
+@font-face{
+    font-family: Avenirlight;
+    src : url('/assets/font/avenirltstd-light.otf')
+}
+ion-content
+{
+    --background: #F5F5F5;
+}
+.card-cabezera
+{
+    margin: 0px;
+    --background: #F5F5F5;
+    padding: 0px 20px;
+    box-shadow: none;
+    .div-flex
+    {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 40px;
+        .label-titulo
+        {
+            color: #000000;
+            font-family: Avenirlight;
+            font-size: 20px;
+            margin-left: 8px;
+            width: 150px;
+            margin-top: 6px;
+        }
+        .img-flore
+        {
+            margin-left: 60px;
+        }
+        .img-cuadrado
+        {
+            margin-left: 20px;
+        }
+    }
+    .div-botones
+    {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        .btn-div
+        {
+            --background: transparent;
+            --color:#707070;
+            --padding-start: 0px;
+            --padding-end: 0px;
+            width: auto;
+            --background-activated: transparent;
+            font-family: AvenirMedium;
+            --color-activated:#6C4397;
+            margin-left: 0px;
+            margin-right: 1rem;
+        }
+        .btn-active
+        {
+            --background: transparent;
+            --color:#6C4397;
+            --padding-start: 0px;
+            --padding-end: 0px;
+            width: auto;
+            --background-activated: transparent;
+            font-family: AvenirHeavy;
+            text-decoration: underline #6C4397;
+            margin-left: 0px;
+        }
+        .btn-rigth
+        {
+            margin-right: 25px;
+        }
+    }
+}
+.div-circulo-activo
+{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border-radius: 50%;
+    height: 14px;
+    width: 14px;
+    background-color: #73BF25;
+    border: 3px solid #ffffff;
+    z-index: 1;
+}
+
+ion-slides
+{
+    background-color: transparent;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 15px;
+    ion-slide
+    {
+        .card-slider
+        {
+            border-radius: 21px;
+            box-shadow: 0px 6px 12px #00000029;
+            padding: 0px;
+            margin: 0px;
+            height: 152px;
+            position: relative;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+            ion-thumbnail
+            {
+                width: 100%;
+                height: 100%;
+            }
+            .div-circulo-activo
+            {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                border-radius: 50%;
+                height: 14px;
+                width: 14px;
+                background-color: #73BF25;
+                border: 3px solid #ffffff;
+                z-index: 1;
+            }
+        }
+        .card-amarillo
+        {
+            border-radius: 21px;
+            box-shadow: 0px 6px 12px #00000029;
+            padding: 0px;
+            margin: 0px;
+            height: 152px;
+            position: relative;
+            --background: #C1871E;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0px 10px;
+            .h6-blanco
+            {
+                color: #ffffff;
+                margin: 0px;
+                font-family: AvenirMedium;
+                margin-top: 5px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+.img-iguales
+{
+    width: 29px;
+    height: 29px;
+}
+.img-circle
+{
+    width: 24px;
+    height: 24px;
+}
+
+.loading-box {
+    width: 100%;
+    padding: 2rem;
+}
+
+.div-list-card
+{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 15px;
+    --background: transparent;
+    box-shadow: none;
+    margin-top: 30px;
+    background: transparent;
+    .card-perfil
+    {
+        width: 46.9%;
+        border-radius: 8px;
+        margin-left: 5px !important;
+        margin-right: 5px !important;
+        margin: 0px;
+        height: 197px;
+        overflow: hidden;
+        box-shadow: 0px 6px 12px #00000029;
+        margin-bottom: 17px;
+        .avatar-img
+        {
+            width: 100%;
+            height: 197px;
+            --border-radius: 8px;
+            position: relative;
+            transition: .4s;
+            .div-sombra
+            {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                z-index: 99999999;
+                background: rgb(0,0,0);
+                background: linear-gradient(0deg, rgba(0,0,0,0.8939950980392157) 4%, rgba(255,254,254,0.025647759103641476) 40%);
+                border-radius: 8px 8px 0px 0px;
+                display: flex;
+                align-content: flex-end;
+                flex-wrap: wrap;
+                padding-bottom: 5px;
+                .item-badge
+                {
+                    --background: transparent;
+                    --padding-start: 7px; 
+                    --inner-padding-end: 7px;
+                    width: 100%;
+                    height: 15px;
+                    display: flex;
+                    --padding-end: 5px;
+                    .badge-style
+                    {
+                        margin-right: 0px;
+                        display: flex;
+                        --background: #1A1413;
+                        font-family: AvenirMedium;
+                        font-size: 11px;
+                        --padding-start: 5px;
+                        --padding-top: 3px;
+                        --padding-bottom: 3px;
+                        .icon-camara
+                        {
+                            color: #FFFFFF;
+                            margin-right: 3px;
+                        }
+                    }
+                    .label-miles
+                    {
+                        font-family: Avenirlight;
+                        color: #ffffff;
+                        font-size: 11px;
+                        margin: 0px;
+                    }
+                }
+                .p-nombre
+                {
+                    font-family: AvenirHeavy;
+                    color: #ffffff;
+                    font-size: 11px;
+                    margin: 0px;
+                    padding: 0px 7px;
+                }
+            }
+        }
+        .item-blanco
+        {
+            --padding-start: 0px;
+            --padding-end: 0px;
+            --inner-padding-end: 0px;
+            --border-radius: 0px 0px 8px 8px;
+            transition: .4s;
+            display: flex;
+            align-items: center;
+            .btn-iguales-tab
+            {
+                width: 25%;
+                margin: 0px;
+                --background: transparent;
+                --background-activated: transparent;
+                --box-shadow: none;
+            }
+            .btn-border-right
+            {
+                border-right: 1px solid #EBEBEB;
+            }
+        }
+    }
+    .card-perfil:hover .avatar-img
+    {
+        height: 154px;
+    }
+}
+.img-right
+{
+    transform: rotate(-90deg);
+}
+.img-desactivo
+{
+    display: block;
+    transition: .4s;
+}
+
+.img-activo
+{
+    display: none;
+    transition: .4s;
+}
+.btn-iguales-tab:hover .img-desactivo
+{
+    display: none;
+}
+.btn-iguales-tab:hover .img-activo
+{
+    display: block;
+}
+.img-widht-igules
+{
+    width: 20px;
+    height: 20px;
+}
+.img-width-flecha
+{
+    width: 16px;
+    height: 16px;
+}
+ion-footer
+{
+    height: 65px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0px -3px 6px #00000029;
+    .btn-activo-footer
+    {
+        --background: #F5E9D8 !important;
+    }
+    .btn-footer
+    {
+        --background: transparent;
+        margin: 0px;
+        width: 72px;
+        --background-activated: transparent;
+        --box-shadow: none;
+        position: relative;
+        height: 100%;
+        --border-radius: 0px;
+        .badge-chat
+        {
+            position: absolute;
+            right: -8px;
+            bottom: 5px;
+            --background: #F03C3C;
+            --color: #ffffff;
+            font-family: AvenirHeavy;
+            font-size: 16px;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .img-buscador-footer
+        {
+            width: 31px;
+            height: 31px;
+        }
+        .img-chat-footer
+        {
+            width: 32px;
+            height: 31px;
+        }
+        .img-corona-footer
+        {
+            width: 34px;
+            height: 34px;
+        }
+        .img-corazon-footer
+        {
+            width: 31px;
+            height: 31px;
+        }
+        .img-persona-footer
+        {
+            width: 31px;
+            height: 31px;
+        }
+    }
+    .btn-footer-right
+    {
+        border-right: 1px solid #EBEBEB;
+    }
+}
+@media(min-width: 411px)
+{
+    .card-cabezera
+    {
+        .div-flex
+        {
+            .label-titulo
+            {
+                width: 201px;
+            }
+        }
+        .div-botones
+        {
+            .btn-rigth
+            {
+                margin-right: 43px;
+            }
+        }
+    }
+    .div-list-card
+    {
+        .card-perfil
+        {
+            width: 47.3%;
+        }
+    }
+    ion-footer
+    {
+        .btn-footer
+        {
+            width: 82px;
+            .badge-chat
+            {
+                right: -3px;
+            }
+        }
+    }
+}
+@media(min-width: 480px)
+{
+    .card-cabezera
+    {
+        .div-flex
+        {
+            .label-titulo
+            {
+                width: 270px;
+            }
+        }
+        .div-botones
+        {
+            .btn-rigth
+            {
+                margin-right: 66px;
+            }
+        }
+    }
+    .div-list-card
+    {
+        .card-perfil
+        {
+            width: 47.7%;
+        }
+    }
+    ion-footer
+    {
+        .btn-footer
+        {
+            width: 96px;
+            .badge-chat
+            {
+                right: 5px;
+            }
+        }
+    }
+}
+@media(min-width: 640px)
+{
+    .card-cabezera
+    {
+        .div-flex
+        {
+            .label-titulo
+            {
+                width: 430px;
+            }
+        }
+        .div-botones
+        {
+            .btn-rigth
+            {
+                margin-right: 119px;
+            }
+        }
+    }
+    .div-list-card
+    {
+        .card-perfil
+        {
+            width: 31%;
+            height: 220px;
+            .avatar-img
+            {
+                height: 220px;
+            }
+        }
+        .card-perfil:hover .avatar-img
+        {
+            height: 172px;
+        }
+    }
+    ion-slides
+    {
+        ion-slide
+        {
+            .card-amarillo
+            {
+                height: 240px;
+                padding: 0px 20px;
+            }
+            .card-slider
+            {
+                height: 240px;
+            }
+        }
+    }
+    ion-footer
+    {
+        .btn-footer
+        {
+            width: 128px;
+            .badge-chat
+            {
+                right: 20px;
+            }
+        }
+    }
+}
+@media(min-width: 768px)
+{
+    ion-slides
+    {
+        ion-slide
+        {
+            .card-amarillo
+            {
+                height: 240px;
+                padding: 0px 46px;
+                width: 100%;
+            }
+            .card-slider
+            {
+                height: 240px;
+                width: 100%;
+            }
+        }
+    }
+    .card-cabezera
+    {
+        padding: 0px 45px;
+        .div-flex
+        {
+            .label-titulo
+            {
+                width: 508px;
+            }
+        }
+        .div-botones
+        {
+            .btn-rigth
+            {
+                margin-right: 145px;
+            }
+        }
+    }
+    .div-list-card
+    {
+        padding: 0px 45px;
+        .card-perfil
+        {
+            width: 31.8%;
+        }
+        .card-perfil:hover .avatar-img
+        {
+            height: 175px;
+        }
+    }
+    ion-footer
+    {
+        .btn-footer
+        {
+            width: 153px;
+            .badge-chat
+            {
+                right: 33px;
+            }
+        }
+    }
+}
+@media(min-width: 1024px)
+{
+    .card-cabezera
+    {
+        padding: 0px 120px;
+        .div-flex
+        {
+            .label-titulo
+            {
+                width: 614px;
+            }
+        }
+        .div-botones
+        {
+            .btn-rigth
+            {
+                margin-right: 180px;
+            }
+        }
+    }
+    .div-list-card
+    {
+        padding: 0px 120px;
+        .card-perfil
+        {
+            width: 32%;
+            height: 270px;
+            .avatar-img
+            {
+                height: 270px;
+            }
+        }
+        .card-perfil:hover .avatar-img
+        {
+            height: 225px;
+        }
+    }
+    ion-slides
+    {
+        ion-slide
+        {
+            .card-amarillo
+            {
+                height: 320px;
+                padding: 0px 110px;
+                width: 100%;
+            }
+            .card-slider
+            {
+                height: 320px;
+                width: 100%;
+            }
+        }
+    }
+    ion-footer
+    {
+        .btn-footer
+        {
+            width: 204px;
+            .badge-chat
+            {
+                right: 58px;
+            }
+        }
+    }
+}

@@ -1,0 +1,66 @@
+
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>menu</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content>
+  <img (click)="back ()" src="assets/img/iconos_Minimize.png" class="img-flecha-menu">
+  <div class="div-avatar">
+    <ion-avatar>
+      <img [src]="auth.USER_DATA.foto_perfil" class="img-perfil-avatar">
+    </ion-avatar>
+  </div>
+  <h5 class="ion-text-center titulo-nombre">{{ auth?.USER_DATA?.usernick }}</h5>
+  <h6 class="ion-text-center h6-ciudad">{{ auth?.USER_DATA?.nombre_ciudad }}, {{ auth?.USER_DATA?.nombre_pais }}</h6>
+  <ion-label (click)="complete_profile ()" class="label-menu">
+    <img src="assets/img/iconos_Profile.png" class="img-persona-menu img-margin-right">
+    Edit profile
+  </ion-label>
+  <ion-label (click)="go_page ('settings')" class="label-menu">
+    <img src="assets/img/iconos_settings.png" class="img-configure-menu img-margin-right">
+    Account settings
+  </ion-label>
+  <ion-label class="label-menu">
+    <img src="assets/img/icono-no-favorito.png" class="img-corazon-menu img-margin-right">
+    My favorites
+  </ion-label>
+  <div class="div-linea-bottom"></div>
+  <h6 class="h6-amariilo">Credits left: {{ auth?.USER_DATA?.creditos }}</h6>
+  <ion-label class="label-menu">
+    <img src="assets/img/iconos_Upgrade.png" class="img-configure-menu img-margin-right">
+    Upgrade my account
+  </ion-label>
+  <ion-label class="label-menu">
+    <img src="assets/img/icono-no-favorito.png" class="img-corazon-menu img-margin-right">
+    Get more credits
+  </ion-label>
+  <div class="div-linea-bottom"></div>
+  <ion-label class="label-menu">
+    <img src="assets/img/iconos_Aboutus.png" class="img-configure-menu img-margin-right">
+    About
+  </ion-label>
+  <ion-label (click)="logout ()" class="label-menu">
+    <img src="assets/img/iconos_Logout.png" class="img-corazon-menu img-margin-right">
+    Log out
+  </ion-label>
+</ion-content>
+<ion-footer class="ion-no-border" mode="ios">
+  <ion-button routerLink="/home" routerDirection="root" mode="ios" class="btn-footer btn-footer-right">
+    <img src="assets/img/iconos_Magnifying-glass.png" class="img-buscador-footer">
+  </ion-button> 
+  <ion-button routerLink="/inbox" routerDirection="root" mode="ios" class="btn-footer btn-footer-right">
+    <img src="assets/img/iconos_Inbox.png" class="img-chat-footer">
+    <!-- <ion-badge class="badge-chat" mode="ios">99</ion-badge> -->
+  </ion-button> 
+  <ion-button mode="ios" class="btn-footer btn-footer-right">
+    <img src="assets/img/iconos_Upgrade.png" class="img-corona-footer">
+  </ion-button> 
+  <ion-button routerLink="/favorites" routerDirection="root" mode="ios" class="btn-footer btn-footer-right">
+    <img src="assets/img/icono-no-favorito.png" class="img-corazon-footer">
+  </ion-button> 
+  <ion-button routerLink="/profile-menu" routerDirection="root" mode="ios" class="btn-footer btn-activo-footer">
+    <img src="assets/img/iconos_Profile.png" class="img-persona-footer">
+  </ion-button> 
+</ion-footer>

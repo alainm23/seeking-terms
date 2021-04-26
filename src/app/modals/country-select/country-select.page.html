@@ -1,0 +1,22 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="back ()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Select a country</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-searchbar (ionChange)="filter ($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item (click)="select (item)" *ngFor="let item of items">
+      {{ item.name }}
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,271 @@
+@font-face{
+    font-family: AvenirHeavy;
+    src : url('/assets/font/Avenir Heavy.ttf')
+}
+@font-face{
+    font-family: AvenirMedium;
+    src : url('/assets/font/Avenir-Medium.ttf')
+}
+@font-face{
+    font-family: Avenirlight;
+    src : url('/assets/font/avenirltstd-light.otf')
+}
+ion-content
+{
+    --padding-start: 1.25rem;
+    --padding-end: 1.25rem;
+    --padding-top: 3.625rem;
+    --padding-bottom: 3.125rem;
+    position: relative;
+}
+.img-flecha-menu
+{
+    width: 32px;
+    height: 31px;
+    position: fixed;
+    right: 32px;
+    top: 42px;
+    z-index: 1;
+}
+.div-avatar
+{
+    display: flex;
+    justify-content: center;
+    ion-avatar
+    {
+        width: 112px;
+        height: 112px;
+        --border-radius: 50%;
+        .img-perfil-avatar
+        {
+            border-radius: 50%;
+        }
+    }
+}
+.titulo-nombre
+{
+    color: #333333;
+    font-family: Avenirlight;
+    font-size: 23px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+}
+.h6-ciudad
+{
+    color: #989898;
+    font-family: Avenirlight;
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 31px;
+}
+.label-menu
+{
+    display: flex;
+    align-items: center;
+    font-family: Avenirlight;
+    color: #000000;
+    font-size: 22px;
+    margin-bottom: 21px;
+    margin-left: 20px;
+    .img-margin-right
+    {
+        margin-right: 17px;
+    }
+    .img-persona-menu
+    {
+        width: 27px;
+        height: 26px;
+    }
+    .img-configure-menu
+    {
+        width: 27px;
+        height: 27px;
+    }
+    .img-corazon-menu
+    {
+        width: 27px;
+        height: 27px;
+    }
+}
+.div-linea-bottom
+{
+    width: 100%;
+    height: 1px;
+    background-color: #D6D6D6;
+    margin-bottom: 21px;
+}
+.h6-amariilo
+{
+    color: #C68118;
+    font-family: AvenirHeavy;
+    font-size: 21px;
+    margin-top: 0px;
+    margin-bottom: 21px;
+    margin-left: 20px;
+}
+ion-footer
+{
+    height: 65px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0px -3px 6px #00000029;
+    .btn-activo-footer
+    {
+        --background: #F5E9D8 !important;
+    }
+    .btn-footer
+    {
+        --background: transparent;
+        margin: 0px;
+        width: 72px;
+        --background-activated: transparent;
+        --box-shadow: none;
+        position: relative;
+        height: 100%;
+        --border-radius: 0px;
+        .badge-chat
+        {
+            position: absolute;
+            right: -8px;
+            bottom: 0;
+            --background: #F03C3C;
+            --color: #ffffff;
+            font-family: AvenirHeavy;
+            font-size: 16px;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .img-buscador-footer
+        {
+            width: 31px;
+            height: 31px;
+        }
+        .img-chat-footer
+        {
+            width: 32px;
+            height: 31px;
+        }
+        .img-corona-footer
+        {
+            width: 34px;
+            height: 34px;
+        }
+        .img-corazon-footer
+        {
+            width: 31px;
+            height: 31px;
+        }
+        .img-persona-footer
+        {
+            width: 31px;
+            height: 31px;
+        }
+    }
+    .btn-footer-right
+    {
+        border-right: 1px solid #EBEBEB;
+    }
+}
+@media (min-width: 411px)
+{
+    ion-content
+    {
+        --padding-start: 1.875rem;
+        --padding-end: 1.875rem;
+    }
+    ion-footer
+    {
+        .btn-footer
+        {
+            width: 82px;
+            .badge-chat
+            {
+                right: -3px;
+            }
+        }
+    }
+}
+@media (min-width: 480px)
+{
+    ion-content
+    {
+        --padding-start: 2.5rem;
+        --padding-end: 2.5rem;
+        --padding-top: 3.125rem;
+    }
+    ion-footer
+    {
+        .btn-footer
+        {
+            width: 96px;
+            .badge-chat
+            {
+                right: 5px;
+            }
+        }
+    }
+}
+@media (min-width: 640px)
+{
+    ion-content
+    {
+        --padding-start: 7.5rem;
+        --padding-end: 7.5rem;
+    }
+    ion-footer
+    {
+        .btn-footer
+        {
+            width: 128px;
+            .badge-chat
+            {
+                right: 20px;
+            }
+        }
+    }
+}
+@media (min-width: 768px)
+{
+    ion-content
+    {
+        --padding-start: 12.5rem;
+        --padding-end: 12.5rem;
+        --padding-top: 3.125rem;
+    }
+    ion-footer
+    {
+        .btn-footer
+        {
+            width: 153px;
+            .badge-chat
+            {
+                right: 33px;
+            }
+        }
+    }
+}
+@media (min-width: 1024px)
+{
+    ion-content
+    {
+        --padding-start: 18.75rem;
+        --padding-end: 18.75rem;
+        --padding-top: 6.25rem;
+    }
+    ion-footer
+    {
+        .btn-footer
+        {
+            width: 204px;
+            .badge-chat
+            {
+                right: 58px;
+            }
+        }
+    }
+}

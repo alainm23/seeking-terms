@@ -1,0 +1,70 @@
+<ion-content>
+  <div class="div-login">
+    <form [formGroup]="form">
+      <ion-card class="bajar_card">
+        <ion-card-content class="ion-text-center">
+            <img src="assets/img/Grupo804.png" class="img-logo-genral">
+            <h1>Log in</h1>
+            <ion-input formControlName="email" placeholder="User name or email" mode="ios" class="ion-text-start" type="email"></ion-input>
+            <ion-input formControlName="password" placeholder="Your password" mode="ios" class="ion-text-start" type="password"></ion-input>
+            <p class="ion-texto-center quitar_top">Forgot your password? <span><u>Get a new one.</u></span></p>
+            <ion-button mode="ios" class="btn-let-go" (click)="submit ()">Let’s go</ion-button>
+            <div class="div-linea-plomo"></div>
+            <ion-button mode="ios" class="btn-faccebook">Facebook</ion-button>
+            <ion-button mode="ios" class="btn-google">Google</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </form>
+    <ion-card class="ion-no-margin">
+      <ion-button mode="ios" class="btn_card" (click)="registro ()">I’m new here. Register</ion-button>
+    </ion-card>
+  </div>
+  <div class="div-fondo-negro">
+    <h1 class="ion-text-center titulo_blanco">Why SeekingTerms</h1>
+    <div class="ion-text-center">
+      <ion-button class="btn-circle-plomo"><ion-icon name="chevron-down"></ion-icon></ion-button>
+    </div>
+    <ion-list mode="ios" lines="none" >
+      <ion-item class="ion-no-padding">
+        <img src="assets/img/Grupo722.png">
+        <ion-label>3 In-depth user verifications features </ion-label>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <img src="assets/img/Grupo722.png">
+        <ion-label>Say goodbye to scammers, bots, and catfish</ion-label>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <img src="assets/img/Grupo722.png">
+        <ion-label>Real-time messaging, and phone chat</ion-label>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <img src="assets/img/Grupo722.png">
+        <ion-label>Advanced filters and real-time searching</ion-label>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <img src="assets/img/Grupo722.png">
+        <ion-label>Sugar Babies always free!</ion-label>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <img src="assets/img/Grupo722.png">
+        <ion-label>Elite upgrades & rewards for Sugar Daddies!</ion-label>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <img src="assets/img/Grupo722.png">
+        <ion-label>Send date and travel proposals + create trips</ion-label>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <img src="assets/img/Grupo722.png">
+        <ion-label>Diverse with active members around the world</ion-label>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <img src="assets/img/Grupo722.png">
+        <ion-label>Favorites, winks, gifts, activities, & analytics</ion-label>
+      </ion-item>
+      <ion-item class="ion-no-padding">
+        <img src="assets/img/Grupo722.png">
+        <ion-label>Most authentic dating platform, try us out!</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,282 @@
+@font-face{
+    font-family: AvenirHeavy;
+    src : url('/assets/font/Avenir Heavy.ttf')
+}
+@font-face{
+    font-family: AvenirMedium;
+    src : url('/assets/font/Avenir-Medium.ttf')
+}
+@font-face{
+    font-family: Avenirlight;
+    src : url('/assets/font/avenirltstd-light.otf')
+}
+@font-face{
+    font-family: AvenirRoman;
+    src : url('/assets/font/Avenir Roman.otf')
+}
+@font-face{
+    font-family: AvenirBook;
+    src : url('/assets/font/Avenir Book.ttf')
+}
+ion-content
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    --padding-start:  1.25rem;
+    --padding-end: 1.25rem;
+    --padding-top: 1rem;
+    position: relative;
+}
+.btn-close-messaje
+{
+    position: fixed;
+    right: 25px;
+    top: 30px;
+    --background: #ffffff;
+    --border-radius: 50%;
+    --box-shadow: 0px 3px 6px #00000029;
+    --padding-start: 0px;
+    --padding-end: 0px;
+    width: 33px;
+    height: 33px;
+    margin: 0px;
+    z-index: 9000;
+    .icon-close
+    {
+        color: #707070;
+        font-size: 25px;
+    }
+}
+h1
+{
+    color: #333333;
+    font-family: AvenirHeavy;
+    margin-bottom: 0px;
+}
+.pcolor-formato
+{
+    color: #333333;
+    font-family: Avenirlight;
+    margin: 0px;
+    margin-top: 5px;
+    margin-bottom: 70px;
+}
+.item-derecha
+{
+    display: flex;
+    justify-content: end;
+    .div-uno-linea-derecha
+    {
+        float: right;
+    }
+    .div_dos-lineas-top
+    {
+        margin-top: 48px !important;
+    }
+}
+.item-avatar-sytle
+{
+    display: flex;
+    align-items: flex-start;
+    ion-avatar
+    {
+        --border-radius: 50%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
+    .div-general-top
+    {
+        margin-top: 8px;
+        .div-radius-primer-mensaje
+        {
+            border-radius: 0px 23px 23px 0px !important;
+        }
+        .div-radius-ultimo-mensaje
+        {
+            border-radius: 0px 24px 24px 24px !important;
+        }
+        .div-anaranjado-conversacion
+        {
+            background-color: #C1871E !important;
+        }
+        .div-conversacion-una-linea
+        {
+            background-color: #E7F6F4;
+            border-radius: 23px;
+            width: fit-content;
+            padding-right: 75px;
+            padding-left: 10px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            position: relative;
+            margin-bottom: 5px;
+            .p-conversacion
+            {
+                
+                color: #333333;
+                font-family: AvenirMedium;
+                font-size: 16px;
+            }
+            .p-conversacion-blanco
+            {
+                color: #ffffff !important;
+            }
+            .span-hora
+            {
+                position: absolute;
+                z-index: 1;
+                color: #949494;
+                font-family: AvenirRoman;
+                font-size: 11px;
+                right: 15px;
+                bottom: 10px;
+            }
+            .span-hora-blanco
+            {
+                color: #ffffff !important;
+            }
+        }
+        .div-conversacion-dos-varias-lineas
+        {
+            background-color: #E7F6F4;
+            border-radius: 23px;
+            width: fit-content;
+            padding-right: 10px;
+            padding-left: 10px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            position: relative;
+            margin-bottom: 5px;
+            .p-conversacion
+            {
+                
+                color: #333333;
+                font-family: AvenirMedium;
+                font-size: 16px;
+            }
+            .p-conversacion-blanco
+            {
+                color: #ffffff !important;
+            }
+            .span-hora
+            {
+                position: absolute;
+                z-index: 1;
+                color: #949494;
+                font-family: AvenirRoman;
+                font-size: 11px;
+                right: 25px;
+                bottom: 9px;
+            }
+            .span-hora-blanco
+            {
+                color: #ffffff !important;
+            }
+        }
+    }
+    .div-padding-left
+    {
+        padding-left: 63px;
+        .div-fondo-cambio
+        {
+            background-color: #FEE0A7 !important;
+            border-radius: 25px 0px 25px 25px !important;
+        }
+    }
+}
+.fondo-responder
+{
+    background-color: #edf1ff !important;
+}
+.pdescriocion-book
+{
+    color: #A2A2A2;
+    font-family: AvenirBook;
+    padding: 0px 20px;
+    margin-top: 50px;
+}
+.img-llave
+{
+    margin-top: 30px;
+}
+ion-footer
+{
+    .div-blanco-footer
+    {
+        color: #A2A2A2;
+        font-family: AvenirHeavy;
+        font-size: 13px;
+        padding: 8px 0px;
+    }
+    ion-card
+    {
+        background-color: #F0F0F0;
+        margin: 0px;
+        border-radius: 0px;
+        box-shadow: none;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        ion-textarea
+        {
+            --background: #ffffff;
+            border-radius: 17px;
+            --color: #848484;
+            font-family: Avenirlight;
+            --padding-start: 15px;
+            --padding-end: 15px;
+            height: 40px;
+            --padding-top: 13px;
+            --placeholder-color: #848484;
+            --placeholder-opacity: 1;
+        }
+        ion-icon
+        {
+            color: #9B9B9B;
+            font-size: 27px;
+            margin-left: 8px;
+        }
+    }
+}
+@media (min-width: 480px)
+{
+    ion-content
+    {
+        --padding-start:  1.875rem;
+        --padding-end: 1.875rem;
+    }
+}
+@media (min-width: 640px)
+{
+  ion-content
+  {
+    --padding-start: 1.563rem;
+    --padding-end: 1.563rem;
+  }
+}
+@media (min-width: 768px)
+{
+  ion-content
+  {
+    --padding-start: 6.25rem;
+    --padding-end: 6.25rem;
+  }
+  .pdescriocion-book
+    {
+        margin-top: 7.5rem;
+    }
+}
+@media (min-width: 1024px)
+{
+  ion-content
+  {
+    --padding-start: 9.375rem;
+    --padding-end: 9.375rem;
+  }
+}

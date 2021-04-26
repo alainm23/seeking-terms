@@ -1,0 +1,42 @@
+<ion-content class="ion-text-center">
+  <ion-button class="btn-close-messaje" (click)="close ()"><ion-icon name="close-sharp" class="icon-close"></ion-icon></ion-button>
+  <h1>{{ receptor?.usernick }}, {{ receptor?.edad }}</h1>
+  <p class="pcolor-formato">{{ receptor?.nombre_ciudad }}, {{ receptor?.nombre_pais }}</p>
+
+  <ng-container *ngFor="let item of messages | orderBy: created_at">
+    <ion-item *ngIf="item.id_sender !== auth.USER_DATA.id" class="ion-no-padding item-avatar-sytle" lines="none">
+      <ion-avatar slot="start">
+        <img src="assets/img/Elipse1.png" class="img-perfil">
+      </ion-avatar>
+      <div class="div-general-top">
+        <div class="div-conversacion-una-linea div-anaranjado-conversacion div-radius-primer-mensaje">
+          <p class="p-conversacion p-conversacion-blanco ion-no-margin">{{ item.message }}</p>
+          <span class="span-hora span-hora-blanco">{{ get_date_format (item.created_at) }}</span>
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item *ngIf="item.id_sender === auth.USER_DATA.id" class="ion-no-padding item-avatar-sytle item-derecha" lines="none">
+      <ion-avatar slot="end" style="display: none;">
+        <img src="assets/img/Elipse1.png" class="img-perfil">
+      </ion-avatar>
+      <div class="div-general-top div-padding-left">
+        <div class="div-conversacion-dos-varias-lineas div_dos-lineas-top fondo-responder div-fondo-cambio">
+          <p class="p-conversacion ion-no-margin">{{ item.message }}</p>
+          <span class="span-hora">{{ get_date_format (item.created_at) }}</span>
+        </div>
+      </div>
+    </ion-item>
+  </ng-container>
+  <p class="ion-text-center pdescriocion-book">After your send your message 1credit will be charged from your account.</p>
+  <img src="assets/img/Imagen-11.png" class="img-llave" style="float: right;">
+</ion-content>
+<ion-footer mode="ios">
+  <ion-card>
+    <ion-textarea [(ngModel)]="message" placeholder="Type your message here" mode="ios" rows="1" cols="1"></ion-textarea>
+    <ion-icon (click)="send_message ()" name="send"></ion-icon>
+  </ion-card>
+  <div class="ion-text-center div-blanco-footer">
+    Never send money, gift card or banking info.
+  </div>
+</ion-footer>

@@ -1,0 +1,306 @@
+@font-face{
+    font-family: AvenirMedium;
+    src : url('/assets/font/Avenir-Medium.ttf')
+  }
+  @font-face{
+    font-family: AvenirHeavy;
+    src : url('/assets/font/Avenir Heavy.ttf')
+  }
+  @font-face{
+    font-family: Avenirlight;
+    src : url('/assets/font/avenirltstd-light.otf')
+  }
+  ion-content
+  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    --padding-start:  1.25rem;
+    --padding-end: 1.25rem;
+    --padding-top: 1rem;
+    position: relative;
+  }
+  .card-cabezera
+  {
+    margin: 0px;
+    margin-top: 1.25rem;
+    box-shadow: none;
+    border-radius: 0px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    .label-titulo
+    {
+      color: #000000;
+      font-family: Avenirlight;
+      font-size: 20px;
+      margin-left: 12px;
+    }
+    .btn-close
+    {
+      position: absolute;
+      margin: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      --background: #ffffff;
+      --border-radius: 50%;
+      --box-shadow: 0px 3px 6px #00000029;
+      width: 31px;
+      height: 31px;
+      --color: #707070;
+      --padding-top: 0px;
+      --padding-bottom: 0px;
+      --padding-start: 0px;
+      --padding-end:0px;
+      --background-activated: #ffffff;
+      .icon-close
+      {
+        color: #707070;
+      }
+    }
+    .img-cuadrado
+    {
+      width: 29px;
+      height: 29px;
+    }
+  }
+  .card-buscador
+  {
+    display: flex;
+    align-items: center;
+    --background: #F7F8F7;
+    box-shadow: none;
+    border-radius: 6px;
+    border: 1px solid #E3E3E3;
+    padding: 10px 15px;
+    margin: 0;
+    margin-top: 30px;
+    margin-bottom: 32px;
+    .input-buscador
+    {
+      --background: transparent;
+      --color: #555555;
+      font-family: Avenirlight;
+      --placeholder-color: #555555;
+      --placeholder-font-weight: 900;
+      --padding-top: 0px;
+      --padding-bottom: 0px;
+      --placeholder-opacity: 1;
+    }
+  }
+  .card-cero-top
+  {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  .titulo-campos
+  {
+    color: #333333;
+    font-family: AvenirHeavy;
+    margin-left: 10px;
+  }
+  .div-btn-mapa
+  {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-top: 20px;
+    .label-subtitulo
+    {
+      color: #000000;
+      font-family: Avenirlight;
+      font-size: 18px;
+    }
+    .btn-mapa
+    {
+      --background: #77BDF0;
+      --background-activated: #77BDF0;
+      --border-radius: 13px;
+      --color: #ffffff;
+      margin: 0px;
+      font-family: AvenirHeavy;
+      font-size: 14px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      --padding-top: 1px;
+    }
+  }
+  .card-mapa
+  {
+    margin: 0;
+    box-shadow: none;
+    margin-top: 20px;
+    .p-mapa
+    {
+      color: #000000;
+      font-family: Avenirlight;
+      padding: 0px 10px;
+      margin-top: 0px;
+    }
+  }
+  .div-disml
+  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10px;
+    margin-top: 20px;
+    .label-ml
+    {
+      font-family: AvenirMedium;
+      color: #555555;
+      font-size: 18px;
+    }
+  }
+  .range-input
+  {
+    --bar-background: #EDEDED;
+    --bar-background-active: #D0A963;
+    --bar-height: 10px;
+    --knob-size: 20px;
+    --pin-color: #D0A963;
+    --knob-box-shadow: 0px 3px 6px #00000029;
+    --knob-border-color: #DDDDDD;
+    --knob-border-width: 1px;
+    --knob-border-style: solid;
+    padding: 0px 10px;
+    --pin-color: #333333;
+    font-family: AvenirMedium;
+  }
+  .div-bottom
+  {
+    margin-bottom: 20px;
+  }
+  .item-toggle
+  {
+    --padding-start: 10px;
+    --padding-end: 10px;
+    --inner-padding-end: 0px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    ion-toggle 
+    {
+      --background: #77BDF0;
+      --background-checked: #CB9229;
+      --handle-background: #ffffff;
+      --handle-background-checked: #ffffff;
+      width: 54px;
+      height: 26px;
+      --handle-border-radius: 50%;
+      --border-radius: 13px;
+      --handle-width: 20px;
+      --handle-height: 20px;
+    }
+    .label-toggle
+    {
+      color: #000000;
+      font-family: Avenirlight;
+      margin: 0px;
+    }
+  }
+  .item-select
+  {
+    --background: transparent;
+    --inner-padding-end: 0px;
+    margin-bottom: 1.25rem;
+    .label-select
+    {
+      --color: #555555;
+      font-family: AvenirMedium;
+      font-size: 1rem;
+      width: 35%;
+      padding-left: 0.625rem;
+      padding-right: 0.625rem;
+    }
+    ion-select
+    {
+      border-radius: 1.5rem;
+      border: 1px solid #DCDCDC;
+      color: #555555;
+      font-family: AvenirMedium;
+      font-size: 1rem;
+      --placeholder-color: #555555;
+      width: 70%;
+      --padding-end: 1.5625rem;
+      --padding-start: 1.5625rem;
+      --placeholder-opacity: 1;
+    }
+    .select-interface-option {
+      color: red;
+    }
+  }
+  .card-top-bottom-cero
+  {
+    margin-top: 10px !important;
+    margin-bottom: 15px !important;
+  }
+  .range-top
+  {
+    margin-top: 10px;
+  }
+  .btn_next
+  {
+    --background: #77BDF0;
+    --color: #ffffff;
+    font-family: AvenirHeavy;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1.25rem;
+    --background-activated: #77BDF0;
+    --color-activated: #ffffff;
+    margin-bottom: 30px;
+  }
+  .img-mapa
+  {
+    width: 100%;
+  }
+  @media (min-width: 411px)
+  {
+    ion-content
+    {
+      --padding-start: 1.875rem;
+      --padding-end: 1.875rem;
+    }
+  }
+  @media (min-width: 480px)
+  {
+    ion-content
+    {
+      --padding-start: 2.5rem;
+      --padding-end: 2.5rem;
+      --padding-top: 3.125rem;
+    }
+  }
+  @media (min-width: 640px)
+  {
+    ion-content
+    {
+      --padding-start: 6.25rem;
+      --padding-end: 6.25rem;
+    }
+  }
+  @media (min-width: 768px)
+  {
+    ion-content
+    {
+      --padding-start: 9.375rem;
+      --padding-end: 9.375rem;
+      --padding-top: 3.125rem;
+    }
+  }
+  @media (min-width: 1024px)
+  {
+    ion-content
+    {
+      --padding-start: 10rem;
+      --padding-end: 10rem;
+      --padding-top: 6.25rem;
+    }
+  }

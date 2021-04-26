@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-card class="card-cabezera">
+      <div class="div-flex">
+        <img src="assets/img/icono-flecha-circle.png" class="img-circle">
+        <ion-label class="label-titulo">Don’t seek, find.</ion-label>
+        <img src="assets/img/icono-flecha.png" class="img-iguales img-flore">
+        <img src="assets/img/iconos_Filtrar.png" (click)="filtrar ()" class="img-iguales img-cuadrado">
+      </div>
+      <div class="div-botones">
+        <ion-button mode="ios" [class.btn-active]="tab_filter === null" class="btn-div" (click)="set_tab (null)">
+          Show all
+        </ion-button>
+        <ion-button mode="ios" [class.btn-active]="tab_filter === 'online'" class="btn-div" (click)="set_tab ('online')">
+          Online now
+        </ion-button>
+        <ion-button mode="ios" [class.btn-active]="tab_filter === 'verificados'" class="btn-div" (click)="set_tab ('verificados')">
+          Verified users
+        </ion-button>
+      </div>
+    </ion-card>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="get_data ($event, false, 'refresher')">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="div-blanco">
+    <ion-item class="item-select" lines="none">
+      <ion-select class="select-favo" (ionChange)="section_changed ($event)" [(ngModel)]="seccion" interface="popover">
+        <ion-select-option value="favoritos">Favorites</ion-select-option>
+        <ion-select-option value="viewedme">Viewed my profile</ion-select-option>
+        <ion-select-option value="favoriteme">Favorited me</ion-select-option>
+        <ion-select-option value="blocked">Blocked users</ion-select-option>
+      </ion-select>
+      <div class="div-linea-select"></div>
+    </ion-item>
+  </div>
+
+  <ion-list class="div-list-card">
+    <div *ngIf="home_loading === true" class="ion-text-center loading-box">
+      <ion-spinner></ion-spinner>
+    </div>
+
+    <div *ngIf="items.length <= 0 && home_loading === false" class="ion-text-center" style="width: 100%;">
+      <ion-item style="--background: transparent;" lines="none" class="ion-text-center">
+        <ion-label>
+          <h1>No results, check your filters.</h1>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <ion-card *ngFor="let item of items" class="card-perfil">
+      <ion-avatar class="avatar-img">
+        <img [src]="item.thumbnail">
+        <div class="div-sombra">
+          <p class="p-nombre">{{ item.usernick }}, {{ item.edad }}</p><div *ngIf="item.online === true" class="div-circulo-activo"></div>
+          <ion-item class="item-badge" lines="none">
+            <ion-label class="label-miles">
+              <span *ngIf="order_by === 'distance'">
+                {{ item.nombre_pais }}, {{ item.distance }}{{ item.distance_format }}
+              </span>
+
+              <span *ngIf="order_by === 'favoritos-desc'">
+                {{ item.favoritos }} Likes
+              </span>
+
+              <span *ngIf="order_by === 'edad-desc' || order_by === 'edad-asc'">
+                {{ item.nombre_pais }}
+              </span>
+
+              <span *ngIf="order_by === 'last_seen-desc'">
+                {{ get_relative_format (item.last_seen) }}
+              </span>
+
+              <span *ngIf="order_by === 'created_at-desc'">
+                {{ get_relative_format (item.created_at) }}
+              </span>
+            </ion-label>
+            <ion-badge *ngIf="item.numero_fotos > 0" slot="end" mode="ios" class="badge-style">
+              <ion-icon name="camera" class="icon-camara"></ion-icon>
+              {{ item.numero_fotos }}
+            </ion-badge>
+          </ion-item>
+        </div>
+      </ion-avatar>
+      <ion-item lines="none" class="item-blanco">
+        <ion-button (click)="toggled_favorite (item)" class="btn-iguales-tab btn-border-right">
+          <img *ngIf="item.tengo_favorito === false" src="assets/img/icono-no-favorito.png" class="img-widht-igules">
+          <img *ngIf="item.tengo_favorito === true" src="assets/img/icono-favorito.png" class="img-widht-igules">
+        </ion-button>
+        <ion-button (click)="send_wink (item)" class="btn-iguales-tab btn-border-right">
+          <img *ngIf="item.wink_loading === false || item.wink_loading === undefined" src="assets/img/iconos-Wink.png" class="img-widht-igules">
+          <ion-spinner *ngIf="item.wink_loading === true" color="dark" name="bubbles"></ion-spinner>
+        </ion-button>
+        <ion-button class="btn-iguales-tab btn-border-right">
+          <img src="assets/img/iconos_Inbox.png" class="img-widht-igules">
+        </ion-button>
+        <ion-button (click)="view_profile (item)" class="btn-iguales-tab">
+          <img src="assets/img/iconos_Minimize.png" class="img-right img-width-flecha">
+        </ion-button>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border" mode="ios">
+  <ion-button routerLink="/home" routerDirection="root" mode="ios" class="btn-footer btn-footer-right">
+    <img src="assets/img/iconos_Magnifying-glass.png" class="img-buscador-footer">
+  </ion-button> 
+  <ion-button routerLink="/inbox" routerDirection="root" mode="ios" class="btn-footer btn-footer-right">
+    <img src="assets/img/iconos_Inbox.png" class="img-chat-footer">
+    <!-- <ion-badge class="badge-chat" mode="ios">99</ion-badge> -->
+  </ion-button> 
+  <ion-button mode="ios" class="btn-footer btn-footer-right">
+    <img src="assets/img/iconos_Upgrade.png" class="img-corona-footer">
+  </ion-button> 
+  <ion-button routerLink="/favorites" routerDirection="root" mode="ios" class="btn-footer btn-footer-right btn-activo-footer">
+    <img src="assets/img/icono-no-favorito.png" class="img-corazon-footer">
+  </ion-button> 
+  <ion-button routerLink="/profile-menu" routerDirection="root" mode="ios" class="btn-footer">
+    <img src="assets/img/iconos_Profile.png" class="img-persona-footer">
+  </ion-button> 
+</ion-footer>
