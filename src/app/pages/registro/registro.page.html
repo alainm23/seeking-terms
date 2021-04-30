@@ -53,7 +53,7 @@
                   <ion-input #month_input (keyup.enter)="set_input_focus ('year_input')" formControlName="month" type="tel" maxlength="2" placeholder="MM" class="input-dia"></ion-input>
                 </ion-item>
               </ion-col>
-              <ion-col size="6" class="col-padding-ano" >
+              <ion-col size="4" class="col-padding-ano" >
                 <p class="p-dia-mes-ano">Año</p>
                 <ion-item lines="none" class="item-dias">
                   <ion-input #year_input (keyup.enter)="next_step ()" formControlName="year" type="tel" maxlength="4" placeholder="AAAA" class="input-dia"></ion-input>
@@ -76,9 +76,9 @@
           <ion-col size="12" class="ion-no-padding">
             <ion-list>
               <ion-radio-group formControlName="sexo">            
-                <ion-item *ngFor="let item of generos">
-                  <ion-label>{{ item.nombre }}</ion-label>
-                  <ion-radio color="dark" slot="start" [value]="item.id"></ion-radio>
+                <ion-item *ngFor="let item of generos" class="item-radio" lines="none">
+                  <ion-label class="label-chech-radio">{{ item.nombre }}</ion-label>
+                  <ion-radio slot="start" [value]="item.id"></ion-radio>
                 </ion-item>
               </ion-radio-group>
             </ion-list>
@@ -96,9 +96,9 @@
           </ion-col>
           <ion-col size="12" class="ion-no-padding">
             <ion-list>
-              <ion-item *ngFor="let item of generos">
-                <ion-label>{{ item.nombre }}</ion-label>
-                <ion-checkbox (ionChange)="checkbox_changed ($event, item.id, generos_map)" color="dark" slot="start"></ion-checkbox>
+              <ion-item *ngFor="let item of generos" class="item-radio" lines="none">
+                <ion-label class="label-chech-radio">{{ item.nombre }}</ion-label>
+                <ion-checkbox (ionChange)="checkbox_changed ($event, item.id, generos_map)" slot="start" class="checbox"></ion-checkbox>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -114,9 +114,9 @@
           </ion-col>
           <ion-col size="12" class="ion-no-padding">
             <ion-list>
-              <ion-item *ngFor="let item of relaciones">
-                <ion-label>{{ item.nombre }}</ion-label>
-                <ion-checkbox (ionChange)="checkbox_changed ($event, item.id, relaciones_map)" color="dark" slot="start"></ion-checkbox>
+              <ion-item *ngFor="let item of relaciones" lines="none" class="item-radio">
+                <ion-label class="label-chech-radio">{{ item.nombre }}</ion-label>
+                <ion-checkbox (ionChange)="checkbox_changed ($event, item.id, relaciones_map)" slot="start" class="checbox"></ion-checkbox>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -161,8 +161,8 @@
 
     <ion-slide>
       <form [formGroup]="form_location">
-      <ion-grid class="grid-pagging">
-        <ion-row style="display: flex;">
+      <ion-grid>
+        <ion-row>
           <ion-col size="12" class="ion-no-padding">
             <h1 class="ion-text-center">Location</h1>
             <ion-item (click)="select_country ()" class="item-llamas" lines="none">
@@ -251,16 +251,16 @@
         <ion-row>
           <ion-col size="12" class="ion-no-padding">
             <h1 class="ion-text-center">Terms and Conditions</h1>
-            <p>
+            <p class="color-plomo ion-text-center ion-padding-start ion-padding-end">
               Promoting illegal commercial activities (such as prostitution) is prohibited. If you are an ESCORT, DO NOT use this website.
             </p>
           </ion-col>
 
           <ion-col size="12" class="ion-no-padding">
             <ion-list>
-              <ion-item>
-                <ion-label>I agree to the Terms & Privacy Policy.</ion-label>
-                <ion-checkbox formControlName="terms" color="dark" slot="start"></ion-checkbox>
+              <ion-item lines="none" class="item-radio">
+                <ion-label class="label-chech-radio">I agree to the Terms & Privacy Policy.</ion-label>
+                <ion-checkbox formControlName="terms" slot="start" class="checbox"></ion-checkbox>
               </ion-item>
             </ion-list>
           </ion-col>
