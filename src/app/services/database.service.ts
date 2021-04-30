@@ -8,6 +8,11 @@ export class DatabaseService {
   URL: string;
   URL_STORAGE: string;
   PAISES: any [] = [];
+  RELACIONES: any [] = [];
+  PERSONALIDADES: any [] = [];
+  APARIENCIAS: any [] = [];
+  IDIOMAS: any [] = [];
+  EXTRAS: any [] = [];
   constructor (public http: HttpClient,
     public auth: AuthService) { 
     this.URL = 'https://seekingterms.com/api/';

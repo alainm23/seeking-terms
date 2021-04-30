@@ -25,8 +25,14 @@ export class HomePage implements OnInit {
   page: number = 0;
   tab_filter: string = null;
   order_by: string = 'distance';
+  relationship: number [] = [];
+  idiomas: number [] = [];
+  personalidad_map: Map <string, number []> = new Map <string, number []> ();
+  apariencia_map: Map <string, number []> = new Map <string, number []> ();
+  extra_map: Map <string, number []> = new Map <string, number []> ();
   bestMatches: boolean = false;
   length_page: number = 20;
+  edad_range: any = { lower: 18, upper: 50 };
   constructor (private database: DatabaseService,
     private loadingController: LoadingController,
     private navController: NavController,
@@ -113,13 +119,57 @@ export class HomePage implements OnInit {
       orden: this.order_by,
       tab: this.tab_filter,
       bestMatches: this.bestMatches,
-      length_page: this.length_page
+      length_page: this.length_page,
+      relationship: this.relationship,
+      idiomas: this.idiomas,
+      rango_edad: [this.edad_range.lower, this.edad_range.upper]
     };
 
     if (this.bestMatches === false) {
       delete request.bestMatches;
     }
 
+    if (this.relationship.length <= 0) {
+      delete request.relationship;
+    }
+
+    if (this.idiomas.length <= 0) {
+      delete request.idiomas;
+    }
+
+    let personalidad: number [] = [];
+    this.personalidad_map.forEach ((value: any []) => {
+      value.forEach ((value: number) => {
+        personalidad.push (value);
+      });
+    });
+
+    if (personalidad.length > 0) {
+      request.personalidad = personalidad;
+    }
+
+    let apariencia: number [] = [];
+    this.apariencia_map.forEach ((value: any []) => {
+      value.forEach ((value: number) => {
+        apariencia.push (value);
+      });
+    });
+
+    if (apariencia.length > 0) {
+      request.apariencia = apariencia;
+    }
+
+    let extras: number [] = [];
+    this.extra_map.forEach ((value: any []) => {
+      value.forEach ((value: number) => {
+        extras.push (value);
+      });
+    });
+
+    if (extras.length > 0) {
+      request.extras = extras;
+    }
+    
     console.log (request);
 
     return request;
@@ -150,17 +200,36 @@ export class HomePage implements OnInit {
   }
 
   async filtrar () {
+    const loading = await this.loadingController.create ({
+      translucent: true,
+      mode: 'ios'
+    });
+
+    await loading.present ();
+
     const modal = await this.modalController.create ({
       component: FilterPage,
       componentProps: {
         page: 'home',
-        order_by: this.order_by
+        order_by: this.order_by,
+        relationship: this.relationship,
+        idiomas: this.idiomas,
+        personalidad_map: this.personalidad_map,
+        apariencia_map: this.apariencia_map,
+        extra_map: this.extra_map,
+        edad_range: this.edad_range,
       }
     });
 
     modal.onDidDismiss ().then ((response: any) => {
       if (response.role === 'filter') {
         this.order_by = response.data.order_by;
+        this.relationship = response.data.relationship;
+        this.personalidad_map = response.data.personalidad_map;
+        this.apariencia_map = response.data.apariencia_map;
+        this.extra_map = response.data.extra_map;
+        this.idiomas = response.data.idiomas;
+        this.edad_range = response.data.edad_range;
         this.items = [];
         this.page = 0;
         this.home_loading = true;
@@ -168,7 +237,9 @@ export class HomePage implements OnInit {
       }
     });
 
-    return await modal.present ();
+    return await modal.present ().then (() => {
+      loading.dismiss ();
+    });
   }
 
   set_tab (filter: string) {

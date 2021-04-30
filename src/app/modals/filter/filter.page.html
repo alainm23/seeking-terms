@@ -42,7 +42,7 @@
       </ion-select-option>
     </ion-select>
   </ion-item>
-  <!-- <<h4 class="titulo-campos">Location</h4>
+  <!-- <h4 class="titulo-campos">Location</h4>
   <ion-card class="card-buscador card-cero-top">
     <ion-input placeholder="Enter your location" mode="ios" type="search" class="input-buscador"></ion-input>
     <img src="assets/img/Capturabuscard.PNG">
@@ -59,8 +59,8 @@
     <h4 class="titulo-campos ion-no-margin">Distance</h4>
     <ion-label class="label-ml">130 ml</ion-label>
   </div>
-  <ion-range pin="false" mode="ios" class="range-input"></ion-range>
-  <div class="div-disml div-bottom">
+  <ion-range pin="false" mode="ios" class="range-input"></ion-range> -->
+  <!-- <div class="div-disml div-bottom">
     <h4 class="titulo-campos ion-no-margin">Show me users who</h4>
   </div>
   <ion-item class="item-toggle">
@@ -90,18 +90,68 @@
   <ion-item class="item-toggle">
     <ion-label class="label-toggle">Seen my profile</ion-label>
     <ion-toggle mode="ios"></ion-toggle>
-  </ion-item>
+  </ion-item> -->
   <div class="div-disml div-bottom">
     <h4 class="titulo-campos ion-no-margin">Characteristics & preferences</h4>
   </div>
   <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Relationship type</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
+    <label mode="ios" class="label-select">Objective relationship</label>
+    <ion-select [(ngModel)]="relationship" multiple="true" mode="ios" placeholder="Select">
+      <ion-select-option *ngFor="let item of database.RELACIONES" [value]="item.id" class="select-interface-option">
+        {{ item.nombre }}
+      </ion-select-option>
     </ion-select>
   </ion-item>
+
   <ion-item class="ion-no-padding item-select" button="false" lines="none">
+    <label mode="ios" class="label-select">Languages</label>
+    <ion-select [(ngModel)]="idiomas" multiple="true" mode="ios" placeholder="Select">
+      <ion-select-option *ngFor="let item of database.IDIOMAS" [value]="item.id" class="select-interface-option">
+        {{ item.nombre }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngFor="let item of database.EXTRAS" class="ion-no-padding item-select" button="false" lines="none">
+    <label mode="ios" class="label-select">{{ item.nombre }}</label>
+    <ion-select [value]="get_map_value (item.nombre, extra_map)" (ionChange)="select_changed ($event, item.nombre, extra_map)" multiple="true" mode="ios" placeholder="Select">
+      <ion-select-option *ngFor="let item of item.items" [value]="item.id" class="select-interface-option">
+        {{ item.valor }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <div class="div-btn-mapa">
+    <ion-label class="label-subtitulo">Ages between: {{ edad_range.lower }}-{{ edad_range.upper }}</ion-label>
+  </div>
+  <ion-range pin="true" dualKnobs="true" [(ngModel)]="edad_range" min="18" max="100" step="1" snaps="false" mode="ios" class="range-input range-top">
+    <!-- <ion-label slot="start"></ion-label>
+    <ion-label slot="end"></ion-label> -->
+  </ion-range>
+
+  <div class="div-disml div-bottom">
+    <h4 class="titulo-campos ion-no-margin">Personalities</h4>
+  </div>
+  <ion-item *ngFor="let item of database.PERSONALIDADES" class="ion-no-padding item-select" button="false" lines="none">
+    <label mode="ios" class="label-select">{{ item.nombre }}</label>
+    <ion-select [value]="get_map_value (item.nombre, personalidad_map)" (ionChange)="select_changed ($event, item.nombre, personalidad_map)" multiple="true" mode="ios" placeholder="Select">
+      <ion-select-option *ngFor="let item of item.items" [value]="item.id" class="select-interface-option">
+        {{ item.valor }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <div class="div-disml div-bottom">
+    <h4 class="titulo-campos ion-no-margin">Appearance</h4>
+  </div>
+  <ion-item *ngFor="let item of database.APARIENCIAS" class="ion-no-padding item-select" button="false" lines="none">
+    <label mode="ios" class="label-select">{{ item.nombre }}</label>
+    <ion-select [value]="get_map_value (item.nombre, apariencia_map)" (ionChange)="select_changed ($event, item.nombre, apariencia_map)" multiple="true" mode="ios" placeholder="Select">
+      <ion-select-option *ngFor="let item of item.items" [value]="item.id" class="select-interface-option">
+        {{ item.valor }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <!-- <ion-item class="ion-no-padding item-select" button="false" lines="none">
     <label mode="ios" class="label-select">Would i relocate?</label>
     <ion-select mode="ios" placeholder="Select">
       <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
@@ -115,10 +165,7 @@
       <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
     </ion-select>
   </ion-item>
-  <div class="div-btn-mapa">
-    <ion-label class="label-subtitulo">Ages between</ion-label>
-  </div>
-  <ion-range pin="true" dualKnobs="true" min="21" max="72" step="3" snaps="false" mode="ios" class="range-input range-top"></ion-range>
+  
   <ion-card class="card-buscador card-top-bottom-cero">
     <ion-input placeholder="Languagus" mode="ios" type="search" class="input-buscador"></ion-input>
     <img src="assets/img/Capturabuscard.PNG">
@@ -234,6 +281,6 @@
       <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
       <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
     </ion-select>
-  </ion-item>
-  <ion-button class="btn_next" mode="ios">Go!</ion-button>> -->
+  </ion-item> -->
+  <!-- <ion-button class="btn_next" mode="ios">Go!</ion-button> -->
 </ion-content>
