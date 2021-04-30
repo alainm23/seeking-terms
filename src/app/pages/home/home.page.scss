@@ -10,10 +10,10 @@
     font-family: Avenirlight;
     src : url('/assets/font/avenirltstd-light.otf')
 }
-ion-content
+/*ion-content
 {
     --background: #F5F5F5;
-}
+}*/
 .card-cabezera
 {
     margin: 0px;
@@ -96,7 +96,7 @@ ion-content
 
 ion-slides
 {
-    background-color: transparent;
+    background-color: #F5F5F5;
     padding-top: 30px;
     padding-bottom: 30px;
     padding-left: 15px;
@@ -181,7 +181,6 @@ ion-slides
     --background: transparent;
     box-shadow: none;
     margin-top: 30px;
-    background: transparent;
     .card-perfil
     {
         width: 46.9%;
@@ -193,6 +192,14 @@ ion-slides
         overflow: hidden;
         box-shadow: 0px 6px 12px #00000029;
         margin-bottom: 17px;
+        position: relative;
+        .img-circulo-amarrilo
+        {
+            position: absolute;
+            right: 7px;
+            top: 7px;
+            z-index: 1;
+        }
         .avatar-img
         {
             width: 100%;
@@ -200,6 +207,12 @@ ion-slides
             --border-radius: 8px;
             position: relative;
             transition: .4s;
+            .img-persona
+            {
+                width: 100%;
+                height: 100%;
+                object-fit: fill;
+            }
             .div-sombra
             {
                 position: absolute;
@@ -217,13 +230,14 @@ ion-slides
                 padding-bottom: 5px;
                 .item-badge
                 {
-                    --background: transparent;
-                    --padding-start: 7px; 
-                    --inner-padding-end: 7px;
+                    background: transparent;
+                    padding-left: 7px;
+                    padding-right: 28px;
                     width: 100%;
                     height: 15px;
                     display: flex;
-                    --padding-end: 5px;
+                    justify-content: space-between;
+                    position: relative;
                     .badge-style
                     {
                         margin-right: 0px;
@@ -232,7 +246,7 @@ ion-slides
                         font-family: AvenirMedium;
                         font-size: 11px;
                         --padding-start: 5px;
-                        --padding-top: 3px;
+                        --padding-top: 2px;
                         --padding-bottom: 3px;
                         .icon-camara
                         {
@@ -244,8 +258,29 @@ ion-slides
                     {
                         font-family: Avenirlight;
                         color: #ffffff;
-                        font-size: 11px;
+                        font-size: 10px;
                         margin: 0px;
+                    }
+                    .span-edad
+                    {
+                        font-family: AvenirHeavy !important;
+                        margin-right: 5px;
+                    }
+                    .icon-favorito
+                    {
+                        position: absolute;
+                        right: 5px;
+                        color: #ffffff;
+                        font-size: 21px;
+                        top: -10px;
+                    }
+                    .icon-activo-favorito
+                    {
+                        position: absolute;
+                        right: 5px;
+                        color: #ffffff;
+                        font-size: 21px;
+                        top: -10px;
                     }
                 }
                 .p-nombre
@@ -258,7 +293,7 @@ ion-slides
                 }
             }
         }
-        .item-blanco
+        /*.item-blanco
         {
             --padding-start: 0px;
             --padding-end: 0px;
@@ -279,12 +314,12 @@ ion-slides
             {
                 border-right: 1px solid #EBEBEB;
             }
-        }
+        }*/
     }
-    .card-perfil:hover .avatar-img
+    /*.card-perfil:hover .avatar-img
     {
         height: 154px;
-    }
+    }*/
 }
 .img-right
 {
@@ -386,6 +421,96 @@ ion-footer
     {
         border-right: 1px solid #EBEBEB;
     }
+}
+.div-amarillo-profile
+{
+    background-color: #C89530;
+    padding-top: 25px;
+    padding-bottom: 40px;
+    .h5-profile
+    {
+        font-family: AvenirHeavy;
+        color: #ffffff;
+        margin: 0px;
+    }
+    .p-profile
+    {
+        font-family: Avenirlight;
+        color: #ffffff;
+        margin: 0px;
+        font-size: 15px;
+    }
+}
+.div-atenttion
+{
+    background-color: #ffffff;
+    height: 10px;
+    .btn-get-attention
+    {
+        --background: #77BDF0;
+        --background-activated: #77BDF0;
+        --color: #ffffff;
+        font-family: AvenirHeavy;
+        --border-radius: 21px;
+        width: 75%;
+        margin-top: -28px;
+        margin-bottom: 0px;
+        --box-shadow: 0px 3px 6px #00000029;
+    }
+}
+.item-select
+{
+    --background: #F5F5F5;
+    --padding-start: 15px;
+    --inner-padding-end: 15px;
+    --padding-top: 30px;
+    --padding-bottom: 20px;
+    z-index: -1;
+    position: relative;
+    .select-popu
+    {
+        width: 100%;
+        background-color: #ffffff;
+        --placeholder-color: #ADADAD;
+        color: #ADADAD;
+        border-radius: 11px;
+        border: 1px solid #EBEBEB;
+        --placeholder-opacity: 1;
+        --padding-top: 15px;
+        --padding-bottom: 15px;
+        --padding-start: 20px;
+        --padding-end: 20px;
+    }
+    .select-popu::part(icon) {
+        display: none !important;
+    }
+    .icon-select
+    {
+        color: #555555;
+        position: absolute;
+        right: 25px;
+        opacity: 1;
+        z-index: 2;
+    }
+}
+.h1-result
+{
+    color: #000000;
+    font-family: Avenirlight;
+    font-size: 20px;
+}
+.btn-filter
+{
+    --background: #77BDF0;
+    --background-activated: #77BDF0;
+    --color: #ffffff;
+    font-family: AvenirHeavy;
+    --border-radius: 21px;
+    width: 75%;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    --box-shadow: 0px 3px 6px #00000029;
+    font-size: 20px;
 }
 @media(min-width: 411px)
 {
@@ -493,10 +618,6 @@ ion-footer
                 height: 220px;
             }
         }
-        .card-perfil:hover .avatar-img
-        {
-            height: 172px;
-        }
     }
     ion-slides
     {
@@ -569,10 +690,6 @@ ion-footer
         {
             width: 31.8%;
         }
-        .card-perfil:hover .avatar-img
-        {
-            height: 175px;
-        }
     }
     ion-footer
     {
@@ -583,6 +700,15 @@ ion-footer
             {
                 right: 33px;
             }
+        }
+    }
+    .item-select
+    {
+        --padding-start: 40px;
+        --inner-padding-end: 40px;
+        .icon-select
+        {
+            right: 55px;
         }
     }
 }
@@ -618,10 +744,6 @@ ion-footer
                 height: 270px;
             }
         }
-        .card-perfil:hover .avatar-img
-        {
-            height: 225px;
-        }
     }
     ion-slides
     {
@@ -649,6 +771,15 @@ ion-footer
             {
                 right: 58px;
             }
+        }
+    }
+    .item-select
+    {
+        --padding-start: 120px;
+        --inner-padding-end: 120px;
+        .icon-select
+        {
+            right: 145px;
         }
     }
 }
