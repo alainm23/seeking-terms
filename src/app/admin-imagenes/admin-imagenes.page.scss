@@ -1,0 +1,245 @@
+@font-face{
+    font-family: AvenirHeavy;
+    src : url('/assets/font/Avenir Heavy.ttf')
+}
+@font-face{
+    font-family: AvenirMedium;
+    src : url('/assets/font/Avenir-Medium.ttf')
+}
+ion-content
+{
+    --background: #F5F5F5;
+}
+.card-perfil
+{
+    margin: 0px;
+    height: 80vh;
+    position: relative;
+    border-radius: 0px;
+    .img-avatar-perfil
+    {
+        --border-radius: 0px;
+        width: 100%;
+        height: 100%;
+    }
+    .div-sombra
+    {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: #00000047;
+        z-index: 1;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding: 16px 25px;
+        .img-edit
+        {
+            width: 20px;
+            height: 20px;
+        }
+        .p-cover
+        {
+            color: #fff;
+            margin-bottom: 0px;
+            font-family: AvenirHeavy;
+            margin-top: 0px;
+            font-size: 16px;
+        }
+    }
+}
+.div-titulos
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 45px;
+    margin-bottom: 16px;
+    .p-titulo
+    {
+        color: #333333;
+        font-family: AvenirHeavy;
+        margin: 0;
+        font-size: 20px;
+    }
+    .img-edit-plomo
+    {
+        width: 20px;
+        height: 20px;
+    }
+}
+.card-list-perfil
+{
+    margin: 0;
+    width: 100%;
+    border-radius: 0px;
+    position: relative;
+    height: 230px;
+    box-shadow: none;
+    .avatar-perfil
+    {
+        --border-radius: 0px;
+        width: 100%;
+        height: 100%;
+    }
+    .btn-close
+    {
+        position: absolute;
+        top: 8px;
+        right: 5px;
+        --background: #ffff;
+        --background-activated: #ffff;
+        --color: #333333;
+        width: 30px;
+        height: 30px;
+        --border-radius: 50%;
+        font-size: 0px;
+        .icon-close
+        {
+            color: #333333;
+            font-size: 20px;
+        }
+    }
+}
+.card-list-perfil-blanco
+{
+    margin: 0;
+    width: 100%;
+    border-radius: 0px;
+    position: relative;
+    height: 230px;
+    background-color: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .btn-add
+    {
+        --background: #aaaaaa66;
+        --background-activated: #aaaaaa66;
+        --color: #333333;
+        width: 45px;
+        height: 45px;
+        --border-radius: 50%;
+        font-size: 0px;
+        .icon-add
+        {
+            color: #333333;
+            font-size: 30px;
+        }
+    }
+}
+.grid-padding
+{
+    padding: 0px 20px;
+}
+.item-lits
+{
+    --background: #F5F5F5;
+    --padding-start: 0px;
+    --inner-padding-end: 10px;
+    .label-list
+    {
+        margin: 0px;
+        color: #555555;
+        font-family: AvenirMedium;
+        padding-right: 15px;
+    }
+    .btn-close-item
+    {
+        --background: #ffff;
+        --background-activated: #ffff;
+        --color: #333333;
+        width: 30px;
+        height: 30px;
+        --border-radius: 50%;
+        --box-shadow: 0px 3px 6px #00000029;
+    }
+}
+ion-footer
+{
+    background: #F5F5F5;
+}
+.div-contador
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+    margin-left: 25%;
+    position: relative;
+    padding: 30px 20px;
+    .div-contador-blanco
+    {
+        background: #fff;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #555555;
+        font-family: AvenirMedium;
+    }
+    .icon-left
+    {
+        position: absolute;
+        left: 0;
+        color: #555555;
+        font-size: 20px;
+    }
+    .icon-right
+    {
+        position: absolute;
+        right: 0;
+        color: #555555;
+        font-size: 20px;
+    }
+}
+@media(min-width: 540px)
+{
+    .card-list-perfil-blanco
+    {
+        height: 350px;
+    }
+    .card-list-perfil
+    {
+        height: 350px;
+    }
+    .card-perfil
+    {
+        height: 90vh;
+    }
+}
+@media(min-width: 768px)
+{
+    .card-list-perfil-blanco
+    {
+        height: 450px;
+        .btn-add
+        {
+            width: 80px;
+            height: 80px;
+            .icon-add
+            {
+                font-size: 50px;
+            }
+        }
+    }
+    .card-list-perfil
+    {
+        height: 450px;
+    }
+}
+@media(min-width: 1024px)
+{
+    .card-list-perfil-blanco
+    {
+        height: 600px;
+    }
+    .card-list-perfil
+    {
+        height: 600px;
+    }
+}
