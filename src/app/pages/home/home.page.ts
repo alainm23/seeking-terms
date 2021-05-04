@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { LoadingController, ModalController, NavController, ToastController } from '@ionic/angular';
 
 // Services
 import { DatabaseService } from '../../services/database.service';
 import { FilterPage } from '../../modals/filter/filter.page';
 import * as moment from 'moment';
+import { CompleteProfilePage } from '../../modals/complete-profile/complete-profile.page';
+declare var paypal;
 
 @Component({
   selector: 'app-home',
@@ -12,6 +14,12 @@ import * as moment from 'moment';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  @ViewChild ('paypal', {static: true})  paypalElement: ElementRef
+  producto = {
+    descripcion: 'ascaosckaos',
+    precio: 99.99
+  }
+
   slideOpts = {
     initialSlide: 3,
     slidesPerView: 2.5,
@@ -33,6 +41,7 @@ export class HomePage implements OnInit {
   bestMatches: boolean = false;
   length_page: number = 20;
   edad_range: any = { lower: 18, upper: 50 };
+  complete_perfil: any;
   constructor (private database: DatabaseService,
     private loadingController: LoadingController,
     private navController: NavController,
@@ -40,9 +49,61 @@ export class HomePage implements OnInit {
     private toastController: ToastController) { }
 
   async ngOnInit () {
+    setTimeout(() => {
+      paypal.Buttons ({
+        createOrder: (data, actions) => {
+          return actions.order.create ({
+            purchase_units: [{
+              amount: {
+                value: '99.99'
+              }
+            }]
+          });
+        },
+        onApprove: (data, actions) => {
+          return actions.order.capture().then ((details: any) => {
+            console.log (details)
+          });
+        }
+      }).render (this.paypalElement.nativeElement);
+    }, 1000);
+
     this.home_loading = true;
     this.get_data (null, false, '');
-    this.get_promovidos ();
+    // this.get_promovidos ();
+
+    const loading = await this.loadingController.create ({
+      message: ''
+    });
+
+    await loading.present ();
+
+    this.database.get_porcentaje_perfil ().subscribe (async (res: any) => {
+      loading.dismiss ();
+      console.log (res);
+      this.complete_perfil = res;
+
+      if (this.complete_perfil.total < 95) {
+        const modal = await this.modalController.create ({
+          component: CompleteProfilePage,
+          swipeToClose: true,
+          // presentingElement: this.routerOutlet.nativeEl,
+          mode: 'ios'
+        });
+    
+        modal.onDidDismiss ().then ((response: any) => {
+          if (response.role === 'update') {
+            
+          }
+        });
+    
+        return await modal.present ();
+      } else {
+        
+      }
+    }, error => {
+      console.log (error);
+    });
   }
 
   get_data (event: any, join: boolean, type: string) {
@@ -197,6 +258,13 @@ export class HomePage implements OnInit {
     }
 
     return this.database.URL_STORAGE + image;
+  }
+
+  change_order ($event) {
+    this.items = [];
+    this.page = 0;
+    this.home_loading = true;
+    this.get_data (null, false, '');
   }
 
   async filtrar () {

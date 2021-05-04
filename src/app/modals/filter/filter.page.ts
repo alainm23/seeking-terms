@@ -10,7 +10,7 @@ import { DatabaseService } from '../../services/database.service';
   styleUrls: ['./filter.page.scss'],
 })
 export class FilterPage implements OnInit {
-  @Input () order_by: string;
+  // @Input () order_by: string;
   @Input () page: string;
   @Input () relationship: any;
   @Input () idiomas: any;
@@ -73,7 +73,7 @@ export class FilterPage implements OnInit {
 
   filter () {
     this.modalController.dismiss ({
-      order_by: this.order_by,
+      // order_by: this.order_by,
       relationship: this.relationship,
       idiomas: this.idiomas,
       personalidad_map: this.personalidad_map,
