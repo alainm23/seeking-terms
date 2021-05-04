@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 import { FormGroup , FormControl, Validators } from '@angular/forms';
+import { WebsocketService } from '../../services/websocket.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginPage implements OnInit {
   constructor (private auth: AuthService, 
     private navController: NavController,
     private toastController: ToastController,
-    private loadingController: LoadingController) { }
+    private loadingController: LoadingController,
+    private websocket: WebsocketService) { }
 
   ngOnInit () {
     this.form = new FormGroup ({

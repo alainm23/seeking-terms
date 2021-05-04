@@ -8,6 +8,11 @@ export class DatabaseService {
   URL: string;
   URL_STORAGE: string;
   PAISES: any [] = [];
+  RELACIONES: any [] = [];
+  PERSONALIDADES: any [] = [];
+  APARIENCIAS: any [] = [];
+  IDIOMAS: any [] = [];
+  EXTRAS: any [] = [];
   constructor (public http: HttpClient,
     public auth: AuthService) { 
     this.URL = 'https://seekingterms.com/api/';
@@ -117,7 +122,7 @@ export class DatabaseService {
     return this.http.get (url, { headers });
   }
 
-  send_message (id_user: string, message: string) {
+  send_message (id_user: string, message: any) {
     let url = this.URL + 'chats/send/message';
 
     const headers = {
@@ -127,8 +132,10 @@ export class DatabaseService {
     return this.http.post (url, {id_user: id_user, message: message}, { headers });
   }
 
-  get_chat (id_chat: string) {
-    let url = this.URL + 'chats/chat/' + id_chat;
+  get_chat (id_chat: string, page: number) {
+    let url = this.URL + 'chats/messages/' + id_chat + '/' + page;
+
+    console.log (url);
 
     const headers = {
       'Authorization': 'Bearer ' + this.auth.USER_ACCESS.access_token

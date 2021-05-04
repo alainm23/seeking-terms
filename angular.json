@@ -32,7 +32,9 @@
               }
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": []
+            "scripts": [
+              "src/assets/pusher/pusher.min.js"
+            ]
           },
           "configurations": {
             "production": {

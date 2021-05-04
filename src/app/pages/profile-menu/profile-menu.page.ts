@@ -34,38 +34,7 @@ export class ProfileMenuPage implements OnInit {
   }
 
   async complete_profile () {
-    const loading = await this.loadingController.create ({
-      message: ''
-    });
-
-    await loading.present ();
-
-    this.database.get_porcentaje_perfil ().subscribe (async (res: any) => {
-      loading.dismiss ();
-      console.log (res);
-      this.complete_perfil = res;
-
-      if (this.complete_perfil.total < 95) {
-        const modal = await this.modalController.create ({
-          component: CompleteProfilePage,
-          swipeToClose: true,
-          presentingElement: this.routerOutlet.nativeEl,
-          mode: 'ios'
-        });
     
-        modal.onDidDismiss ().then ((response: any) => {
-          if (response.role === 'update') {
-            
-          }
-        });
-    
-        return await modal.present ();
-      } else {
-        
-      }
-    }, error => {
-      console.log (error);
-    });
   }
 
   async logout () {

@@ -33,10 +33,13 @@
 </ion-header>
 
 <ion-content>
+  <div #paypal></div>
+
   <ion-refresher slot="fixed" (ionRefresh)="get_data ($event, false, 'refresher')">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-slides pager="false" [options]="slideOpts">
+  
+  <!-- <ion-slides pager="false" [options]="slideOpts">
     <ion-slide style="height: 152px;" *ngIf="promovidos_loading === true">
       <ion-spinner></ion-spinner>
     </ion-slide>
@@ -46,7 +49,6 @@
         <ion-thumbnail>
           <ion-img [src]="get_photo (item.foto_perfil)"></ion-img>
         </ion-thumbnail>
-        <!-- <img [src]="" class="img-slider"> -->
         <div *ngIf="item.online === true" class="div-circulo-activo"></div>
       </ion-card>
     </ion-slide>
@@ -57,7 +59,7 @@
         <h6 class="h6-blanco">Get girls attention, put your photo right up here.</h6>
       </ion-card>
     </ion-slide>
-  </ion-slides>
+  </ion-slides> -->
 
   <div class="ion-text-center div-amarillo-profile">
     <h5 class="h5-profile">Profile status: 14% - Weak</h5>
@@ -69,9 +71,31 @@
   </div>
 
   <ion-item class="item-select" lines="none">
-    <ion-select placeholder="Sort by popularity" class="select-popu" mode="ios">
-      <ion-select-option value="f">Female</ion-select-option>
-      <ion-select-option value="m">Male</ion-select-option>
+    <ion-select (ionChange)="change_order ($event)" [(ngModel)]="order_by" interface="popover" placeholder="Sort by popularity" class="select-popu" mode="ios">
+      <!-- <ion-select-option *ngIf="page == 'favorite'" value="date-desc" class="select-interface-option">
+        Date descending
+      </ion-select-option>
+      <ion-select-option *ngIf="page == 'favorite'" value="date-asc" class="select-interface-option">
+        Date ascending
+      </ion-select-option> -->
+      <ion-select-option value="distance" class="select-interface-option">
+        Closed to me
+      </ion-select-option>
+      <ion-select-option value="favoritos-desc" class="select-interface-option">
+        Popularity
+      </ion-select-option>
+      <ion-select-option value="created_at-desc" class="select-interface-option">
+        Newest member
+      </ion-select-option>
+      <ion-select-option value="last_seen-desc" class="select-interface-option">
+        Recently connected
+      </ion-select-option>
+      <ion-select-option value="edad-desc" class="select-interface-option">
+        Older
+      </ion-select-option>
+      <ion-select-option value="edad-asc" class="select-interface-option">
+        Younger
+      </ion-select-option>
     </ion-select>
     <ion-icon name="chevron-down-sharp" class="icon-select"></ion-icon>
   </ion-item>
@@ -89,7 +113,7 @@
         </ion-label>
       </ion-item>
     </div>
-
+    
     <ion-grid>
       <ion-row>
         <ion-col size="6" *ngFor="let item of items">
