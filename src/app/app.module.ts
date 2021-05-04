@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 // Form
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -47,7 +48,8 @@ import { CompleteProfilePageModule } from './modals/complete-profile/complete-pr
     Storage,
     Camera,
     File,
-    Crop
+    Crop,
+    OneSignal
   ],
   bootstrap: [AppComponent],
 })

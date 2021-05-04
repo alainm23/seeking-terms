@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { LoadingController, ModalController, NavController, ToastController } from '@ionic/angular';
 
 // Services
 import { DatabaseService } from '../../services/database.service';
 import { FilterPage } from '../../modals/filter/filter.page';
 import * as moment from 'moment';
+import { CompleteProfilePage } from '../../modals/complete-profile/complete-profile.page';
+declare var paypal;
 
 @Component({
   selector: 'app-home',
@@ -12,6 +14,12 @@ import * as moment from 'moment';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  @ViewChild ('paypal', {static: true})  paypalElement: ElementRef
+  producto = {
+    descripcion: 'ascaosckaos',
+    precio: 99.99
+  }
+
   slideOpts = {
     initialSlide: 3,
     slidesPerView: 2.5,
@@ -25,8 +33,15 @@ export class HomePage implements OnInit {
   page: number = 0;
   tab_filter: string = null;
   order_by: string = 'distance';
+  relationship: number [] = [];
+  idiomas: number [] = [];
+  personalidad_map: Map <string, number []> = new Map <string, number []> ();
+  apariencia_map: Map <string, number []> = new Map <string, number []> ();
+  extra_map: Map <string, number []> = new Map <string, number []> ();
   bestMatches: boolean = false;
   length_page: number = 20;
+  edad_range: any = { lower: 18, upper: 50 };
+  complete_perfil: any;
   constructor (private database: DatabaseService,
     private loadingController: LoadingController,
     private navController: NavController,
@@ -34,9 +49,61 @@ export class HomePage implements OnInit {
     private toastController: ToastController) { }
 
   async ngOnInit () {
+    setTimeout(() => {
+      paypal.Buttons ({
+        createOrder: (data, actions) => {
+          return actions.order.create ({
+            purchase_units: [{
+              amount: {
+                value: '99.99'
+              }
+            }]
+          });
+        },
+        onApprove: (data, actions) => {
+          return actions.order.capture().then ((details: any) => {
+            console.log (details)
+          });
+        }
+      }).render (this.paypalElement.nativeElement);
+    }, 1000);
+
     this.home_loading = true;
     this.get_data (null, false, '');
-    this.get_promovidos ();
+    // this.get_promovidos ();
+
+    const loading = await this.loadingController.create ({
+      message: ''
+    });
+
+    await loading.present ();
+
+    this.database.get_porcentaje_perfil ().subscribe (async (res: any) => {
+      loading.dismiss ();
+      console.log (res);
+      this.complete_perfil = res;
+
+      if (this.complete_perfil.total < 95) {
+        const modal = await this.modalController.create ({
+          component: CompleteProfilePage,
+          swipeToClose: true,
+          // presentingElement: this.routerOutlet.nativeEl,
+          mode: 'ios'
+        });
+    
+        modal.onDidDismiss ().then ((response: any) => {
+          if (response.role === 'update') {
+            
+          }
+        });
+    
+        return await modal.present ();
+      } else {
+        
+      }
+    }, error => {
+      console.log (error);
+    });
   }
 
   get_data (event: any, join: boolean, type: string) {
@@ -113,13 +180,57 @@ export class HomePage implements OnInit {
       orden: this.order_by,
       tab: this.tab_filter,
       bestMatches: this.bestMatches,
-      length_page: this.length_page
+      length_page: this.length_page,
+      relationship: this.relationship,
+      idiomas: this.idiomas,
+      rango_edad: [this.edad_range.lower, this.edad_range.upper]
     };
 
     if (this.bestMatches === false) {
       delete request.bestMatches;
     }
 
+    if (this.relationship.length <= 0) {
+      delete request.relationship;
+    }
+
+    if (this.idiomas.length <= 0) {
+      delete request.idiomas;
+    }
+
+    let personalidad: number [] = [];
+    this.personalidad_map.forEach ((value: any []) => {
+      value.forEach ((value: number) => {
+        personalidad.push (value);
+      });
+    });
+
+    if (personalidad.length > 0) {
+      request.personalidad = personalidad;
+    }
+
+    let apariencia: number [] = [];
+    this.apariencia_map.forEach ((value: any []) => {
+      value.forEach ((value: number) => {
+        apariencia.push (value);
+      });
+    });
+
+    if (apariencia.length > 0) {
+      request.apariencia = apariencia;
+    }
+
+    let extras: number [] = [];
+    this.extra_map.forEach ((value: any []) => {
+      value.forEach ((value: number) => {
+        extras.push (value);
+      });
+    });
+
+    if (extras.length > 0) {
+      request.extras = extras;
+    }
+    
     console.log (request);
 
     return request;
@@ -149,18 +260,44 @@ export class HomePage implements OnInit {
     return this.database.URL_STORAGE + image;
   }
 
+  change_order ($event) {
+    this.items = [];
+    this.page = 0;
+    this.home_loading = true;
+    this.get_data (null, false, '');
+  }
+
   async filtrar () {
+    const loading = await this.loadingController.create ({
+      translucent: true,
+      mode: 'ios'
+    });
+
+    await loading.present ();
+
     const modal = await this.modalController.create ({
       component: FilterPage,
       componentProps: {
         page: 'home',
-        order_by: this.order_by
+        order_by: this.order_by,
+        relationship: this.relationship,
+        idiomas: this.idiomas,
+        personalidad_map: this.personalidad_map,
+        apariencia_map: this.apariencia_map,
+        extra_map: this.extra_map,
+        edad_range: this.edad_range,
       }
     });
 
     modal.onDidDismiss ().then ((response: any) => {
       if (response.role === 'filter') {
         this.order_by = response.data.order_by;
+        this.relationship = response.data.relationship;
+        this.personalidad_map = response.data.personalidad_map;
+        this.apariencia_map = response.data.apariencia_map;
+        this.extra_map = response.data.extra_map;
+        this.idiomas = response.data.idiomas;
+        this.edad_range = response.data.edad_range;
         this.items = [];
         this.page = 0;
         this.home_loading = true;
@@ -168,7 +305,9 @@ export class HomePage implements OnInit {
       }
     });
 
-    return await modal.present ();
+    return await modal.present ().then (() => {
+      loading.dismiss ();
+    });
   }
 
   set_tab (filter: string) {

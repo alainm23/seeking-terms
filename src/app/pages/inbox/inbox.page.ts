@@ -54,7 +54,8 @@ export class InboxPage implements OnInit {
     const modal = await this.modalController.create({
       component: ChatPage,
       componentProps: {
-        id: item.id
+        id: item.id,
+        receptor: item.receptor
       }
     });
 
