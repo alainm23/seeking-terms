@@ -52,64 +52,70 @@
       </ion-item>
     </div>
 
-    <ion-card *ngFor="let item of items" class="card-perfil">
-      <ion-avatar class="avatar-img">
-        <img [src]="item.thumbnail">
-        <div class="div-sombra">
-          <p class="p-nombre">{{ item.usernick }}</p><div *ngIf="item.online === true" class="div-circulo-activo"></div>
-          <div class="item-badge">
-            <p class="label-miles">
-              <span class="span-edad">
-                {{ item.edad }}
-              </span>
-              <span *ngIf="order_by === 'distance'">
-                {{ item.nombre_pais }}, {{ item.distance }}{{ item.distance_format }}
-              </span>
-
-              <span *ngIf="order_by === 'favoritos-desc'">
-                {{ item.favoritos }} Likes
-              </span>
-
-              <span *ngIf="order_by === 'edad-desc' || order_by === 'edad-asc'">
-                {{ item.nombre_pais }}
-              </span>
-
-              <span *ngIf="order_by === 'last_seen-desc'">
-                {{ get_relative_format (item.last_seen) }}
-              </span>
-
-              <span *ngIf="order_by === 'created_at-desc'">
-                {{ get_relative_format (item.created_at) }}
-              </span>
-            </p>
-            <ion-badge *ngIf="item.numero_fotos > 0" slot="end" mode="ios" class="badge-style">
-              <ion-icon name="camera" class="icon-camara"></ion-icon>
-              {{ item.numero_fotos }}
-            </ion-badge>
-            <ion-icon name="heart-outline" class="icon-favorito"></ion-icon>
-            <!--Icono activo de favorito
-            <ion-icon name="heart-sharp" class="icon-activo-favorito"></ion-icon>-->
-          </div>
-        </div>
-      </ion-avatar>
-      <img src="assets/img/grupo926.png" class="img-circulo-amarrilo">
-      <!--<ion-item lines="none" class="item-blanco">
-        <ion-button (click)="toggled_favorite (item)" class="btn-iguales-tab btn-border-right">
-          <img *ngIf="item.tengo_favorito === false" src="assets/img/icono-no-favorito.png" class="img-widht-igules">
-          <img *ngIf="item.tengo_favorito === true" src="assets/img/icono-favorito.png" class="img-widht-igules">
-        </ion-button>
-        <ion-button (click)="send_wink (item)" class="btn-iguales-tab btn-border-right">
-          <img *ngIf="item.wink_loading === false || item.wink_loading === undefined" src="assets/img/iconos-Wink.png" class="img-widht-igules">
-          <ion-spinner *ngIf="item.wink_loading === true" color="dark" name="bubbles"></ion-spinner>
-        </ion-button>
-        <ion-button class="btn-iguales-tab btn-border-right">
-          <img src="assets/img/iconos_Inbox.png" class="img-widht-igules">
-        </ion-button>
-        <ion-button (click)="view_profile (item)" class="btn-iguales-tab">
-          <img src="assets/img/iconos_Minimize.png" class="img-right img-width-flecha">
-        </ion-button>
-      </ion-item>-->
-    </ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let item of items">
+          <ion-card  class="card-perfil">
+            <ion-avatar class="avatar-img">
+              <img [src]="item.thumbnail">
+              <div class="div-sombra">
+                <p class="p-nombre">{{ item.usernick }}</p><div *ngIf="item.online === true" class="div-circulo-activo"></div>
+                <div class="item-badge">
+                  <p class="label-miles">
+                    <span class="span-edad">
+                      {{ item.edad }}
+                    </span>
+                    <span *ngIf="order_by === 'distance'">
+                      {{ item.nombre_pais }}, {{ item.distance }}{{ item.distance_format }}
+                    </span>
+      
+                    <span *ngIf="order_by === 'favoritos-desc'">
+                      {{ item.favoritos }} Likes
+                    </span>
+      
+                    <span *ngIf="order_by === 'edad-desc' || order_by === 'edad-asc'">
+                      {{ item.nombre_pais }}
+                    </span>
+      
+                    <span *ngIf="order_by === 'last_seen-desc'">
+                      {{ get_relative_format (item.last_seen) }}
+                    </span>
+      
+                    <span *ngIf="order_by === 'created_at-desc'">
+                      {{ get_relative_format (item.created_at) }}
+                    </span>
+                  </p>
+                  <ion-badge *ngIf="item.numero_fotos > 0" slot="end" mode="ios" class="badge-style">
+                    <ion-icon name="camera" class="icon-camara"></ion-icon>
+                    {{ item.numero_fotos }}
+                  </ion-badge>
+                  <ion-icon name="heart-outline" class="icon-favorito"></ion-icon>
+                  <!--Icono activo de favorito
+                  <ion-icon name="heart-sharp" class="icon-activo-favorito"></ion-icon>-->
+                </div>
+              </div>
+            </ion-avatar>
+            <img src="assets/img/grupo926.png" class="img-circulo-amarrilo">
+            <!--<ion-item lines="none" class="item-blanco">
+              <ion-button (click)="toggled_favorite (item)" class="btn-iguales-tab btn-border-right">
+                <img *ngIf="item.tengo_favorito === false" src="assets/img/icono-no-favorito.png" class="img-widht-igules">
+                <img *ngIf="item.tengo_favorito === true" src="assets/img/icono-favorito.png" class="img-widht-igules">
+              </ion-button>
+              <ion-button (click)="send_wink (item)" class="btn-iguales-tab btn-border-right">
+                <img *ngIf="item.wink_loading === false || item.wink_loading === undefined" src="assets/img/iconos-Wink.png" class="img-widht-igules">
+                <ion-spinner *ngIf="item.wink_loading === true" color="dark" name="bubbles"></ion-spinner>
+              </ion-button>
+              <ion-button class="btn-iguales-tab btn-border-right">
+                <img src="assets/img/iconos_Inbox.png" class="img-widht-igules">
+              </ion-button>
+              <ion-button (click)="view_profile (item)" class="btn-iguales-tab">
+                <img src="assets/img/iconos_Minimize.png" class="img-right img-width-flecha">
+              </ion-button>
+            </ion-item>-->
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-list>
 </ion-content>
 

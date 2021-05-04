@@ -63,7 +63,15 @@ const routes: Routes = [
     path: 'settings',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+  },  {
+    path: 'admin-imagenes',
+    loadChildren: () => import('./admin-imagenes/admin-imagenes.module').then( m => m.AdminImagenesPageModule)
+  },
+  {
+    path: 'edit-profile',
+    loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   }
+
 ];
 
 @NgModule({

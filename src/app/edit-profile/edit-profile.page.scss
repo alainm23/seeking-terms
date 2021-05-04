@@ -29,6 +29,14 @@ h1
     padding-left: 22px;
     padding-right: 22px;
 }
+.img-edit-plomo
+{
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    width: 20px;
+    height: 20px;
+}
 .p-nombre-lima
 {
     color: #333333;
@@ -65,15 +73,6 @@ h1
         margin-right: 6px;
     }
 }
-
-.p-descripcion-card
-    {
-        color: #555555;
-        font-family: AvenirMedium;
-        margin-top: 10px;
-        margin-bottom: 0px;
-    }
-    
 .card-texto-blanco
 {
     background-color: #fff;
@@ -144,7 +143,7 @@ h1
     margin: 0px;
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 70px;
+    margin-bottom: 30px;
 }
 .btn_blanco
 {
@@ -196,18 +195,27 @@ ion-slides
     --bullet-width: 30px;
     --bullet-background-active: #C89530;
     z-index: 0;
-    ion-thumbnail
+    .avatar-slider
     {
         width: 100%;
         --border-radius: 0px;
-        height: 420px;
-        ion-img
+        height: 100%;
+        img
         {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
     }
+    
+}
+.img-edit
+{
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    width: 20px;
+    height: 20px;
 }
 .btn-flecha
 {
@@ -295,19 +303,13 @@ ion-footer
         border-right: 1px solid #EBEBEB;
     }
 }
-.btn-send
+.div-img-redes
 {
-    --background: #77BDF0;
-    --background-activated: #77BDF0;
-    --border-radius: 32px;
-    --box-shadow: 0px 8px 15px #00000029;
-    --color: #ffffff;
-    font-family: AvenirHeavy;
-    height: 55px;
-    width: 90%;
-    margin-left: 5%;
-    font-size: 20px;
-    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 60px;
 }
 @media (min-width: 411px)
 {
