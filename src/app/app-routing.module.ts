@@ -70,6 +70,10 @@ const routes: Routes = [
   {
     path: 'edit-profile',
     loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
+  },
+  {
+    path: 'permisos-correo',
+    loadChildren: () => import('./permisos-correo/permisos-correo.module').then( m => m.PermisosCorreoPageModule)
   }
 
 ];
