@@ -157,7 +157,12 @@ export class RegistroPage implements OnInit {
     } else if (this.index === 1) {
       const fecha = moment (this.form_birthday.value.year + '-' + this.form_birthday.value.month + '-' + this.form_birthday.value.day);
       if (fecha.isValid ()) {
-        returned = true;
+        if (parseInt (moment ().format ('YYYY')) - parseInt (fecha.format ('YYYY')) < 18) {
+          returned = false;
+          this.presentToast ('The selected date is invalid.', 'danger');
+        } else {
+          returned = true;
+        }
       } else {
         this.presentToast ('The selected date is invalid.', 'danger');
       }
@@ -241,39 +246,43 @@ export class RegistroPage implements OnInit {
           console.log (error);
         });
       } else if (this.index === 1) {
-        let request: any = this.form_birthday.value;
-        request.campo = 'birthday';
+        loading.dismiss ();
+        this.slideNext ();
+        // let request: any = this.form_birthday.value;
+        // request.campo = 'birthday';
 
-        this.auth.validar_campo (request).subscribe ((res: any) => {
-          loading.dismiss ();
-          console.log (res);
+        // this.auth.validar_campo (request).subscribe ((res: any) => {
+        //   loading.dismiss ();
+        //   console.log (res);
 
-          if (res.status) {
-            this.slideNext ();
-          } else {
-            this.show_api_error (res, ['year', 'month', 'day']);
-          }
-        }, error => {
-          loading.dismiss ();
-          console.log (error);
-        });
+        //   if (res.status) {
+        //     this.slideNext ();
+        //   } else {
+        //     this.show_api_error (res, ['year', 'month', 'day']);
+        //   }
+        // }, error => {
+        //   loading.dismiss ();
+        //   console.log (error);
+        // });
       } else if (this.index === 2) {
-        let request: any = this.form_sexo.value;
-        request.campo = 'sexo';
+        loading.dismiss ();
+        this.slideNext ();
+        // let request: any = this.form_sexo.value;
+        // request.campo = 'sexo';
 
-        this.auth.validar_campo (request).subscribe ((res: any) => {
-          loading.dismiss ();
-          console.log (res);
+        // this.auth.validar_campo (request).subscribe ((res: any) => {
+        //   loading.dismiss ();
+        //   console.log (res);
 
-          if (res.status) {
-            this.slideNext ();
-          } else {
-            this.show_api_error (res, ['sexo']);
-          }
-        }, error => {
-          loading.dismiss ();
-          console.log (error);
-        });
+        //   if (res.status) {
+        //     this.slideNext ();
+        //   } else {
+        //     this.show_api_error (res, ['sexo']);
+        //   }
+        // }, error => {
+        //   loading.dismiss ();
+        //   console.log (error);
+        // });
       } else if (this.index === 3 || this.index === 4 || this.index === 7 || this.index === 8 || this.index === 9) {
         loading.dismiss ();
         this.slideNext ();
