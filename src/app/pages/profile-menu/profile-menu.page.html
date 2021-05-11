@@ -16,34 +16,34 @@
   <h6 class="ion-text-center h6-ciudad">{{ auth?.USER_DATA?.nombre_ciudad }}, {{ auth?.USER_DATA?.nombre_pais }}</h6>
   <ion-label (click)="complete_profile ()" class="label-menu">
     <img src="assets/img/iconos_Profile.png" class="img-persona-menu img-margin-right">
-    Edit profile
+    {{ 'Edit profile' | translate }}
   </ion-label>
   <ion-label (click)="go_page ('settings')" class="label-menu">
     <img src="assets/img/iconos_settings.png" class="img-configure-menu img-margin-right">
-    Account settings
+    {{ 'Account settings' | translate }}
   </ion-label>
   <ion-label class="label-menu">
     <img src="assets/img/icono-no-favorito.png" class="img-corazon-menu img-margin-right">
-    My favorites
+    {{ 'My favorites' | translate }}
   </ion-label>
   <div class="div-linea-bottom"></div>
   <h6 class="h6-amariilo">Credits left: {{ auth?.USER_DATA?.creditos }}</h6>
   <ion-label class="label-menu">
     <img src="assets/img/iconos_Upgrade.png" class="img-configure-menu img-margin-right">
-    Upgrade my account
+    {{ 'Upgrade my account' | translate }}
   </ion-label>
   <ion-label class="label-menu">
     <img src="assets/img/icono-no-favorito.png" class="img-corazon-menu img-margin-right">
-    Get more credits
+    {{ 'Get more credits' | translate }}
   </ion-label>
   <div class="div-linea-bottom"></div>
   <ion-label class="label-menu">
     <img src="assets/img/iconos_Aboutus.png" class="img-configure-menu img-margin-right">
-    About
+    {{ 'About' | translate }}
   </ion-label>
   <ion-label (click)="logout ()" class="label-menu">
     <img src="assets/img/iconos_Logout.png" class="img-corazon-menu img-margin-right">
-    Log out
+    {{ 'Log out' | translate }}
   </ion-label>
 </ion-content>
 <ion-footer class="ion-no-border" mode="ios">

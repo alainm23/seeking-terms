@@ -32,7 +32,9 @@ export class ProfilePage implements OnInit {
     this.id = this.route.snapshot.paramMap.get ('id');
 
     const loading = await this.loadingController.create ({
-      message: 'Loading...'
+      translucent: true,
+      spinner: 'lines-small',
+      mode: 'ios'
     });
 
     await loading.present ();

@@ -5,7 +5,7 @@
       <ion-back-button text="" color="dark"></ion-back-button>
     </ion-buttons>
 
-    <ion-title>Registro</ion-title>
+    <ion-title>{{ 'Register' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -18,9 +18,9 @@
       <ion-grid class="grid-pagging">
         <ion-row style="display: flex;">
           <ion-col size="12" class="ion-no-padding">
-            <h1 class="ion-text-center">¿Cómo te llamas?</h1>
+            <h1 class="ion-text-center">{{ 'Type your nick' | translate }}</h1>
             <ion-item class="item-llamas" lines="none">
-              <ion-label position="stacked" class="label-campo">Así es como aparecerás en Seeking</ion-label>
+              <ion-label position="stacked" class="label-campo">{{ 'This is how you will appear in Seeking' | translate }}</ion-label>
               <ion-input (keyup.enter)="next_step ()" formControlName="usernick" type="text" class="input-llmas"></ion-input>
             </ion-item>
           </ion-col>
@@ -34,29 +34,29 @@
       <ion-grid class="grid-pagging">
         <ion-row style="display: flex;">
           <ion-col size="12">
-            <h1 class="ion-text-center">Great! {{ form_usernick.value.usernick }}! Your date of birth?</h1>
+            <h1 class="ion-text-center">{{ 'Great!' | translate }} {{ form_usernick.value.usernick }} {{ 'Your date of birth?' | translate }}</h1>
             <p class="color-plomo ion-text-center">
-              We require this to confirm that you are over 18 years of age
+              {{ 'We require this to confirm that you are over 18 years of age' | translate }}
             </p>
           </ion-col>
           <ion-col size="12" class="ion-no-padding">
             <ion-row class="ion-justify-content-center">
               <ion-col size="3" class="col-padding-dia">
-                <p class="p-dia-mes-ano">Día</p>
+                <p class="p-dia-mes-ano">{{ 'Día' | translate }}</p>
                 <ion-item lines="none" class="item-dias">
-                  <ion-input #day_input (keyup.enter)="set_input_focus ('month_input')" formControlName="day" type="tel" maxlength="2" placeholder="DD" class="input-dia"></ion-input>
+                  <ion-input #day_input (keyup.enter)="set_input_focus ('month_input')" formControlName="day" type="tel" maxlength="2" placeholder="{{ 'DD' | translate }}" class="input-dia"></ion-input>
                 </ion-item>
               </ion-col>
               <ion-col size="3" class="col-padding-mes">
-                <p class="p-dia-mes-ano">Mes</p>
+                <p class="p-dia-mes-ano">{{ 'Mes' | translate }}</p>
                 <ion-item lines="none" class="item-dias">
-                  <ion-input #month_input (keyup.enter)="set_input_focus ('year_input')" formControlName="month" type="tel" maxlength="2" placeholder="MM" class="input-dia"></ion-input>
+                  <ion-input #month_input (keyup.enter)="set_input_focus ('year_input')" formControlName="month" type="tel" maxlength="2" placeholder="{{ 'MM' | translate }}" class="input-dia"></ion-input>
                 </ion-item>
               </ion-col>
               <ion-col size="4" class="col-padding-ano" >
-                <p class="p-dia-mes-ano">Año</p>
+                <p class="p-dia-mes-ano">{{ 'Año' | translate }}</p>
                 <ion-item lines="none" class="item-dias">
-                  <ion-input #year_input (keyup.enter)="next_step ()" formControlName="year" type="tel" maxlength="4" placeholder="AAAA" class="input-dia"></ion-input>
+                  <ion-input #year_input (keyup.enter)="next_step ()" formControlName="year" type="tel" maxlength="4" placeholder="{{ 'AAAA' | translate }}" class="input-dia"></ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>
@@ -71,7 +71,7 @@
       <ion-grid class="grid-pagging">
         <ion-row style="display: flex;">
           <ion-col size="12">
-            <h1 class="ion-text-center">Your gender</h1>
+            <h1 class="ion-text-center">{{ 'Your gender' | translate }}</h1>
           </ion-col>
           <ion-col size="12" class="ion-no-padding">
             <ion-list>
@@ -92,7 +92,7 @@
       <ion-grid class="grid-pagging">
         <ion-row style="display: flex;">
           <ion-col size="12">
-            <h1 class="ion-text-center">Interested In</h1>
+            <h1 class="ion-text-center">{{ 'Interested In' | translate }}</h1>
           </ion-col>
           <ion-col size="12" class="ion-no-padding">
             <ion-list>
@@ -110,7 +110,8 @@
       <ion-grid class="grid-pagging">
         <ion-row style="display: flex;">
           <ion-col size="12">
-            <h1 class="ion-text-center">What kind of relationships I seek</h1>
+            <h1 class="ion-text-center">{{ 'What kind of relationships I seek' | translate }}</h1>
+            <p class="color-plomo ion-text-center">{{ 'Check on or may' | translate }}</p>
           </ion-col>
           <ion-col size="12" class="ion-no-padding">
             <ion-list>
@@ -129,14 +130,14 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">¿What is your email address?</h1>
+              <h1 class="ion-text-center">{{ 'What is your email address?' | translate }}</h1>
               <!-- <p class="color-plomo ion-text-center">O regístrate con tu número de teléfono</p> -->
               <ion-item class="item-llamas" lines="none">
-                <ion-input formControlName="email" placeholder="Email" type="email" class="input-llmas"></ion-input>
+                <ion-input formControlName="email" placeholder="{{ 'Email' | translate }}" type="email" class="input-llmas"></ion-input>
               </ion-item>
   
               <ion-item class="item-llamas" lines="none">
-                <ion-input formControlName="confirm_email" placeholder="Confirm Email" type="email" class="input-llmas"></ion-input>
+                <ion-input formControlName="confirm_email" placeholder="{{ 'Confirm Email' | translate }}" type="email" class="input-llmas"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -149,7 +150,7 @@
       <ion-grid class="grid-pagging">
         <ion-row style="display: flex;">
           <ion-col size="12" class="ion-no-padding">
-            <h1 class="ion-text-center">¡Ya falta poco!<br>Crea una contraseña</h1>
+            <h1 class="ion-text-center">{{ 'Password' | translate }}</h1>
             <ion-item class="item-llamas" lines="none">
               <ion-input formControlName="password" type="text" class="input-llmas"></ion-input>
             </ion-item>
@@ -164,15 +165,15 @@
       <ion-grid>
         <ion-row>
           <ion-col size="12" class="ion-no-padding">
-            <h1 class="ion-text-center">Location</h1>
+            <h1 class="ion-text-center">{{ 'Location' | translate }}</h1>
             <ion-item (click)="select_country ()" class="item-llamas" lines="none">
-              <ion-input readonly placeholder="Country" formControlName="pais_nombre" type="text" class="input-llmas">
+              <ion-input readonly placeholder="{{ 'Country' | translate }}" formControlName="pais_nombre" type="text" class="input-llmas">
               </ion-input>
               <ion-icon style="font-size: 16px;" slot="end" name="caret-down-outline"></ion-icon>
             </ion-item>
 
             <ion-item class="item-llamas" lines="none">
-              <ion-select formControlName="id_region" (ionChange)="region_changed ($event)" interface="popover" placeholder="Region">
+              <ion-select formControlName="id_region" (ionChange)="region_changed ($event)" interface="popover" placeholder="{{ 'Region' | translate }}">
                 <ion-select-option *ngFor="let item of regions" [value]="item">
                   {{ item.name }}
                 </ion-select-option>
@@ -180,7 +181,7 @@
             </ion-item>
 
             <ion-item class="item-llamas" lines="none">
-              <ion-select formControlName="ciudad" interface="popover" placeholder="City">
+              <ion-select formControlName="ciudad" interface="popover" placeholder="{{ 'City' | translate }}">
                 <ion-select-option *ngFor="let item of cities" [value]="item">
                   {{ item.name }}
                 </ion-select-option>
@@ -196,7 +197,7 @@
       <ion-grid class="grid-pagging">
         <ion-row style="display: flex;">
           <ion-col size="12" class="ion-no-padding">
-            <h1 class="ion-text-center">¡Una sonrisita!<br>Necesitas al menos una foto para poder utilizar Seeking</h1>
+            <h1 class="ion-text-center">{{ 'A little smile!' | translate }}<br>{{ 'You need at least one photo to use Seeking' | translate }}</h1>
             <ion-card (click)="selectImageSource ('profile', 0, fileInput)" class="card-foto">
               <img *ngIf="profile_image === ''" src="assets/img/iconos_Photo.png">
               <img *ngIf="profile_image !== ''" [src]="get_profile_image ()" alt="">
@@ -212,7 +213,7 @@
       <ion-grid class="grid-pagging">
         <ion-row>
           <ion-col size="12" class="ion-no-padding">
-            <h1 class="ion-text-center">¡Muy buena foto!<br>Cuentas más fotos tengas, mejor</h1>
+            <h1 class="ion-text-center">{{ 'Very good photo!' | translate }}<br>{{ 'The more photos you have, the better' | translate }}</h1>
             <div class="div-fotos">
               <ion-card class="card-fotos">
                 <ion-avatar>
@@ -250,16 +251,16 @@
       <ion-grid class="grid-pagging">
         <ion-row>
           <ion-col size="12" class="ion-no-padding">
-            <h1 class="ion-text-center">Terms and Conditions</h1>
+            <h1 class="ion-text-center">{{ 'Terms and Conditions' | translate }}</h1>
             <p class="color-plomo ion-text-center ion-padding-start ion-padding-end">
-              Promoting illegal commercial activities (such as prostitution) is prohibited. If you are an ESCORT, DO NOT use this website.
+              {{ 'Promoting illegal commercial activities (such as prostitution) is prohibited. If you are an ESCORT, DO NOT use this website.' | translate }}
             </p>
           </ion-col>
 
           <ion-col size="12" class="ion-no-padding">
             <ion-list>
               <ion-item lines="none" class="item-radio">
-                <ion-label class="label-chech-radio">I agree to the Terms & Privacy Policy.</ion-label>
+                <ion-label class="label-chech-radio">{{ 'I agree to the Terms & Privacy Policy.' | translate }}</ion-label>
                 <ion-checkbox formControlName="terms" slot="start" class="checbox"></ion-checkbox>
               </ion-item>
             </ion-list>
@@ -271,6 +272,6 @@
   </ion-slides>
 </ion-content>
 <ion-footer class="ion-no-border ion-text-center">
-  <ion-button (click)="next_step ()" class="btn-continuar-footer">Continuar</ion-button>
-  <p class="p-footer">Continuar con Facebook</p>
+  <ion-button (click)="next_step ()" class="btn-continuar-footer">{{ 'Next' | translate }}</ion-button>
+  <p class="p-footer">{{ 'Continue with Facebook' | translate }}</p>
 </ion-footer>

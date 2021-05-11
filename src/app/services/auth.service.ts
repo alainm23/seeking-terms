@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class AuthService {
     foto_perfil: ''
   };
   URL: string;
-  constructor (public http: HttpClient, private storage: Storage) {
+  constructor (public http: HttpClient, private storage: Storage,
+    private googlePlus: GooglePlus) {
     this.URL = 'https://seekingterms.com/api/auth/';
   }
 
@@ -111,6 +113,27 @@ export class AuthService {
 
   get_settings () {
     let url = 'https://seekingterms.com/api/users/user/settings/get';
+
+    const headers = {
+      'Authorization': 'Bearer ' + this.USER_ACCESS.access_token
+    }
+
+    return this.http.get (url, { headers });
+  }
+
+  google () {
+    this.googlePlus.login ({
+      'webClientId': '115731276335-2s4dka282u55g4r7osvha9gij4r55361.apps.googleusercontent.com',
+      'offline': true
+    }).then (async (res: any) => { 
+      alert (JSON.stringify (res));
+    }, error => {
+      alert (JSON.stringify (error));
+    });
+  }
+
+  get_user () {
+    let url = 'https://seekingterms.com/api/auth/user';
 
     const headers = {
       'Authorization': 'Bearer ' + this.USER_ACCESS.access_token

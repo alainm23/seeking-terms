@@ -2,13 +2,13 @@
   <ion-refresher slot="fixed" (ionRefresh)="get_data ($event, false)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <h1 class="ion-text-center">Conversatoins</h1>
+  <h1 class="ion-text-center">{{ 'Conversatoins' | translate }}</h1>
   <ion-card class="card-buscador">
     <ion-input placeholder="Search for a sugar user" type="search" class="input-buscador"></ion-input>
     <ion-icon name="search-sharp" class="icon-buscador"></ion-icon>
   </ion-card>
   <div class="div-show-select">
-    <h6 class="h6-show">Show</h6>
+    <h6 class="h6-show">{{ 'Show' | translate }}</h6>
     <ion-card class="card-select">
       <ion-icon name="mail-outline" class="icon-mensaje"></ion-icon>
       <ion-select placeholder="All conversations" mode="ios">
@@ -24,7 +24,7 @@
     </ion-avatar>
     <div class="div-datos">
       <ion-label class="nombre-label">{{ item.receptor.usernick }}, {{ item.receptor.edad }}</ion-label>
-      <p class="descripcion-label">Lorem ipsum dolor sit amet, consetetur...</p>
+      <p class="descripcion-label"></p>
     </div>
   </ion-item>
 

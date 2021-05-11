@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { InboxPageRoutingModule } from './inbox-routing.module';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { InboxPage } from './inbox.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { InboxPage } from './inbox.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    InboxPageRoutingModule
+    InboxPageRoutingModule,
+    TranslateModule
   ],
   declarations: [InboxPage]
 })

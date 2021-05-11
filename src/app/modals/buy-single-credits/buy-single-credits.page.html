@@ -1,0 +1,11 @@
+<ion-content class="ion-text-center">
+  <img src="assets/img/Grupo804.png" class="img-logo-genral">
+  <h1>Get credits</h1>
+  <p>Simply subscribe and gain access to our entire platform!</p>
+  <p>You have <span>00</span> credits left:</p>
+  <ion-card *ngFor="let item of prices" (click)="select_price (item)">
+    <h5 class="ion-no-margin">{{ item.text }}</h5>
+    <p class="p_card ion-no-margin">$ {{ item.value }}</p>
+  </ion-card>
+  <ion-button mode="ios">Go premium</ion-button>
+</ion-content>

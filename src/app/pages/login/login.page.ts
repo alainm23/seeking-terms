@@ -3,6 +3,9 @@ import { LoadingController, NavController, ToastController } from '@ionic/angula
 import { AuthService } from '../../services/auth.service';
 import { FormGroup , FormControl, Validators } from '@angular/forms';
 import { WebsocketService } from '../../services/websocket.service';
+import * as moment from 'moment';
+import { TranslateService } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +18,9 @@ export class LoginPage implements OnInit {
     private navController: NavController,
     private toastController: ToastController,
     private loadingController: LoadingController,
-    private websocket: WebsocketService) { }
+    private websocket: WebsocketService,
+    private translate: TranslateService,
+    private storage: Storage) { }
 
   ngOnInit () {
     this.form = new FormGroup ({
@@ -26,12 +31,15 @@ export class LoginPage implements OnInit {
 
   async submit () {
     const loading = await this.loadingController.create ({
-      message: 'Loading...'
+      translucent: true,
+      spinner: 'lines-small',
+      mode: 'ios'
     });
 
     await loading.present ();
 
     this.auth.login (this.form.value.email, this.form.value.password).subscribe ((res: any) => {
+      console.log (res);
       this.auth.save_local_user (res).then (() => {
         loading.dismiss ();
         this.navController.navigateRoot ('home');
@@ -55,5 +63,16 @@ export class LoginPage implements OnInit {
     });
 
     toast.present ();
+  }
+
+  change_lan (event: any) {
+    console.log (event.detail.value);
+    moment.locale (event.detail.value);
+    this.translate.setDefaultLang (event.detail.value);
+    this.storage.set ('lang', event.detail.value);
+  }
+
+  google () {
+    this.auth.google ();
   }
 }

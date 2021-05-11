@@ -1,0 +1,112 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>planes-femaie</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content class="ion-text-center">
+  <img src="assets/img/Imagen-16.png" class="img_persona">
+  <img src="assets/img/Grupo804.png" class="img-logo-genral">
+  <p>Get your sugar daddy now</p>
+  <ion-slides pager="false" [options]="slideOpts">
+    <ion-slide>
+      <ion-card mode="ios" class="ion-text-center">
+        <h5 class="ion-no-margin ion-text-start">Explore</h5>
+        <p class="p_card ion-no-margin ion-text-start">Free</p>
+        <ion-list mode="ios">
+          <ion-item mode="ios" lines="none">
+            <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            <ion-label class="ion-no-margin">Create your profile</ion-label>
+          </ion-item>
+          <ion-item mode="ios" lines="none">
+            <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            <ion-label class="ion-no-margin">Upload images</ion-label>
+          </ion-item>
+          <ion-item mode="ios" lines="none">
+            <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            <ion-label class="ion-no-margin">Search and view girls</ion-label>
+          </ion-item>
+        </ion-list>
+        <ion-button (click)="select_plan ('free')" mode="ios">Go on for free</ion-button>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card mode="ios" class="ion-text-center">
+        <h5 class="ion-no-margin ion-text-start">Free spirit</h5>
+        <p class="p_card ion-no-margin ion-text-start">Pay as you go</p>
+        <ion-list mode="ios">
+          <h6 class="ion-text-start">Buy as many credits.</h6>
+          <ion-item mode="ios" lines="none">
+            <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            <ion-label class="ion-no-margin"> Start conversation</ion-label>
+          </ion-item>
+          <ion-item mode="ios" lines="none">
+            <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            <ion-label class="ion-no-margin">Respond to girls</ion-label>
+          </ion-item>
+          <ion-item mode="ios" lines="none">
+            <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            <ion-label class="ion-no-margin">Respond to girls</ion-label>
+          </ion-item>
+          <ion-item mode="ios" lines="none">
+            <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            <ion-label class="ion-no-margin">Respond to girls</ion-label>
+          </ion-item>
+        </ion-list>
+        <ion-button mode="ios" (click)="select_plan ('free-spirit')">Get credits</ion-button>
+      </ion-card>
+    </ion-slide>
+    <ion-slide *ngFor="let item of planes">
+      <ion-card mode="ios" class="ion-text-center">
+        <div class="div_bandera">
+          <img src="assets/img/Grupo-593.png" class="img_bandera">
+          <!-- <span>
+            {{ item.nombre }}
+          </span> -->
+        </div>
+        <h5 class="ion-no-margin ion-text-start">{{ item.nombre }}</h5>
+        <p class="p_card ion-no-margin ion-text-start">$ {{ item.monto }} x month</p>
+        <ion-list mode="ios">
+          <ion-item *ngFor="let detalle of item.detalles" mode="ios" lines="none">
+            <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            <ion-label class="ion-no-margin">{{ detalle.nombre }}</ion-label>
+          </ion-item>
+        </ion-list>
+        <ion-button mode="ios" (click)="select_plan ('subscription', item)">Go premiun</ion-button>
+      </ion-card>
+    </ion-slide>
+    <!-- <ion-slide>
+      <ion-card mode="ios" class="ion-text-center">
+        <h5 class="ion-no-margin ion-text-start">Rock star</h5>
+        <p class="p_card ion-no-margin ion-text-start">$ 75 x month</p>
+        <ion-list mode="ios">
+          <ion-item mode="ios" lines="none">
+            <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            <ion-label class="ion-no-margin">All site features</ion-label>
+          </ion-item>
+          <ion-item mode="ios" lines="none">
+            <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            <ion-label class="ion-no-margin">Super boost profile</ion-label>
+          </ion-item>
+          <ion-item mode="ios" lines="none">
+            <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            <ion-label class="ion-no-margin">Permanent on photo feed</ion-label>
+          </ion-item>
+          <ion-item mode="ios" lines="none">
+            <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            <ion-label class="ion-no-margin">Unlimited messaging</ion-label>
+          </ion-item>
+          <ion-item mode="ios" lines="none">
+            <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            <ion-label class="ion-no-margin">Apear on <span class="span_morado">exclusive search</span></ion-label>
+          </ion-item>
+          <ion-item mode="ios" lines="none">
+            <ion-icon name="checkmark-circle-sharp"></ion-icon>
+            <ion-label class="ion-no-margin">Batch messeging</ion-label>
+          </ion-item>
+        </ion-list>
+        <ion-button mode="ios" (click)="select_plan ('rock-star')">Common playboy</ion-button>
+      </ion-card>
+    </ion-slide> -->
+  </ion-slides>
+</ion-content>

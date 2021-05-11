@@ -19,22 +19,22 @@
   <div class="div-padding-left-right">
     <h1>{{ profile?.usernick }}, {{ profile?.edad }}</h1>
     <p class="p-nombre-lima">{{ profile?.nombre_ciudad }}, {{ profile?.nombre_pais }}. {{ profile?.distance }}</p>
-    <p class="p-height">Height <span>{{ profile?.altura }}m</span></p>
+    <p class="p-height">{{ 'Height' | translate }} <span>{{ profile?.altura }}m</span></p>
     <ion-card class="card-note">
       <ion-note *ngFor="let item of profile?.idiomas" class="note-idioma">
         {{ item.nombre }}
       </ion-note>
     </ion-card>
-    <ion-button class="btn-send" mode="ios">Send me a message</ion-button>
+    <ion-button class="btn-send" mode="ios">{{ 'Send me a message' | translate }}</ion-button>
   </div>
   <ion-card class="card-texto-blanco">
-    <h6 class="h6-titulo">I’m looking for</h6>
+    <h6 class="h6-titulo">{{ 'I’m looking for' | translate }}</h6>
     <p class="p-descripcion-card">
       {{ profile?.estoy_buscando }}
     </p>
   </ion-card>
   <div class="div-padding-left-right">
-    <h5 class="h5-im">Im interested in…</h5>
+    <h5 class="h5-im">{{ 'Im interested in…' | translate }}</h5>
     <ion-card class="card-btn">
       <ion-button *ngFor="let item of profile?.intereses" class="btn_blanco" mode="ios">
         {{ item.valor }}
@@ -48,7 +48,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <h5 class="h5-im">About me</h5>
+    <h5 class="h5-im">{{ 'About me' | translate }}</h5>
     <p class="p-descripcion-card">
       {{ profile?.acerca_de_mi }}
     </p>
@@ -61,8 +61,8 @@
     </ng-container>
   </div>
   <ion-card class="card-texto-blanco card-top">
-    <p class="ion-text-center p-plomo-left">Let me know you like me</p>
-    <ion-button class="btn-cara-give"><img src="assets/img/iconos_Wink.png" class="img-cara">Give me a wink</ion-button>
+    <p class="ion-text-center p-plomo-left">{{ 'Let me know you like me' | translate }}</p>
+    <ion-button class="btn-cara-give"><img src="assets/img/iconos_Wink.png" class="img-cara">{{ 'Give me a wink' | translate }}</ion-button>
   </ion-card>
 </ion-content>
 <ion-footer class="ion-no-border" mode="ios">

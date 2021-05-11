@@ -6,7 +6,12 @@ import { DatabaseService } from '../../services/database.service';
 import { FilterPage } from '../../modals/filter/filter.page';
 import * as moment from 'moment';
 import { CompleteProfilePage } from '../../modals/complete-profile/complete-profile.page';
-declare var paypal;
+import { UpgradeAccountMenuPage } from '../../modals/upgrade-account-menu/upgrade-account-menu.page';
+import { SelectPlanPage } from '../../modals/select-plan/select-plan.page';
+import { BuySingleCreditsPage } from '../../modals/buy-single-credits/buy-single-credits.page';
+import { PaymentPage } from '../../modals/payment/payment.page';
+import { AuthService } from '../../services/auth.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +19,6 @@ declare var paypal;
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  @ViewChild ('paypal', {static: true})  paypalElement: ElementRef
   producto = {
     descripcion: 'ascaosckaos',
     precio: 99.99
@@ -46,64 +50,38 @@ export class HomePage implements OnInit {
     private loadingController: LoadingController,
     private navController: NavController,
     private modalController: ModalController,
-    private toastController: ToastController) { }
+    private toastController: ToastController,
+    private auth: AuthService,
+    private storage: Storage) { }
 
   async ngOnInit () {
-    setTimeout(() => {
-      paypal.Buttons ({
-        createOrder: (data, actions) => {
-          return actions.order.create ({
-            purchase_units: [{
-              amount: {
-                value: '99.99'
-              }
-            }]
-          });
-        },
-        onApprove: (data, actions) => {
-          return actions.order.capture().then ((details: any) => {
-            console.log (details)
-          });
-        }
-      }).render (this.paypalElement.nativeElement);
-    }, 1000);
-
     this.home_loading = true;
     this.get_data (null, false, '');
     // this.get_promovidos ();
-
-    const loading = await this.loadingController.create ({
-      message: ''
-    });
-
-    await loading.present ();
-
+    
     this.database.get_porcentaje_perfil ().subscribe (async (res: any) => {
-      loading.dismiss ();
       console.log (res);
       this.complete_perfil = res;
-
-      if (this.complete_perfil.total < 95) {
-        const modal = await this.modalController.create ({
-          component: CompleteProfilePage,
-          swipeToClose: true,
-          // presentingElement: this.routerOutlet.nativeEl,
-          mode: 'ios'
-        });
-    
-        modal.onDidDismiss ().then ((response: any) => {
-          if (response.role === 'update') {
-            
-          }
-        });
-    
-        return await modal.present ();
-      } else {
-        
-      }
     }, error => {
       console.log (error);
     });
+  }
+
+  async complete_profile () {
+    const modal = await this.modalController.create ({
+      component: CompleteProfilePage,
+      swipeToClose: true,
+      // presentingElement: this.routerOutlet.nativeEl,
+      mode: 'ios'
+    });
+
+    modal.onDidDismiss ().then ((response: any) => {
+      if (response.role === 'update') {
+        
+      }
+    });
+
+    return await modal.present ();
   }
 
   get_data (event: any, join: boolean, type: string) {
@@ -365,5 +343,131 @@ export class HomePage implements OnInit {
     this.page = 0;
     this.home_loading = true;
     this.get_data (null, false, '');
+  }
+
+  async open_upgrade_menu () {
+    const modal = await this.modalController.create ({
+      component: UpgradeAccountMenuPage,
+      swipeToClose: true,
+      cssClass: 'modal-verify',
+      showBackdrop: false,
+      mode: 'ios'
+    });
+
+    modal.onDidDismiss ().then ((response: any) => {
+      if (response.role === 'upgrade') {
+        this.open_select_plan ();
+      } else if (response.role === 'credits') {
+        this.open_buy_credis ();
+      }
+    });
+
+    return await modal.present ();
+  }
+
+  async open_select_plan () {
+    const modal = await this.modalController.create({
+      component: SelectPlanPage,
+      componentProps: {
+        gender: 0
+      }
+    });
+
+    modal.onWillDismiss ().then ((response: any) => {
+      if (response.role === 'free') {
+        
+      } else if (response.role === 'free-spirit') {
+        this.open_buy_credis ();
+      } else if (response.role === 'subscription') {
+        this.open_payment (response.data, 'subscription');
+      }
+    });
+    
+    return await modal.present ();
+  }
+
+  async open_buy_credis () {
+    const modal = await this.modalController.create ({
+      component: BuySingleCreditsPage,
+      componentProps: {
+        page: 'home'
+      }
+    });
+
+    modal.onWillDismiss ().then ((response: any) => {
+      if (response.role === 'ok') {
+        this.open_payment (response.data, 'credis');
+      }
+    });
+    
+    return await modal.present ();
+  }
+
+  async open_payment (data: any, type: string) {
+    const modal = await this.modalController.create ({
+      component: PaymentPage,
+      componentProps: {
+        data: data,
+        type: type
+      }
+    });
+
+    modal.onWillDismiss ().then (async (response: any) => {
+      if (response.role === 'PAID') {
+        const loading = await this.loadingController.create ({
+          translucent: true,
+          spinner: 'lines-small',
+          mode: 'ios'
+        });
+    
+        await loading.present ();
+
+        if (response.data.type === 'credis') {
+          let request: any = {
+            creditos: response.data.data.creditos,
+            codigo_transaccion: response.data.response.id,
+            total_pagado: response.data.data.value
+          };
+  
+          console.log (request);
+  
+          this.database.guardar_pago_creditos (request).subscribe (async (res: any) => {
+            if (res.status === true) {
+              this.auth.USER_DATA.creditos += request.creditos;
+              this.storage.set ('USER_DATA', JSON.stringify (this.auth.USER_DATA)).then (() => {
+                loading.dismiss ();
+              });
+            } 
+          }, error => {
+            loading.dismiss ();
+            console.log (error);
+          });
+        } else {
+          let request: any = {
+            id_plan: response.data.data.id,
+            id_suscripcion: response.data.response.subscriptionID
+          };
+
+          this.database.guardar_membresia (request).subscribe ((res: any) => {
+            console.log (res);
+            loading.dismiss ();
+          }, error => {
+            console.log (error);
+            loading.dismiss ();
+          });
+          console.log (response);
+        }
+      }
+    });
+    
+    return await modal.present ();
+  }
+
+  cancelar () {
+    this.database.cancelar_mebresia ().subscribe ((res: any) => {
+      console.log (res);
+    }, error => {
+      console.log (error);
+    });
   }
 }

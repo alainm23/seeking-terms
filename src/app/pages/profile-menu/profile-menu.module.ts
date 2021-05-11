@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ProfileMenuPageRoutingModule } from './profile-menu-routing.module';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { ProfileMenuPage } from './profile-menu.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { ProfileMenuPage } from './profile-menu.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ProfileMenuPageRoutingModule
+    ProfileMenuPageRoutingModule,
+    TranslateModule
   ],
   declarations: [ProfileMenuPage]
 })

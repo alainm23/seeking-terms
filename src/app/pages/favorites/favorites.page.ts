@@ -116,4 +116,18 @@ export class FavoritesPage implements OnInit {
     this.home_loading = true;
     this.get_data (null, false, '');
   }
+
+  get_relative_format (date_string: string) {
+    if (date_string === null || date_string === undefined || date_string === '') {
+      return '';
+    }
+
+    let date = moment (date_string);
+
+    if (!date.isValid ()) {
+      return '';
+    }
+
+    return date.fromNow ();
+  }
 }

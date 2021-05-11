@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { FavoritesPageRoutingModule } from './favorites-routing.module';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { FavoritesPage } from './favorites.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { FavoritesPage } from './favorites.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    FavoritesPageRoutingModule
+    FavoritesPageRoutingModule,
+    TranslateModule
   ],
   declarations: [FavoritesPage]
 })

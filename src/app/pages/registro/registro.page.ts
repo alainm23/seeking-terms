@@ -7,6 +7,7 @@ import { DatabaseService } from '../../services/database.service';
 import * as moment from 'moment';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 import { Crop, CropOptions } from '@ionic-native/crop/ngx';
+import { Storage } from '@ionic/storage';
 
 // Forms
 import { FormGroup , FormControl, Validators } from '@angular/forms';
@@ -15,6 +16,7 @@ import { File, FileEntry } from '@ionic-native/file/ngx';
 
 // Modals
 import { CountrySelectPage } from '../../modals/country-select/country-select.page';
+import { SelectPlanPage } from '../../modals/select-plan/select-plan.page';
 
 @Component({
   selector: 'app-registro',
@@ -54,7 +56,7 @@ export class RegistroPage implements OnInit {
   profile_file: any = {};
   photos: string [] = ['', '', '', '', ''];
   photos_file: any = [null, null, null, null, null];
-
+  lang: string;
   constructor (private toastController: ToastController,
     private auth: AuthService,
     private loadingController: LoadingController,
@@ -65,7 +67,8 @@ export class RegistroPage implements OnInit {
     private actionSheetController: ActionSheetController,
     private platform: Platform,
     private file: File,
-    private navController: NavController) { }
+    private navController: NavController,
+    private storage: Storage) { }
 
   ngOnInit () {
     this.form_usernick = new FormGroup ({
@@ -105,17 +108,20 @@ export class RegistroPage implements OnInit {
       terms: new FormControl (false, [Validators.required, Validators.pattern('true')])
     });
 
-    this.get_datos ();
+    this.storage.get ('lang').then ((lang: any) => {
+      this.lang = lang;
+      this.get_datos (lang);
+    });
   }
 
-  get_datos () {
-    this.database.get_datos ('generos').subscribe ((res: any) => {
+  get_datos (lang: string) {
+    this.database.get_datos ('generos', lang).subscribe ((res: any) => {
       this.generos = res;
     }, error => {
       console.log (error);
     });
 
-    this.database.get_datos ('relaciones').subscribe ((res: any) => {
+    this.database.get_datos ('relaciones', lang).subscribe ((res: any) => {
       console.log (res);
       this.relaciones = res;
     }, error => {
@@ -226,7 +232,9 @@ export class RegistroPage implements OnInit {
   async next_step () {
     if (this.valid_step ()) {
       const loading = await this.loadingController.create ({
-        message: 'Loading...'
+        translucent: true,
+        spinner: 'lines-small',
+        mode: 'ios'
       });
   
       await loading.present ();
@@ -334,6 +342,7 @@ export class RegistroPage implements OnInit {
         
         let request: any = {};
         request.usernick = this.form_usernick.value.usernick;
+        request.lenguaje = this.lang;
         request.sexo = this.form_sexo.value.sexo;
         request.relaciones = relaciones;
         request.generos_interes = generos_interes;
@@ -359,9 +368,7 @@ export class RegistroPage implements OnInit {
           loading.dismiss ();
 
           if (res ['status'] === undefined) {
-            this.auth.save_local_user (res).then (() => {
-              this.navController.navigateRoot ('home');
-            });
+            this.select_plan (res, request.sexo);
           } else {
             this.show_api_error (res, ['usernick', 'sexo', 'relaciones', 'generos_interes', 'email',
             'password', 'pais', 'id_region', 'id_ciudad', 'latitud', 'longitud', 'year', 'month', 
@@ -373,6 +380,25 @@ export class RegistroPage implements OnInit {
         });
       }
     }
+  }
+
+  async select_plan (res: any, sexo: any) {
+    const modal = await this.modalController.create({
+      component: SelectPlanPage,
+      componentProps: {
+        page: 'registro'
+      }
+    });
+
+    modal.onWillDismiss ().then ((response: any) => {
+      if (response.role === 'free') {
+        this.auth.save_local_user (res).then (() => {
+          this.navController.navigateRoot ('home');
+        });
+      }
+    });
+    
+    return await modal.present ();
   }
 
   show_api_error (res: any, values: string []) {
@@ -443,7 +469,9 @@ export class RegistroPage implements OnInit {
 
   async get_regions (pais_id: string) {
     const loading = await this.loadingController.create ({
-      message: 'Loading...'
+      translucent: true,
+      spinner: 'lines-small',
+      mode: 'ios'
     });
 
     await loading.present ();
@@ -460,7 +488,9 @@ export class RegistroPage implements OnInit {
 
   async region_changed (event: any) {
     const loading = await this.loadingController.create ({
-      message: 'Loading...'
+      translucent: true,
+      spinner: 'lines-small',
+      mode: 'ios'
     });
 
     await loading.present ();
@@ -480,7 +510,7 @@ export class RegistroPage implements OnInit {
     });
   }
 
-  async selectImageSource (type: string, index: number=0, fileInput: any) {
+  async selectImageSource (type: string, index: number=0, fileInput: any=null) {
     if (this.platform.is ('cordova')) {
       const actionSheet = await this.actionSheetController.create ({
         buttons: [{
@@ -562,7 +592,9 @@ export class RegistroPage implements OnInit {
       formData.append ('imagen', blob, file.name);
 
       const loading = await this.loadingController.create ({
-        message: 'Loading...'
+        translucent: true,
+        spinner: 'lines-small',
+        mode: 'ios'
       });
   
       await loading.present ();

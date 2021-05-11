@@ -486,4 +486,8 @@ export class CompleteProfilePage implements OnInit {
 
     console.log (map);
   }
+  
+  close () {
+    this.modalController.dismiss ();
+  }
 }

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { FilterPageRoutingModule } from './filter-routing.module';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { FilterPage } from './filter.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { FilterPage } from './filter.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    FilterPageRoutingModule
+    FilterPageRoutingModule,
+    TranslateModule
   ],
   declarations: [FilterPage]
 })

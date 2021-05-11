@@ -23,9 +23,13 @@
     "@ionic-native/core": "^5.31.1",
     "@ionic-native/crop": "^5.31.1",
     "@ionic-native/file": "^5.31.1",
+    "@ionic-native/google-plus": "^5.32.1",
     "@ionic-native/onesignal": "^5.32.1",
     "@ionic/angular": "^5.5.2",
     "@ionic/storage": "^3.0.2",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
+    "@paypal/paypal-js": "^3.1.9",
     "laravel-echo": "^1.8.0",
     "moment": "^2.29.1",
     "ng2-validation": "^4.2.0",
@@ -50,6 +54,7 @@
     "cordova-plugin-crop": "^0.4.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-file": "^6.0.2",
+    "cordova-plugin-googleplus": "^8.5.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -86,7 +91,12 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-file": {},
       "cordova-plugin-crop": {},
-      "onesignal-cordova-plugin": {}
+      "onesignal-cordova-plugin": {},
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "",
+        "WEB_APPLICATION_CLIENT_ID": "115731276335-2s4dka282u55g4r7osvha9gij4r55361.apps.googleusercontent.com",
+        "PLAY_SERVICES_VERSION": "15.0.1"
+      }
     },
     "platforms": [
       "android"

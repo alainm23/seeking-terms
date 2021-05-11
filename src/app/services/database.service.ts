@@ -19,9 +19,14 @@ export class DatabaseService {
     this.URL_STORAGE ='https://www.seekingterms.com/storage/';
   }
 
-  get_datos (tipo: string) {
+  get_datos (tipo: string, lang: string="en") {
     let url = this.URL + 'datos/' + tipo;
-    return this.http.get (url);
+
+    console.log (lang);
+
+    return this.http.get (url, { params: {
+      lang: lang
+    }});
   }
 
   get_paises () {
@@ -182,5 +187,35 @@ export class DatabaseService {
     }
 
     return this.http.post (url, request, { headers });
+  }
+
+  guardar_pago_creditos (request: any) {
+    let url = this.URL + 'users/user/guardar/creditos/compra';
+
+    const headers = {
+      'Authorization': 'Bearer ' + this.auth.USER_ACCESS.access_token
+    }
+
+    return this.http.post (url, request, { headers });
+  }
+
+  guardar_membresia (request: any) {
+    let url = this.URL + 'users/user/guardar/membresia/compra';
+
+    const headers = {
+      'Authorization': 'Bearer ' + this.auth.USER_ACCESS.access_token
+    }
+
+    return this.http.post (url, request, { headers });
+  }
+
+  cancelar_mebresia () {
+    let url = this.URL + 'users/user/cancelar/membresia';
+
+    const headers = {
+      'Authorization': 'Bearer ' + this.auth.USER_ACCESS.access_token
+    }
+
+    return this.http.post (url, {}, { headers });
   }
 }

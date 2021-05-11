@@ -4,8 +4,8 @@ import { Platform } from '@ionic/angular';
 // Services
 import { Storage } from '@ionic/storage';
 import * as moment from 'moment';
-import Pusher from "pusher-js"
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +14,26 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 })
 export class AppComponent {
   constructor (private storage: Storage, private platform: Platform,
-    private oneSignal: OneSignal) {
+    private oneSignal: OneSignal, 
+    private translate: TranslateService) {
     this.OnInit ();
   }
 
   OnInit () {
     this.platform.ready ().then (async () => {
       this.storage.create ();
-      moment.locale ('en');
+
+      this.storage.get ('lang').then (async (lang: string) => {
+        if (lang === undefined || lang === null) {
+          await this.storage.set ('lang', 'en');
+          lang = 'en';
+        }
+
+        moment.locale (lang);
+        this.translate.setDefaultLang (lang);
+      });
+
+      // Init OneSignal
       this.init_onesignal (JSON.parse (await this.storage.get ('USER_DATA')));
     });
   }

@@ -7,95 +7,16 @@
 
   <div class="card-cabezera">
     <img src="assets/img/iconos_Filtrar.png" class="img-cuadrado">
-    <ion-label class="label-titulo">Filter your search</ion-label>
+    <ion-label class="label-titulo">{{ 'Filter your search' | translate }}</ion-label>
     <ion-button (click)="close ()" class="btn-close" mode="ios">
       <ion-icon name="close-outline" class="icon-close"></ion-icon>
     </ion-button>
   </div>
-
-  <!-- <ion-item style="margin-top: 1rem;" class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Sort By</label>
-    <ion-select mode="ios" [(ngModel)]="order_by" interface="popover">
-      <ion-select-option *ngIf="page == 'favorite'" value="date-desc" class="select-interface-option">
-        Date descending
-      </ion-select-option>
-      <ion-select-option *ngIf="page == 'favorite'" value="date-asc" class="select-interface-option">
-        Date ascending
-      </ion-select-option>
-      <ion-select-option value="distance" class="select-interface-option">
-        Closed to me
-      </ion-select-option>
-      <ion-select-option value="favoritos-desc" class="select-interface-option">
-        Popularity
-      </ion-select-option>
-      <ion-select-option value="created_at-desc" class="select-interface-option">
-        Newest member
-      </ion-select-option>
-      <ion-select-option value="last_seen-desc" class="select-interface-option">
-        Recently connected
-      </ion-select-option>
-      <ion-select-option value="edad-desc" class="select-interface-option">
-        Older
-      </ion-select-option>
-      <ion-select-option value="edad-asc" class="select-interface-option">
-        Younger
-      </ion-select-option>
-    </ion-select>
-  </ion-item> -->
-  <!-- <h4 class="titulo-campos">Location</h4>
-  <ion-card class="card-buscador card-cero-top">
-    <ion-input placeholder="Enter your location" mode="ios" type="search" class="input-buscador"></ion-input>
-    <img src="assets/img/Capturabuscard.PNG">
-  </ion-card>
-  <div class="div-btn-mapa">
-    <ion-label class="label-subtitulo">Use my GPS location</ion-label>
-    <ion-button mode="ios" class="btn-mapa">SEARCH</ion-button>
-  </div>
-  <ion-card class="card-mapa">
-    <p class="p-mapa">1111 S Figueroa St, Los Angeles, CA 90015, USA</p>
-    <img src="assets/img/mapa.PNG" class="img-mapa">
-  </ion-card>
-  <div class="div-disml">
-    <h4 class="titulo-campos ion-no-margin">Distance</h4>
-    <ion-label class="label-ml">130 ml</ion-label>
-  </div>
-  <ion-range pin="false" mode="ios" class="range-input"></ion-range> -->
-  <!-- <div class="div-disml div-bottom">
-    <h4 class="titulo-campos ion-no-margin">Show me users who</h4>
-  </div>
-  <ion-item class="item-toggle">
-    <ion-label class="label-toggle">Have photos</ion-label>
-    <ion-toggle mode="ios"></ion-toggle>
-  </ion-item>
-  <ion-item class="item-toggle">
-    <ion-label class="label-toggle">Watched my profile</ion-label>
-    <ion-toggle mode="ios"></ion-toggle>
-  </ion-item>
-  <ion-item class="item-toggle">
-    <ion-label class="label-toggle">Premium users or more</ion-label>
-    <ion-toggle mode="ios"></ion-toggle>
-  </ion-item>
-  <ion-item class="item-toggle">
-    <ion-label class="label-toggle">Use my GPS location</ion-label>
-    <ion-toggle mode="ios"></ion-toggle>
-  </ion-item>
-  <ion-item class="item-toggle">
-    <ion-label class="label-toggle">In my favorites</ion-label>
-    <ion-toggle mode="ios"></ion-toggle>
-  </ion-item>
-  <ion-item class="item-toggle">
-    <ion-label class="label-toggle">Favorited by them</ion-label>
-    <ion-toggle mode="ios"></ion-toggle>
-  </ion-item>
-  <ion-item class="item-toggle">
-    <ion-label class="label-toggle">Seen my profile</ion-label>
-    <ion-toggle mode="ios"></ion-toggle>
-  </ion-item> -->
   <div class="div-disml div-bottom">
-    <h4 class="titulo-campos ion-no-margin">Characteristics & preferences</h4>
+    <h4 class="titulo-campos ion-no-margin">{{ 'Characteristics & preferences' | translate }}</h4>
   </div>
   <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Objective relationship</label>
+    <label mode="ios" class="label-select">{{ 'Objective relationship' | translate }}</label>
     <ion-select [(ngModel)]="relationship" multiple="true" mode="ios" placeholder="Select">
       <ion-select-option *ngFor="let item of database.RELACIONES" [value]="item.id" class="select-interface-option">
         {{ item.nombre }}
@@ -104,7 +25,7 @@
   </ion-item>
 
   <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Languages</label>
+    <label mode="ios" class="label-select">{{ 'Languages' | translate }}</label>
     <ion-select [(ngModel)]="idiomas" multiple="true" mode="ios" placeholder="Select">
       <ion-select-option *ngFor="let item of database.IDIOMAS" [value]="item.id" class="select-interface-option">
         {{ item.nombre }}
@@ -122,7 +43,7 @@
   </ion-item>
 
   <div class="div-btn-mapa">
-    <ion-label class="label-subtitulo">Ages between: {{ edad_range.lower }}-{{ edad_range.upper }}</ion-label>
+    <ion-label class="label-subtitulo">{{ 'Ages between' | translate }}: {{ edad_range?.lower }}-{{ edad_range?.upper }}</ion-label>
   </div>
   <ion-range pin="true" dualKnobs="true" [(ngModel)]="edad_range" min="18" max="100" step="1" snaps="false" mode="ios" class="range-input range-top">
     <!-- <ion-label slot="start"></ion-label>
@@ -130,7 +51,7 @@
   </ion-range>
 
   <div class="div-disml div-bottom">
-    <h4 class="titulo-campos ion-no-margin">Personalities</h4>
+    <h4 class="titulo-campos ion-no-margin">{{ 'Personalities' | translate }}</h4>
   </div>
   <ion-item *ngFor="let item of database.PERSONALIDADES" class="ion-no-padding item-select" button="false" lines="none">
     <label mode="ios" class="label-select">{{ item.nombre }}</label>
@@ -141,7 +62,7 @@
     </ion-select>
   </ion-item>
   <div class="div-disml div-bottom">
-    <h4 class="titulo-campos ion-no-margin">Appearance</h4>
+    <h4 class="titulo-campos ion-no-margin">{{ 'Appearance' | translate }}</h4>
   </div>
   <ion-item *ngFor="let item of database.APARIENCIAS" class="ion-no-padding item-select" button="false" lines="none">
     <label mode="ios" class="label-select">{{ item.nombre }}</label>
@@ -151,136 +72,4 @@
       </ion-select-option>
     </ion-select>
   </ion-item>
-  <!-- <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Would i relocate?</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Passport ready?</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  
-  <ion-card class="card-buscador card-top-bottom-cero">
-    <ion-input placeholder="Languagus" mode="ios" type="search" class="input-buscador"></ion-input>
-    <img src="assets/img/Capturabuscard.PNG">
-  </ion-card>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Interested</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Sexually</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Religion</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Orientation</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Education</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Children</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Relationship</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Occupation</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <div class="div-disml div-bottom">
-    <h4 class="titulo-campos ion-no-margin">Appearance</h4>
-  </div>
-  <div class="div-btn-mapa">
-    <ion-label class="label-subtitulo">Height range</ion-label>
-  </div>
-  <ion-range pin="true" dualKnobs="true" min="21" max="72" step="3" snaps="false" mode="ios" class="range-input range-top"></ion-range>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Gender</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Ethnicity</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Drinking</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Body Type</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Hair Color</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Smoking</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item class="ion-no-padding item-select" button="false" lines="none">
-    <label mode="ios" class="label-select">Eye Color</label>
-    <ion-select mode="ios" placeholder="Select">
-      <ion-select-option value="f" class="select-interface-option">USA</ion-select-option>
-      <ion-select-option value="m" class="select-interface-option">CHINA</ion-select-option>
-    </ion-select>
-  </ion-item> -->
-  <!-- <ion-button class="btn_next" mode="ios">Go!</ion-button> -->
 </ion-content>

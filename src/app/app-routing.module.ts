@@ -74,6 +74,22 @@ const routes: Routes = [
   {
     path: 'permisos-correo',
     loadChildren: () => import('./permisos-correo/permisos-correo.module').then( m => m.PermisosCorreoPageModule)
+  },
+  {
+    path: 'select-plan',
+    loadChildren: () => import('./modals/select-plan/select-plan.module').then( m => m.SelectPlanPageModule)
+  },
+  {
+    path: 'buy-single-credits',
+    loadChildren: () => import('./modals/buy-single-credits/buy-single-credits.module').then( m => m.BuySingleCreditsPageModule)
+  },
+  {
+    path: 'upgrade-account-menu',
+    loadChildren: () => import('./modals/upgrade-account-menu/upgrade-account-menu.module').then( m => m.UpgradeAccountMenuPageModule)
+  },
+  {
+    path: 'payment',
+    loadChildren: () => import('./modals/payment/payment.module').then( m => m.PaymentPageModule)
   }
 
 ];

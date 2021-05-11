@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { CountrySelectPageRoutingModule } from './country-select-routing.module';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { CountrySelectPage } from './country-select.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { CountrySelectPage } from './country-select.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CountrySelectPageRoutingModule
+    CountrySelectPageRoutingModule,
+    TranslateModule
   ],
   declarations: [CountrySelectPage]
 })

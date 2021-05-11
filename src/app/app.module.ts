@@ -9,7 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Native Storage
 import { Storage } from '@ionic/storage';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 // Camera
 import { Camera } from '@ionic-native/camera/ngx';
@@ -26,6 +27,14 @@ import { CountrySelectPageModule } from './modals/country-select/country-select.
 import { FilterPageModule } from './modals/filter/filter.module';
 import { ChatPageModule } from './modals/chat/chat.module';
 import { CompleteProfilePageModule } from './modals/complete-profile/complete-profile.module';
+import { SelectPlanPageModule } from './modals/select-plan/select-plan.module';
+import { BuySingleCreditsPageModule } from './modals/buy-single-credits/buy-single-credits.module';
+import { UpgradeAccountMenuPageModule } from './modals/upgrade-account-menu/upgrade-account-menu.module';
+import { PaymentPageModule } from './modals/payment/payment.module';
+
+//Translation
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,7 +50,20 @@ import { CompleteProfilePageModule } from './modals/complete-profile/complete-pr
     FilterPageModule,
     ChatPageModule,
     OrderModule,
-    CompleteProfilePageModule
+    CompleteProfilePageModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => {
+          return new TranslateHttpLoader(http);
+        },
+        deps: [ HttpClient ]
+      }
+    }),
+    SelectPlanPageModule,
+    BuySingleCreditsPageModule,
+    UpgradeAccountMenuPageModule,
+    PaymentPageModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
@@ -49,7 +71,8 @@ import { CompleteProfilePageModule } from './modals/complete-profile/complete-pr
     Camera,
     File,
     Crop,
-    OneSignal
+    OneSignal,
+    GooglePlus
   ],
   bootstrap: [AppComponent],
 })

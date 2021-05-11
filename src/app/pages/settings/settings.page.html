@@ -17,10 +17,6 @@
 </ion-header>
 
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="get_data ($event, false, 'refresher')">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-
   <div class="div-blanco">
     <ion-item class="item-select" lines="none">
       <ion-select class="select-favo" [(ngModel)]="seccion" interface="popover">

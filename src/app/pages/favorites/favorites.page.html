@@ -3,19 +3,19 @@
     <ion-card class="card-cabezera">
       <div class="div-flex">
         <img src="assets/img/icono-flecha-circle.png" class="img-circle">
-        <ion-label class="label-titulo">Don’t seek, find.</ion-label>
+        <ion-label class="label-titulo">{{ 'Dont seek, find' | translate }}</ion-label>
         <img src="assets/img/icono-flecha.png" class="img-iguales img-flore">
         <img src="assets/img/iconos_Filtrar.png" (click)="filtrar ()" class="img-iguales img-cuadrado">
       </div>
       <div class="div-botones">
         <ion-button mode="ios" [class.btn-active]="tab_filter === null" class="btn-div" (click)="set_tab (null)">
-          Show all
+          {{ 'Show all' | translate }}
         </ion-button>
         <ion-button mode="ios" [class.btn-active]="tab_filter === 'online'" class="btn-div" (click)="set_tab ('online')">
-          Online now
+          {{ 'Online now' | translate }}
         </ion-button>
         <ion-button mode="ios" [class.btn-active]="tab_filter === 'verificados'" class="btn-div" (click)="set_tab ('verificados')">
-          Verified users
+          {{ 'Verified users' | translate }}
         </ion-button>
       </div>
     </ion-card>
@@ -30,10 +30,10 @@
   <div class="div-blanco">
     <ion-item class="item-select" lines="none">
       <ion-select class="select-favo" (ionChange)="section_changed ($event)" [(ngModel)]="seccion" interface="popover">
-        <ion-select-option value="favoritos">Favorites</ion-select-option>
-        <ion-select-option value="viewedme">Viewed my profile</ion-select-option>
-        <ion-select-option value="favoriteme">Favorited me</ion-select-option>
-        <ion-select-option value="blocked">Blocked users</ion-select-option>
+        <ion-select-option value="favoritos">{{ 'Favorites' | translate }}</ion-select-option>
+        <ion-select-option value="viewedme">{{ 'Viewed my profile' | translate }}</ion-select-option>
+        <ion-select-option value="favoriteme">{{ 'Favorited me' | translate }}</ion-select-option>
+        <ion-select-option value="blocked">{{ 'Blocked users' | translate }}</ion-select-option>
       </ion-select>
       <ion-icon name="chevron-down-sharp" class="icon-select"></ion-icon>
     </ion-item>
@@ -47,7 +47,7 @@
     <div *ngIf="items.length <= 0 && home_loading === false" class="ion-text-center" style="width: 100%;">
       <ion-item style="--background: transparent;" lines="none" class="ion-text-center">
         <ion-label>
-          <h1 class="h1-result">No results, check your filters.</h1>
+          <h1 class="h1-result">{{ 'No results, check your filters.' | translate }}</h1>
         </ion-label>
       </ion-item>
     </div>
@@ -70,7 +70,7 @@
                     </span>
       
                     <span *ngIf="order_by === 'favoritos-desc'">
-                      {{ item.favoritos }} Likes
+                      {{ item.favoritos }} {{ 'Likes' | translate }}
                     </span>
       
                     <span *ngIf="order_by === 'edad-desc' || order_by === 'edad-asc'">

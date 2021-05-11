@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { CompleteProfilePageRoutingModule } from './complete-profile-routing.module';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { CompleteProfilePage } from './complete-profile.page';
 
 @NgModule({
@@ -13,6 +13,7 @@ import { CompleteProfilePage } from './complete-profile.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    TranslateModule,
     CompleteProfilePageRoutingModule,
     ReactiveFormsModule
   ],

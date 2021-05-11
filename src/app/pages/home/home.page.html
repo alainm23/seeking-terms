@@ -6,10 +6,10 @@
         <img *ngIf="bestMatches === true" src="assets/img/icono-flecha.png" class="img-circle">
 
         <ion-label *ngIf="bestMatches === false" class="label-titulo">
-          Don’t seek, find.
+          {{ 'Dont seek, find' | translate }}
         </ion-label>
         <ion-label *ngIf="bestMatches === true" class="label-titulo">
-          Best matches
+          {{ 'Best matches' | translate }}
         </ion-label>
         
         <img *ngIf="bestMatches === false" src="assets/img/icono-flecha.png" (click)="toggle_best_matches ()" class="img-iguales img-flore">
@@ -19,13 +19,13 @@
       </div>
       <div class="div-botones">
         <ion-button mode="ios" [class.btn-active]="tab_filter === null" class="btn-div" (click)="set_tab (null)">
-          Show all
+          {{ 'Show all' | translate }}
         </ion-button>
         <ion-button mode="ios" [class.btn-active]="tab_filter === 'online'" class="btn-div" (click)="set_tab ('online')">
-          Online now
+          {{ 'Online now' | translate }}
         </ion-button>
         <ion-button mode="ios" [class.btn-active]="tab_filter === 'verificados'" class="btn-div" (click)="set_tab ('verificados')">
-          Verified users
+          {{ 'Verified users' | translate }}
         </ion-button>
       </div>
     </ion-card>
@@ -33,8 +33,7 @@
 </ion-header>
 
 <ion-content>
-  <!-- <div #paypal></div> -->
-
+  <ion-button (click)="cancelar ()">Cncelar</ion-button>
   <ion-refresher slot="fixed" (ionRefresh)="get_data ($event, false, 'refresher')">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -62,39 +61,33 @@
   </ion-slides> -->
 
   <div class="ion-text-center div-amarillo-profile">
-    <h5 class="h5-profile">Profile status: 14% - Weak</h5>
-    <p class="p-profile">More detailed profiles get all the attention</p>
+    <h5 class="h5-profile">{{ 'Profile status' | translate }}: {{ complete_perfil?.total }}% - {{ 'Weak' | translate }}</h5>
+    <p class="p-profile">{{ 'More detailed profiles get all the attention' | translate }}</p>
   </div>
 
   <div class="div-atenttion ion-text-center">
-    <ion-button class="btn-get-attention" mode="ios">Get more attention!</ion-button>
+    <ion-button class="btn-get-attention" mode="ios" (click)="complete_profile ()">{{ 'Get more attention!' | translate }}</ion-button>
   </div>
 
   <ion-item class="item-select" lines="none">
     <ion-select (ionChange)="change_order ($event)" [(ngModel)]="order_by" interface="popover" placeholder="Sort by popularity" class="select-popu" mode="ios">
-      <!-- <ion-select-option *ngIf="page == 'favorite'" value="date-desc" class="select-interface-option">
-        Date descending
-      </ion-select-option>
-      <ion-select-option *ngIf="page == 'favorite'" value="date-asc" class="select-interface-option">
-        Date ascending
-      </ion-select-option> -->
       <ion-select-option value="distance" class="select-interface-option">
-        Closed to me
+        {{ 'Closed to me' | translate }}
       </ion-select-option>
       <ion-select-option value="favoritos-desc" class="select-interface-option">
-        Popularity
+        {{ 'Popularity' | translate }}
       </ion-select-option>
       <ion-select-option value="created_at-desc" class="select-interface-option">
-        Newest member
+        {{ 'Newest member' | translate }}
       </ion-select-option>
       <ion-select-option value="last_seen-desc" class="select-interface-option">
-        Recently connected
+        {{ 'Recently connected' | translate }}
       </ion-select-option>
       <ion-select-option value="edad-desc" class="select-interface-option">
-        Older
+        {{ 'Older' | translate }}
       </ion-select-option>
       <ion-select-option value="edad-asc" class="select-interface-option">
-        Younger
+        {{ 'Younger' | translate }}
       </ion-select-option>
     </ion-select>
     <ion-icon name="chevron-down-sharp" class="icon-select"></ion-icon>
@@ -108,8 +101,8 @@
     <div *ngIf="items.length <= 0 && home_loading === false" class="ion-text-center" style="width: 100%;">
       <ion-item style="--background: transparent;" lines="none" class="ion-text-center">
         <ion-label>
-          <h1 class="h1-result">No results, check your filters.</h1>
-          <ion-button (click)="filtrar ()" mode="ios" class="btn-filter">Filters</ion-button>
+          <h1 class="h1-result">{{ 'No results, check your filters.' | translate }}</h1>
+          <ion-button (click)="filtrar ()" mode="ios" class="btn-filter">{{ 'Filters' | translate }}</ion-button>
         </ion-label>
       </ion-item>
     </div>
@@ -117,7 +110,7 @@
     <ion-grid>
       <ion-row>
         <ion-col size="6" *ngFor="let item of items">
-          <ion-card class="card-perfil">
+          <ion-card class="card-perfil" (click)="view_profile (item)">
             <ion-avatar class="avatar-img">
               <img [src]="item.thumbnail" class="img-persona">
               <div class="div-sombra">
@@ -157,7 +150,7 @@
                 </div>
               </div>
             </ion-avatar>
-            <img src="assets/img/grupo926.png" class="img-circulo-amarrilo">
+            <img src="assets/img/grupo926.png" *ngIf="item.membresia === 1" class="img-circulo-amarrilo">
             <!--<ion-item lines="none" class="item-blanco">
               <ion-button (click)="toggled_favorite (item)" class="btn-iguales-tab btn-border-right">
                 <img *ngIf="item.tengo_favorito === false" src="assets/img/icono-no-favorito.png" class="img-widht-igules">
@@ -195,7 +188,7 @@
     <img src="assets/img/iconos_Inbox.png" class="img-chat-footer">
     <!-- <ion-badge class="badge-chat" mode="ios">99</ion-badge> -->
   </ion-button> 
-  <ion-button mode="ios" class="btn-footer btn-footer-right">
+  <ion-button (click)="open_upgrade_menu ()" mode="ios" class="btn-footer btn-footer-right">
     <img src="assets/img/iconos_Upgrade.png" class="img-corona-footer">
   </ion-button> 
   <ion-button routerLink="/favorites" routerDirection="root" mode="ios" class="btn-footer btn-footer-right">

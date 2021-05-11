@@ -17,7 +17,7 @@ export class FilterPage implements OnInit {
   @Input () personalidad_map: Map <string, number []> = new Map <string, number []> ();
   @Input () apariencia_map: Map <string, number []> = new Map <string, number []> ();
   @Input () extra_map: Map <string, number []> = new Map <string, number []> ();
-  @Input () edad_range: number;
+  @Input () edad_range: any;
   constructor (private modalController: ModalController,
     public database: DatabaseService) { }
 
