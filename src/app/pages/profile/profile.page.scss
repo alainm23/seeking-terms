@@ -17,6 +17,21 @@
 ion-content
 {
     --background: #F5F5F5;
+    position: relative;
+}
+.btn-regresar
+{
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    --background: transparent;
+    --background-activated: transparent;
+    z-index: 2;
+    margin: 0px;
+    .icon-left
+    {
+        font-size: 30px;
+    }
 }
 h1
 {
@@ -308,6 +323,21 @@ ion-footer
     margin-left: 5%;
     font-size: 20px;
     margin-top: 20px;
+}
+.card-mapa
+{
+    margin: 0px;
+    background-color: transparent;
+    border: 8px solid #fff;
+    border-radius: 10px;
+    margin-top: 26px;
+    height: 475px;
+    .img-mapa
+    {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
 }
 @media (min-width: 411px)
 {

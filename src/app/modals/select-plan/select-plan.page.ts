@@ -15,7 +15,7 @@ export class SelectPlanPage implements OnInit {
   slideOpts = {
     initialSlide: 2,
     slidesPerView: 1.2,
-    spaceBetween: 12,
+    spaceBetween: 20,
   };
   constructor (private modalController: ModalController,
     private database: DatabaseService,

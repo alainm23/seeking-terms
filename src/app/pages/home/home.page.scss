@@ -51,6 +51,7 @@
         align-items: center;
         flex-wrap: wrap;
         margin-top: 20px;
+        justify-content: space-between;
         .btn-div
         {
             --background: transparent;
@@ -494,7 +495,7 @@ ion-footer
 .h1-result
 {
     color: #000000;
-    font-family: Avenirlight;
+    font-family: AvenirMedium;
     font-size: 20px;
 }
 .btn-filter

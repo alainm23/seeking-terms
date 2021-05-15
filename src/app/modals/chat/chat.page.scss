@@ -61,7 +61,7 @@ h1
     font-family: Avenirlight;
     margin: 0px;
     margin-top: 5px;
-    margin-bottom: 70px;
+    margin-bottom: 30px;
 }
 .item-derecha
 {
@@ -71,10 +71,10 @@ h1
     {
         float: right;
     }
-    .div_dos-lineas-top
+    /*.div_dos-lineas-top
     {
         margin-top: 48px !important;
-    }
+    }*/
 }
 .item-avatar-sytle
 {
@@ -98,7 +98,7 @@ h1
         }
         .div-radius-ultimo-mensaje
         {
-            border-radius: 0px 24px 24px 24px !important;
+            border-radius: 0px 23px 23px 23px !important;
         }
         .div-anaranjado-conversacion
         {
@@ -112,7 +112,7 @@ h1
             padding-right: 75px;
             padding-left: 10px;
             padding-top: 8px;
-            padding-bottom: 8px;
+            padding-bottom: 18px;
             position: relative;
             margin-bottom: 5px;
             .p-conversacion
@@ -132,9 +132,9 @@ h1
                 z-index: 1;
                 color: #949494;
                 font-family: AvenirRoman;
-                font-size: 11px;
+                font-size: 10px;
                 right: 15px;
-                bottom: 10px;
+                bottom: 4px;
             }
             .span-hora-blanco
             {
@@ -146,10 +146,10 @@ h1
             background-color: #E7F6F4;
             border-radius: 23px;
             width: fit-content;
-            padding-right: 10px;
-            padding-left: 10px;
-            padding-top: 20px;
-            padding-bottom: 20px;
+            padding-right: 20px;
+            padding-left: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
             position: relative;
             margin-bottom: 5px;
             .p-conversacion
@@ -169,9 +169,9 @@ h1
                 z-index: 1;
                 color: #949494;
                 font-family: AvenirRoman;
-                font-size: 11px;
+                font-size: 10px;
                 right: 25px;
-                bottom: 9px;
+                bottom: 5px;
             }
             .span-hora-blanco
             {

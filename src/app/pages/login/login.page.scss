@@ -1,317 +1,380 @@
 @font-face{
+  font-family: AvenirHeavy;
+  src : url('/assets/font/Avenir Heavy.ttf')
+}
+@font-face{
+  font-family: AvenirMedium;
+  src : url('/assets/font/Avenir-Medium.ttf')
+}
+@font-face{
+  font-family: Avenirlight;
+  src : url('/assets/font/avenirltstd-light.otf')
+}
+ion-content
+{
+  --background: url('/assets/img/login.jpg') top/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.div-login
+{
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+.bajar_card
+{
+  margin-top: 3%;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+ion-card
+{
+  --background: #ffffffe0;
+  border-radius: 13px;
+  margin-bottom: 8px;
+  ion-card-content
+  {
+    padding-left: 1.5625rem;
+    padding-right: 1.5625rem;
+    padding-top: 20px;
+    .img-logo-genral
+    {
+      width: 138px;
+    }
+    h1
+    {
+      color: #77BDF0;
+      font-family: AvenirHeavy;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    ion-input
+    {
+      --background: #F7F8F7;
+      --color: #9D9D9D;
+      --placeholder-color: #9D9D9D;
+      border: 1px solid #E3E3E3;
+      --padding-start:  0.9375rem;
+      --padding-end: 0.9375rem;
+      font-family: AvenirMedium;
+      border-radius: 0.375rem;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      --placeholder-opacity: 1;
+    }
+    ion-input::placeholder
+    {
+      font-family: AvenirMedium;
+    }
+    p
+    {
+      color: #C3C3C3;
+      font-family: AvenirMedium;
+      margin-top: 25px;
+      font-size: 0.875rem;
+    }
+    .quitar_top
+    {
+      margin-top: 0px !important;
+    }
+    .div_check
+    {
+      display: flex;
+      justify-content: left;
+      align-items: end;
+      margin-top: 1.25rem;
+      ion-label
+      {
+        color: #A5A5A5;
+        font-family: AvenirMedium;
+        margin-left: 0.625rem;
+      }
+      ion-checkbox
+      {
+        --border-color: #C3C3C3;
+        --background-checked: #FFFFFF;
+        --border-color-checked: #C3C3C3;
+        --checkmark-color: #C3C3C3;
+      }
+    }
+    .btn-let-go
+    {
+      --background: #77BDF0;
+      --border-radius: 23px;
+      font-family: AvenirHeavy;
+      font-size: 1rem;
+      width: 100%;
+      margin-top: 12px;
+      margin-bottom: 12px;
+      --background-activated: #77BDF0;
+    }
+    .btn-let-go:hover
+    {
+      --background: #77BDF0;
+      --color: #FFFFFF;
+    }
+    .btn-faccebook
+    {
+      --background: #3B00FF;
+      --background-activated: #3B00FF;
+      --border-radius: 23px;
+      font-family: AvenirHeavy;
+      font-size: 1rem;
+      width: 100%;
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+    .btn-faccebook:hover
+    {
+      --background: #3B00FF;
+      --color: #FFFFFF;
+    }
+    .btn-google
+    {
+      --background: #FF6200;
+      --background-activated: #FF6200;
+      --border-radius: 23px;
+      font-family: AvenirHeavy;
+      font-size: 1rem;
+      width: 100%;
+      margin-top: 0px;
+      margin-bottom: 12px;
+    }
+    .btn-google:hover
+    {
+      --background: #FF6200;
+      --color: #FFFFFF;
+    }
+    .div-linea-plomo
+    {
+      width: 100%;
+      height: 1px;
+      background: #B7B7B7;
+    }
+  }
+  .btn_card
+  {
+    --background: transparent;
+    --color: #77BDF0;
     font-family: AvenirHeavy;
-    src : url('/assets/font/Avenir Heavy.ttf')
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    --background-activated: transparent;
   }
-  @font-face{
-    font-family: AvenirMedium;
-    src : url('/assets/font/Avenir-Medium.ttf')
+  .btn_card:hover
+  {
+    --background: transparent;
+    --color: #77BDF0;
   }
-  @font-face{
+}
+.div-fondo-negro
+{
+  background: rgb(0 0 0 / 65%);
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  margin-top: 25px;
+}
+.titulo_blanco
+{
+  color: #FFFFFF;
+  font-family: AvenirHeavy;
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+ion-list
+{
+  margin-bottom: 1.875rem;
+  background: transparent;
+  margin-top: 23px;
+  ion-item
+  {
+    --background: transparent;
+    --inner-padding-end: 0px;
+  }
+  ion-label
+  {
+    --color: #ffffff;
     font-family: Avenirlight;
-    src : url('/assets/font/avenirltstd-light.otf')
-  }
-  ion-content
-  {
-    --background: url('/assets/img/login.jpg') top/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .div-login
-  {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-  .bajar_card
-  {
-    margin-top: 5%;
-    margin-left: 0px;
+    margin-left: 0.625rem;
+    font-size: 1rem;
     margin-right: 0px;
   }
-  ion-card
+}
+.btn-circle-plomo
+{
+  --background: rgb(255 255 255 / 67%);;
+  --border-radius: 50%;
+  --padding-start: 0px;
+  --padding-end: 0px;
+  margin: 0px;
+  width: 45px;
+  height: 45px;
+  font-size: 25px;
+}
+.item-lenguaje
+{
+  margin-top: 13px;
+  position: relative;
+  --border-radius: 0.375rem;
+  border: 1px solid #E3E3E3;
+  --background: #F7F8F7;
+  .select-lenguaje
   {
-    --background: #ffffffe0;
-    border-radius: 13px;
-    margin-bottom: 8px;
-    ion-card-content
-    {
-      padding-left: 1.5625rem;
-      padding-right: 1.5625rem;
-      padding-top: 30px;
-      .img-logo-genral
-      {
-        width: 138px;
-      }
-      h1
-      {
-        color: #77BDF0;
-        font-family: AvenirHeavy;
-        margin-top: 20px;
-        margin-bottom: 20px;
-      }
-      ion-input
-      {
-        --background: #F7F8F7;
-        --color: #9D9D9D;
-        --placeholder-color: #9D9D9D;
-        border: 1px solid #E3E3E3;
-        --padding-start:  0.9375rem;
-        --padding-end: 0.9375rem;
-        font-family: AvenirMedium;
-        border-radius: 0.375rem;
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
-        --placeholder-opacity: 1;
-      }
-      ion-input::placeholder
-      {
-        font-family: AvenirMedium;
-      }
-      p
-      {
-        color: #C3C3C3;
-        font-family: AvenirMedium;
-        margin-top: 25px;
-        font-size: 0.875rem;
-      }
-      .quitar_top
-      {
-        margin-top: 0px !important;
-      }
-      .div_check
-      {
-        display: flex;
-        justify-content: left;
-        align-items: end;
-        margin-top: 1.25rem;
-        ion-label
-        {
-          color: #A5A5A5;
-          font-family: AvenirMedium;
-          margin-left: 0.625rem;
-        }
-        ion-checkbox
-        {
-          --border-color: #C3C3C3;
-          --background-checked: #FFFFFF;
-          --border-color-checked: #C3C3C3;
-          --checkmark-color: #C3C3C3;
-        }
-      }
-      .btn-let-go
-      {
-        --background: #77BDF0;
-        --border-radius: 23px;
-        font-family: AvenirHeavy;
-        font-size: 1rem;
-        width: 100%;
-        margin-top: 12px;
-        margin-bottom: 12px;
-        --background-activated: #77BDF0;
-      }
-      .btn-let-go:hover
-      {
-        --background: #77BDF0;
-        --color: #FFFFFF;
-      }
-      .btn-faccebook
-      {
-        --background: #3B00FF;
-        --background-activated: #3B00FF;
-        --border-radius: 23px;
-        font-family: AvenirHeavy;
-        font-size: 1rem;
-        width: 100%;
-        margin-top: 12px;
-        margin-bottom: 6px;
-      }
-      .btn-faccebook:hover
-      {
-        --background: #3B00FF;
-        --color: #FFFFFF;
-      }
-      .btn-google
-      {
-        --background: #FF6200;
-        --background-activated: #FF6200;
-        --border-radius: 23px;
-        font-family: AvenirHeavy;
-        font-size: 1rem;
-        width: 100%;
-        margin-top: 0px;
-        margin-bottom: 12px;
-      }
-      .btn-google:hover
-      {
-        --background: #FF6200;
-        --color: #FFFFFF;
-      }
-      .div-linea-plomo
-      {
-        width: 100%;
-        height: 1px;
-        background: #B7B7B7;
-      }
-    }
-    .btn_card
-    {
-      --background: transparent;
-      --color: #77BDF0;
-      font-family: AvenirHeavy;
-      font-size: 18px;
-      text-align: center;
-      width: 100%;
-      --background-activated: transparent;
-    }
-    .btn_card:hover
-    {
-      --background: transparent;
-      --color: #77BDF0;
-    }
+    width: 100%;
+    --placeholder-color: #9D9D9D;
+    --placeholder-opacity: 1;
+    font-family: AvenirMedium;
+    color: #9D9D9D;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+  }
+  .select-lenguaje::part(icon) 
+  {
+    display: none !important;
+  }
+  .icon-select
+  {
+    color: #9D9D9D;
+    font-size: 25px;
+  }
+}
+@media (min-width: 375px) and (min-height: 667px)
+{
+  .bajar_card
+  {
+    margin-top: 7%;
+  }
+}
+@media (min-width: 375px) and (min-height: 812px)
+{
+  .bajar_card
+  {
+    margin-top: 30%;
+  }
+}
+@media (min-width: 411px) and (min-height: 731px)
+{
+  .bajar_card
+  {
+    margin-top: 2.75rem;
+  }
+}
+@media (min-width: 411px) and (min-height: 823px)
+{
+  .bajar_card
+  {
+    margin-top: 6.75rem;
+  }
+}
+@media (min-width: 411px)
+{
+  .div-login
+  {
+    padding-left: 1.875rem;
+    padding-right: 1.875rem;
   }
   .div-fondo-negro
   {
-    background: rgb(0 0 0 / 65%);
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    padding-top: 25px;
-    padding-bottom: 20px;
-    margin-top: 25px;
+    padding-left: 1.875rem;
+    padding-right: 1.875rem;
   }
-  .titulo_blanco
+  ion-card
   {
-    color: #FFFFFF;
-    font-family: AvenirHeavy;
-    margin-top: 0px;
-    margin-bottom: 15px;
+    ion-card-content
+    {
+      padding-top: 40px;
+    }  
   }
-  ion-list
+}
+@media (min-width: 414px) and (min-height: 896px)
+{
+  .bajar_card
   {
-    margin-bottom: 1.875rem;
-    background: transparent;
-    margin-top: 23px;
-    ion-item
-    {
-      --background: transparent;
-      --inner-padding-end: 0px;
-    }
-    ion-label
-    {
-      --color: #ffffff;
-      font-family: Avenirlight;
-      margin-left: 0.625rem;
-      font-size: 1rem;
-      margin-right: 0px;
-    }
+    margin-top: 7.8125rem;
   }
-  .btn-circle-plomo
+}
+@media (min-width: 480px)
+{
+  .div-login
   {
-    --background: rgb(255 255 255 / 67%);;
-    --border-radius: 50%;
-    --padding-start: 0px;
-    --padding-end: 0px;
-    margin: 0px;
-    width: 45px;
-    height: 45px;
-    font-size: 25px;
+    padding-left: 3.125rem;
+    padding-right: 3.125rem;
   }
-  @media (min-width: 411px)
+  .div-fondo-negro
   {
-    .div-login
-    {
-      padding-left: 1.875rem;
-      padding-right: 1.875rem;
-    }
-    .div-fondo-negro
-    {
-      padding-left: 1.875rem;
-      padding-right: 1.875rem;
-    }
-    .bajar_card
-    {
-      margin-top: 3.75rem;
-    }
-    ion-card
-    {
-      ion-card-content
-      {
-        padding-top: 40px;
-      }  
-    }
+    padding-left: 3.125rem;
+    padding-right: 3.125rem;
   }
-  @media (min-width: 414px) and (min-height: 896px)
+  .bajar_card
   {
-    .bajar_card
-    {
-      margin-top: 7.8125rem;
-    }
+    margin-top: 7.8125rem;
   }
-  @media (min-width: 480px)
+}
+@media (min-width: 540px)
+{
+  .bajar_card
   {
-    .div-login
-    {
-      padding-left: 3.125rem;
-      padding-right: 3.125rem;
-    }
-    .div-fondo-negro
-    {
-      padding-left: 3.125rem;
-      padding-right: 3.125rem;
-    }
-    .bajar_card
-    {
-      margin-top: 7.8125rem;
-    }
+    margin-top: 2.8125rem;
   }
-  @media (min-width: 640px)
+  .div-login
   {
-    .bajar_card
-    {
-      margin-top: 1.25rem;
-    }
-    .div-login
-    {
-      padding-left: 7.5rem;
-      padding-right: 7.5rem;
-    }
-    .div-fondo-negro
-    {
-      padding-left: 7.5rem;
-      padding-right: 7.5rem;
-    }
+    padding-left: 6.125rem;
+    padding-right: 6.125rem;
   }
-  @media (min-width: 768px)
+}
+@media (min-width: 640px)
+{
+  .bajar_card
   {
-    .bajar_card
-    {
-      margin-top: 12.5rem;
-    }
-    .div-login
-    {
-      padding-left: 12.5rem;
-      padding-right: 12.5rem;
-    }
-    .div-fondo-negro
-    {
-      padding-left: 12.5rem;
-      padding-right: 12.5rem;
-    }
+    margin-top: 1.25rem;
   }
-  @media (min-width: 1024px)
+  .div-login
   {
-    .bajar_card
-    {
-      margin-top: 25.3125rem;
-    }
-    .div-login
-    {
-      padding-left: 18.75rem;
-      padding-right: 18.75rem;
-    }
-    .div-fondo-negro
-    {
-      padding-left: 18.75rem;
-      padding-right: 18.75rem;
-    }
+    padding-left: 7.5rem;
+    padding-right: 7.5rem;
   }
+  .div-fondo-negro
+  {
+    padding-left: 7.5rem;
+    padding-right: 7.5rem;
+  }
+}
+@media (min-width: 768px)
+{
+  .bajar_card
+  {
+    margin-top: 12.5rem;
+  }
+  .div-login
+  {
+    padding-left: 12.5rem;
+    padding-right: 12.5rem;
+  }
+  .div-fondo-negro
+  {
+    padding-left: 12.5rem;
+    padding-right: 12.5rem;
+  }
+}
+@media (min-width: 1024px)
+{
+  .bajar_card
+  {
+    margin-top: 25.3125rem;
+  }
+  .div-login
+  {
+    padding-left: 18.75rem;
+    padding-right: 18.75rem;
+  }
+  .div-fondo-negro
+  {
+    padding-left: 18.75rem;
+    padding-right: 18.75rem;
+  }
+}

@@ -18,16 +18,19 @@ ion-content
     flex-wrap: wrap;
     --padding-start:  1.25rem;
     --padding-end: 1.25rem;
-    --padding-top: 1.875rem;
+    --padding-top: 15px;
     position: relative;
+    
 }
 .img_persona
 {
     position: absolute;
-    z-index: 1;
-    left: -65px;
-    top: 13px;
-    height: 97vh;
+    z-index: -1;
+    left: 0px;
+    top: 0px;
+    height: 100vh;
+    width: 100%;
+    object-fit: none;
 }
 p
 {
@@ -44,7 +47,7 @@ ion-card
     margin: 0px;
     width: 100%;
     margin-bottom: 10px;
-    margin-top: 20px;
+    margin-top: 8px;
     ion-list
     {
         height: 165px;
@@ -97,7 +100,7 @@ ion-card
     }
     ion-button
     {
-        width: 100%;
+        width: 90%;
         --background: #77BDF0;
         --background-activated: #77BDF0;
         --border-radius: 27px;
@@ -137,6 +140,7 @@ ion-slides
     position: absolute;
     left: 0;
     width: 100%;
+    padding-left: 20px;
     ion-slide
     {
         width: 280px;
@@ -146,19 +150,56 @@ ion-slides
 {
     width: 138px;
 }
+.item-toogle
+{
+    --background: transparent;
+    ion-toggle
+    {
+        --background: #77BDF0;
+        --background-checked: #CB9229;
+        --handle-background: #ffffff;
+        --handle-background-checked: #ffffff;
+        width: 50px;
+        height: 26px;
+        --handle-border-radius: 50%;
+        --border-radius: 13px;
+        --handle-width: 20px;
+        --handle-height: 20px; 
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    ion-label
+    {
+        --color: #333333;
+        font-family: AvenirMedium;
+        font-weight: 800;
+    }
+}
+.btn-close-modal
+{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    --border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    --box-shadow: 0px 3px 6px #00000029;
+    --background: #fff;
+    --background-activated: #fff;
+    font-size: 0px;
+    .icon-close
+    {
+        font-size: 30px;
+        color: #707070;
+    }
+}
 @media (min-width: 411px)
 {
     ion-content
     {
       --padding-start: 3.125rem;
       --padding-end: 3.125rem;
-      --padding-top: 5rem
-    }
-    .img_persona
-    {
-        left: -66px;
-        top: 55px;
-        height: 90vh;  
+      --padding-top: 25px;
     }
     ion-card
     {
@@ -188,6 +229,7 @@ ion-slides
     {
       --padding-start: 3.125rem;
       --padding-end: 3.125rem;
+      --padding-top: 75px;
     }
     ion-slides
     {
@@ -205,6 +247,13 @@ ion-slides
         }
     }
 }
+@media (min-width: 540px)
+{
+    ion-content
+    {
+      --padding-top: 30px;
+    }
+}
 @media (min-width: 640px)
 {
     ion-content
@@ -217,9 +266,9 @@ ion-slides
 {
     ion-content
     {
-      --padding-start: 12.5rem;
-      --padding-end: 12.5rem;
-      --padding-top: 7rem;
+        --padding-start: 10px;
+        --padding-end: 10px;
+        --padding-top: 20px;
     }
     ion-card
     {
@@ -228,13 +277,17 @@ ion-slides
             width: 50%;
         }
     }
+    .img_persona
+    {
+        height: 90vh;
+    }
 }
 @media (min-width: 1024px)
 {
     ion-content
     {
-      --padding-start: 18.75rem;
-      --padding-end: 18.75rem;
+      --padding-start: 20px;
+      --padding-end: 20px;
     }
     ion-card
     {
@@ -242,5 +295,9 @@ ion-slides
         {
             width: 35%;
         }
+    }
+    .img_persona
+    {
+        height: 60vh;
     }
 }
