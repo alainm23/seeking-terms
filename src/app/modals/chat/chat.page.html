@@ -1,7 +1,8 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
+  <ion-toolbar class="ion-text-center">
     <ion-button class="btn-close-messaje" (click)="close ()"><ion-icon name="close-sharp" class="icon-close"></ion-icon></ion-button>
     <h1>{{ receptor?.usernick }}, {{ receptor?.edad }}</h1>
+    <!--<p class="pcolor-formato">{{ receptor?.nombre_ciudad }}, {{ receptor?.nombre_pais }}</p>-->
     <p class="pcolor-formato">{{ receptor?.nombre_ciudad }}, {{ receptor?.nombre_pais }}</p>
   </ion-toolbar>
 </ion-header>
@@ -20,6 +21,10 @@
       </ion-avatar>
       <div class="div-general-top">
         <div class="div-conversacion-una-linea div-anaranjado-conversacion div-radius-primer-mensaje">
+          <p class="p-conversacion p-conversacion-blanco ion-no-margin">{{ item.message }}</p>
+          <span class="span-hora span-hora-blanco">{{ get_date_format (item.created_at) }}</span>
+        </div>
+        <div class="div-conversacion-una-linea div-anaranjado-conversacion div-radius-ultimo-mensaje">
           <p class="p-conversacion p-conversacion-blanco ion-no-margin">{{ item.message }}</p>
           <span class="span-hora span-hora-blanco">{{ get_date_format (item.created_at) }}</span>
         </div>

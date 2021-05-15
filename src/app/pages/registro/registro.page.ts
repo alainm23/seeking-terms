@@ -44,7 +44,8 @@ export class RegistroPage implements OnInit {
 
   slideOpts = {
     initialSlide: 0,
-    duration: 400
+    duration: 400,
+    slidesPerView: 1
   };
 
   inputs: Map <string, IonInput> = new Map <string, IonInput> ();

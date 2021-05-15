@@ -5,6 +5,7 @@
 </ion-header>-->
 
 <ion-content>
+  <ion-button mode="ios" class="btn-regresar"><ion-icon name="arrow-back-sharp" class="icon-left"></ion-icon></ion-button>
   <ion-slides pager="true" [options]="slideOpts">
     <ion-slide *ngFor="let item of galeria">
       <ion-thumbnail>
@@ -32,6 +33,9 @@
     <p class="p-descripcion-card">
       {{ profile?.estoy_buscando }}
     </p>
+  </ion-card>
+  <ion-card class="card-mapa">
+    <img src="assets/img/4590781ec12ff6bdb0f06cef6a96764b.png" class="img-mapa">
   </ion-card>
   <div class="div-padding-left-right">
     <h5 class="h5-im">{{ 'Im interested in…' | translate }}</h5>
@@ -66,20 +70,20 @@
   </ion-card>
 </ion-content>
 <ion-footer class="ion-no-border" mode="ios">
-  <ion-button mode="ios" class="btn-footer btn-footer-right">
+  <ion-button routerLink="/home" routerDirection="root" mode="ios" class="btn-footer btn-footer-right btn-activo-footer">
     <img src="assets/img/iconos_Magnifying-glass.png" class="img-buscador-footer">
   </ion-button> 
-  <ion-button mode="ios" class="btn-footer btn-footer-right">
+  <ion-button routerLink="/inbox" routerDirection="root" mode="ios" class="btn-footer btn-footer-right">
     <img src="assets/img/iconos_Inbox.png" class="img-chat-footer">
     <!-- <ion-badge class="badge-chat" mode="ios">99</ion-badge> -->
   </ion-button> 
-  <ion-button mode="ios" class="btn-footer btn-footer-right">
+  <ion-button (click)="open_upgrade_menu ()" mode="ios" class="btn-footer btn-footer-right">
     <img src="assets/img/iconos_Upgrade.png" class="img-corona-footer">
   </ion-button> 
-  <ion-button mode="ios" class="btn-footer btn-footer-right">
-    <img src="assets/img/icono-favorito.png" class="img-corazon-footer">
+  <ion-button routerLink="/favorites" routerDirection="root" mode="ios" class="btn-footer btn-footer-right">
+    <img src="assets/img/icono-no-favorito.png" class="img-corazon-footer">
   </ion-button> 
-  <ion-button mode="ios" class="btn-footer btn-activo-footer">
+  <ion-button routerLink="/profile-menu" routerDirection="root" mode="ios" class="btn-footer">
     <img src="assets/img/iconos_Profile.png" class="img-persona-footer">
   </ion-button> 
 </ion-footer>

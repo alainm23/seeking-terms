@@ -78,6 +78,14 @@ ion-button
 {
     width: 138px;
 }
+.p-footer
+{
+    color: #555555;
+    font-family: AvenirHeavy;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
 @media (min-width: 411px)
 {
     ion-content
@@ -127,16 +135,16 @@ ion-button
 {
     ion-content
     {
-      --padding-start: 12.5rem;
-      --padding-end: 12.5rem;
-      --padding-top: 7rem;
+        --padding-start: 60px;
+        --padding-end: 60px;
+        --padding-top: 40px;
     }
 }
 @media (min-width: 1024px)
 {
     ion-content
     {
-      --padding-start: 18.75rem;
-      --padding-end: 18.75rem;
+      --padding-start: 100px;
+      --padding-end: 100px;
     }
 }

@@ -1,17 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <!--<ion-buttons slot="start">
       <ion-back-button></ion-back-button>
-    </ion-buttons>
+    </ion-buttons>-->
 
     <ion-card class="card-cabezera">
       <div class="div-flex">
         <img src="assets/img/Capturaiconse.PNG" class="img-circle">
-        <ion-label class="label-titulo">Settings</ion-label>
+        <p class="label-titulo">Settings</p>
       </div>
-      <div class="div-botones">
-        
-      </div>
+      <ion-button mode="ios" class="btn-close"><ion-icon name="close" class="icon-close"></ion-icon></ion-button>
     </ion-card>
   </ion-toolbar>
 </ion-header>
@@ -34,14 +32,14 @@
         Activity
       </ion-list-header>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>Incognito mode</ion-label>
-        <ion-toggle (ionChange)="update ($event, 'modo_incognito')" [(ngModel)]="modo_incognito"></ion-toggle>
+        <ion-toggle (ionChange)="update ($event, 'modo_incognito')" [(ngModel)]="modo_incognito" mode="ios"></ion-toggle>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>Send me gifts</ion-label>
-        <ion-toggle (ionChange)="update ($event, 'send_me_gifts')" [(ngModel)]="send_me_gifts"></ion-toggle>
+        <ion-toggle (ionChange)="update ($event, 'send_me_gifts')" [(ngModel)]="send_me_gifts" mode="ios"></ion-toggle>
       </ion-item>
     </ion-list>
   </div>
@@ -52,46 +50,46 @@
         Activity
       </ion-list-header>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>Auto renew</ion-label>
-        <ion-toggle (ionChange)="update ($event, 'auto_renew')" [(ngModel)]="auto_renew"></ion-toggle>
+        <ion-toggle (ionChange)="update ($event, 'auto_renew')" [(ngModel)]="auto_renew" mode="ios"></ion-toggle>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>Get newsletter</ion-label>
-        <ion-toggle (ionChange)="update ($event, 'get_newsletter')" [(ngModel)]="get_newsletter"></ion-toggle>
+        <ion-toggle (ionChange)="update ($event, 'get_newsletter')" [(ngModel)]="get_newsletter" mode="ios"></ion-toggle>
       </ion-item>
       <br>
       <ion-list-header>
         Social accounts
       </ion-list-header>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Facebook
         </ion-label>
 
-        <ion-button slot="end" color="light">
+        <ion-button slot="end" mode="ios">
           Connect
         </ion-button>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Instagram
         </ion-label>
 
-        <ion-button slot="end" color="light">
+        <ion-button slot="end" mode="ios">
           Connect
         </ion-button>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Tik Tok
         </ion-label>
 
-        <ion-button slot="end" color="light">
+        <ion-button slot="end" mode="ios">
           Connect
         </ion-button>
       </ion-item>
@@ -100,9 +98,9 @@
         Preferences
       </ion-list-header>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>Use metric system</ion-label>
-        <ion-toggle (ionChange)="update ($event, 'metric_system')" [(ngModel)]="metric_system"></ion-toggle>
+        <ion-toggle (ionChange)="update ($event, 'metric_system')" [(ngModel)]="metric_system" mode="ios"></ion-toggle>
       </ion-item>
     </ion-list>
   </div>
@@ -113,14 +111,14 @@
         When someone winks me
       </ion-list-header>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Alert
         </ion-label>
         <ion-checkbox slot="end" (ionChange)="update_check ($event, winks_notifications, 'alert')" [(ngModel)]="winks_notifications.alert"></ion-checkbox>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Email
         </ion-label>
@@ -133,21 +131,21 @@
         When someone adds me to favorites
       </ion-list-header>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Alert
         </ion-label>
         <ion-checkbox slot="end" (ionChange)="update_check ($event, favorites_notifications, 'alert')" [(ngModel)]="favorites_notifications.alert"></ion-checkbox>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Email
         </ion-label>
         <ion-checkbox slot="end" (ionChange)="update_check ($event, favorites_notifications, 'email')" [(ngModel)]="favorites_notifications.email"></ion-checkbox>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Inbox
         </ion-label>
@@ -160,14 +158,14 @@
         When someone sends me a message
       </ion-list-header>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Alert
         </ion-label>
         <ion-checkbox slot="end" (ionChange)="update_check ($event, message_notifications, 'alert')" [(ngModel)]="message_notifications.alert"></ion-checkbox>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Email
         </ion-label>
@@ -180,21 +178,21 @@
         When someone views my profile
       </ion-list-header>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Alert
         </ion-label>
         <ion-checkbox slot="end" (ionChange)="update_check ($event, profile_notifications, 'alert')" [(ngModel)]="profile_notifications.alert"></ion-checkbox>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Email
         </ion-label>
         <ion-checkbox slot="end" (ionChange)="update_check ($event, profile_notifications, 'email')" [(ngModel)]="profile_notifications.email"></ion-checkbox>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Inbox
         </ion-label>
@@ -207,14 +205,14 @@
         New members and matches
       </ion-list-header>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Alert
         </ion-label>
         <ion-checkbox slot="end" (ionChange)="update_check ($event, members_and_matches_notifications, 'alert')" [(ngModel)]="members_and_matches_notifications.alert"></ion-checkbox>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Email
         </ion-label>
@@ -227,14 +225,14 @@
         Profile changes are approved
       </ion-list-header>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Alert
         </ion-label>
         <ion-checkbox slot="end" (ionChange)="update_check ($event, profile_changes_notifications, 'alert')" [(ngModel)]="profile_changes_notifications.alert"></ion-checkbox>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Email
         </ion-label>
@@ -247,14 +245,14 @@
         Verification & information requests
       </ion-list-header>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Alert
         </ion-label>
         <ion-checkbox slot="end" (ionChange)="update_check ($event, verification_and_information_notifications, 'alert')" [(ngModel)]="verification_and_information_notifications.alert"></ion-checkbox>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Email
         </ion-label>
@@ -267,14 +265,14 @@
         Special events
       </ion-list-header>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Alert
         </ion-label>
         <ion-checkbox slot="end" (ionChange)="update_check ($event, special_events_notifications, 'alert')" [(ngModel)]="special_events_notifications.alert"></ion-checkbox>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Email
         </ion-label>
@@ -287,14 +285,14 @@
         News and updates
       </ion-list-header>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Alert
         </ion-label>
         <ion-checkbox slot="end" (ionChange)="update_check ($event, news_and_updates_notifications, 'alert')" [(ngModel)]="news_and_updates_notifications.alert"></ion-checkbox>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Email
         </ion-label>
@@ -307,14 +305,14 @@
         Promotions and offers
       </ion-list-header>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Alert
         </ion-label>
         <ion-checkbox slot="end" (ionChange)="update_check ($event, promotions_notifications, 'alert')" [(ngModel)]="promotions_notifications.alert"></ion-checkbox>
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>
           Email
         </ion-label>

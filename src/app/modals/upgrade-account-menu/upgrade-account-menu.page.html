@@ -1,9 +1,9 @@
 <ion-content>
   <ion-list lines="none">
-    <ion-list-header style="color: #C68118;">
+    <ion-list-header>
       Credits left: {{ auth.USER_DATA.creditos }}
     </ion-list-header>
-    <ion-item (click)="event ('upgrade')">
+    <ion-item (click)="event ('upgrade')" class="item-border-bottom">
       <img src="assets/img/iconos_Upgrade.png" class="img-configure-menu img-margin-right">
       &nbsp;&nbsp;
       Upgrade my account
@@ -14,5 +14,6 @@
       &nbsp;&nbsp;
       Get more credits
     </ion-item>
+    <ion-button mode="ios" class="btn-close-modal"><ion-icon name="close" class="icon-close"></ion-icon></ion-button>
   </ion-list>
 </ion-content>

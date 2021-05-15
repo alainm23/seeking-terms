@@ -31,11 +31,12 @@ ion-title
     --inner-padding-end: 0px;
     margin-top: 40px;
     border-bottom: 3px solid #E3E3E3;
+    width: 100%;
     .label-campo
     {
         font-family: Avenirlight;
         color: #555555;
-        font-size: 20px;
+        font-size: 17px;
     }
     .input-llmas
     {
@@ -44,6 +45,23 @@ ion-title
         margin-top: 8px;
         --placeholder-opacity: 1;
     }
+    .seletc-location
+    {
+        --placeholder-color: #555555;
+        --placeholder-opacity: 1;
+        font-family: Avenirlight;
+        color: #555555;
+        --padding-top: 0px;
+        --padding-bottom: 0px;
+    }
+    .seletc-location::part(icon) 
+    {
+        display: none !important;
+    }
+}
+.item-select-location
+{
+    --inner-padding-end: 15px;
 }
 h1
 {
@@ -51,11 +69,6 @@ h1
     font-family: AvenirHeavy;
     margin-top: 30px;
     font-size: 21px;
-}
-.grid-pagging
-{
-    padding-left: 30px;
-    padding-right: 30px;
 }
 .color-plomo
 {
@@ -176,6 +189,11 @@ ion-footer
         --border-radius: 10px;
         width: 100%;
         height: 100%;
+        img
+        {
+            width: 100%;
+            height: 100%;
+        }
     }
     .icon-add
     {
@@ -192,6 +210,10 @@ ion-footer
         font-family: AvenirMedium;
         font-size: 18px;
     }
+    .label-policy
+    {
+        font-size: 15px !important;
+    }
     ion-radio
     {
         margin-left: 0px;
@@ -203,7 +225,7 @@ ion-footer
     {
         --border-color: #E3E3E3;
         --border-style: solid;
-        --border-width: 1px;
+        --border-width: 4px;
         margin-right: 10px;
         --background-checked: #CB9229;
         --border-color-checked: #CB9229;
@@ -213,6 +235,15 @@ ion-footer
 ion-select
 {
     width: 100%;
+}
+ion-slide
+{
+    padding-left: 30px;
+    padding-right: 30px;
+    form
+    {
+        width: 100%;
+    }
 }
 @media(min-width: 411px)
 {
@@ -266,6 +297,11 @@ ion-select
     {
         height: 140px;
     }
+    ion-slide
+    {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
 }
 @media(min-width: 1024px)
 {
@@ -282,12 +318,17 @@ ion-select
     }
     ion-footer
     {
-        padding-left: 200px;
-        padding-right: 200px;
+        padding-left: 300px;
+        padding-right: 300px;
     }
     .card-fotos
     {
         width: 32%;
         height: 200px;
+    }
+    ion-slide
+    {
+        padding-left: 120px;
+        padding-right: 120px;
     }
 }

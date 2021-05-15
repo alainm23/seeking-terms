@@ -1,3 +1,11 @@
+@font-face{
+    font-family: AvenirHeavy;
+    src : url('/assets/font/Avenir Heavy.ttf')
+}
+@font-face{
+    font-family: Avenirlight;
+    src : url('/assets/font/avenirltstd-light.otf')
+}
 .img-configure-menu
 {
     width: 27px;
@@ -7,4 +15,43 @@
 {
     width: 27px;
     height: 27px;
+}
+ion-list-header
+{
+    font-family: AvenirHeavy;
+    color: #C68118;
+    padding-left: 0px;
+}
+.item-border-bottom
+{
+    border-bottom: 1px solid #D6D6D6;
+}
+ion-item
+{
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+    --color: #000000;
+    font-family: Avenirlight;
+}
+ion-list
+{
+    padding: 20px 30px;
+    position: relative;
+    .btn-close-modal
+    {
+        --background: #FFFFFF;
+        --background-activated: #ffffff;
+        width: 40px;
+        height: 40px;
+        font-size: 0px;
+        margin: 0px;
+        position: absolute;
+        right: 8px;
+        top: 5px;
+        .icon-close
+        {
+            color: #707070;
+            font-size: 30px;
+        }
+    }
 }

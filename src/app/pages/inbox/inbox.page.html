@@ -17,16 +17,19 @@
       </ion-select>
     </ion-card>
   </div>
-  <ion-item *ngFor="let item of items" (click)="view_chat (item)" class="item-inbox" lines="none">
-    <div class="div-linea"></div>
-    <ion-avatar>
-      <img [src]="item.receptor.thumbnail">
-    </ion-avatar>
-    <div class="div-datos">
-      <ion-label class="nombre-label">{{ item.receptor.usernick }}, {{ item.receptor.edad }}</ion-label>
-      <p class="descripcion-label"></p>
-    </div>
-  </ion-item>
+  <div class="div-flex">
+    <ion-item *ngFor="let item of items" (click)="view_chat (item)" class="item-inbox" lines="none">
+      <div class="div-linea"></div>
+      <ion-avatar>
+        <img [src]="item.receptor.thumbnail">
+      </ion-avatar>
+      <div class="div-datos">
+        <ion-label class="nombre-label">{{ item.receptor.usernick }}, {{ item.receptor.edad }}</ion-label>
+        <p class="descripcion-label">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has</p>
+        <p class="p-pais-ciudad">Lorem Ipsum</p>
+      </div>
+    </ion-item>
+  </div>
 
   <ion-infinite-scroll threshold="100px" (ionInfinite)="get_data ($event, true)">
     <ion-infinite-scroll-content
