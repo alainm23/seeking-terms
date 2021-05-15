@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { LoadingController, NavController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +16,10 @@ export class AuthService {
   };
   URL: string;
   constructor (public http: HttpClient, private storage: Storage,
-    private googlePlus: GooglePlus) {
+    private googlePlus: GooglePlus, private fb: Facebook,
+    private clipboard: Clipboard,
+    private loadingController: LoadingController,
+    private navController: NavController) {
     this.URL = 'https://seekingterms.com/api/auth/';
   }
 
@@ -30,6 +36,11 @@ export class AuthService {
     }
 
     return this.http.get (url, { headers });
+  }
+
+  async logout_social () {
+    await this.googlePlus.logout ();
+    await this.fb.logout (); 
   }
 
   validar_campo (request: any) {
@@ -70,8 +81,15 @@ export class AuthService {
     const formData: FormData = new FormData ();
     formData.append ('usernick', request.usernick);
     formData.append ('sexo', request.sexo);
-    formData.append ('email', request.email);
-    formData.append ('password', request.password);
+
+    if (request.id === 0) {
+      formData.append ('email', request.email);
+      formData.append ('password', request.password);
+    } else {
+      formData.append ('id', request.id);
+      formData.append ('social', request.social);
+    }
+
     formData.append ('pais', request.pais);
     formData.append ('id_region', request.id_region);
     formData.append ('id_ciudad', request.id_ciudad);
@@ -121,13 +139,31 @@ export class AuthService {
     return this.http.get (url, { headers });
   }
 
-  google () {
-    this.googlePlus.login ({
-      'webClientId': '115731276335-2s4dka282u55g4r7osvha9gij4r55361.apps.googleusercontent.com',
-      'offline': true
-    }).then (async (res: any) => { 
-      alert (JSON.stringify (res));
+  async google () {
+    const loading = await this.loadingController.create ({
+      translucent: true,
+      spinner: 'lines-small',
+      mode: 'ios'
+    });
+
+    await loading.present ();
+    
+    this.googlePlus.login ({}).then (async (request: any) => { 
+      this.login_social (request.userId, 'Google', request.displayName, request.email).subscribe ((res: any) => {-
+        loading.dismiss ();
+        if (res.user.registro_incompleto === 1) {
+          this.navController.navigateForward (['registro', res.user.id]);
+        } else {
+          this.save_local_user (res).then (() => {
+            this.navController.navigateRoot ('home');
+          });
+        }
+      }, error => {
+        loading.dismiss ();
+        alert (JSON.stringify (error));
+      });
     }, error => {
+      loading.dismiss ();
       alert (JSON.stringify (error));
     });
   }
@@ -140,5 +176,63 @@ export class AuthService {
     }
 
     return this.http.get (url, { headers });
+  }
+
+  async facebook () {
+    const loading = await this.loadingController.create ({
+      translucent: true,
+      spinner: 'lines-small',
+      mode: 'ios'
+    });
+
+    await loading.present ();
+
+    this.fb.getLoginStatus ().then (async (res) => {
+      if (res.status === 'connected') {
+        await this.fb.logout ();
+      }
+
+      this.fb.login (['public_profile']).then ((response: FacebookLoginResponse) => {
+        this.get_facebook_profile (loading);
+      }, (error) => {
+        loading.dismiss ();
+        alert (JSON.stringify (error));
+      });
+    }, error => {
+      loading.dismiss ();
+      alert (JSON.stringify (error));
+    });
+  }
+
+  get_facebook_profile (loading: any) {
+    this.fb.api ('me?fields=id,name,email,first_name,last_name,picture.width(720).height(720).as(picture_large)', []).then (async (request: any) => {
+      this.login_social (request.id, 'Facebook', request.first_name, '').subscribe ((res: any) => {
+        loading.dismiss ();
+        if (res.user.registro_incompleto === 1) {
+          this.navController.navigateForward (['registro', res.user.id]);
+        } else {
+          this.save_local_user (res).then (() => {
+            this.navController.navigateRoot ('home');
+          });
+        }
+      }, error => {
+        loading.dismiss ();
+        alert (JSON.stringify (error));
+      });
+    }, error => {
+      loading.dismiss ();
+      alert (JSON.stringify (error));
+    });
+  }
+
+  login_social (provider_id: string, tipo: string, name: string, email: string) {
+    let request: any = {
+      provider_id: provider_id,
+      tipo: tipo,
+      name: name,
+      email: email
+    };
+    
+    return this.http.post ('https://seekingterms.com/api/auth/login/social', request);
   }
 }

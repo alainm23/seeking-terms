@@ -18,7 +18,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'registro',
+    path: 'registro/:id',
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
@@ -63,7 +63,8 @@ const routes: Routes = [
     path: 'settings',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
-  },  {
+  },
+  {
     path: 'admin-imagenes',
     loadChildren: () => import('./admin-imagenes/admin-imagenes.module').then( m => m.AdminImagenesPageModule)
   },

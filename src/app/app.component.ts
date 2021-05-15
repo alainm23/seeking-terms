@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 
 // Services
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 import * as moment from 'moment';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,10 +19,9 @@ export class AppComponent {
     this.OnInit ();
   }
 
-  OnInit () {
+  async OnInit () {
+    await this.storage.create ();
     this.platform.ready ().then (async () => {
-      this.storage.create ();
-
       this.storage.get ('lang').then (async (lang: string) => {
         if (lang === undefined || lang === null) {
           await this.storage.set ('lang', 'en');

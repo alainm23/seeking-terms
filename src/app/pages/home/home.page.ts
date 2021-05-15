@@ -11,7 +11,8 @@ import { SelectPlanPage } from '../../modals/select-plan/select-plan.page';
 import { BuySingleCreditsPage } from '../../modals/buy-single-credits/buy-single-credits.page';
 import { PaymentPage } from '../../modals/payment/payment.page';
 import { AuthService } from '../../services/auth.service';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
+import { AdmobService } from '../../services/admob.service';
 
 @Component({
   selector: 'app-home',
@@ -52,7 +53,8 @@ export class HomePage implements OnInit {
     private modalController: ModalController,
     private toastController: ToastController,
     private auth: AuthService,
-    private storage: Storage) { }
+    private storage: Storage,
+    private admobService: AdmobService) { }
 
   async ngOnInit () {
     this.home_loading = true;
@@ -65,6 +67,26 @@ export class HomePage implements OnInit {
     }, error => {
       console.log (error);
     });
+  }
+
+  banner () {
+    this.admobService.MostrarBanner ();
+  }
+
+  MostrarInterstitial () {
+    this.admobService.MostrarInterstitial ();
+  }
+
+  MostrarReward () {
+    this.admobService.MostrarRewardVideo ();
+  }
+
+  MostrarReward2 () {
+    this.admobService.MostrarRewardVideo ();
+  }
+
+  MostrarReward3 () {
+    this.admobService.MostrarRewardVideo ();
   }
 
   async complete_profile () {

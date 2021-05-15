@@ -7,7 +7,8 @@ import { DatabaseService } from '../../services/database.service';
 import * as moment from 'moment';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 import { Crop, CropOptions } from '@ionic-native/crop/ngx';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
+import { ActivatedRoute } from '@angular/router';
 
 // Forms
 import { FormGroup , FormControl, Validators } from '@angular/forms';
@@ -30,6 +31,8 @@ export class RegistroPage implements OnInit {
   @ViewChild ("day_input", { static: false }) day_input: IonInput;
 
   index: number = 0;
+  length: number = 10;
+  id: string;
 
   form_usernick: FormGroup;
   form_birthday: FormGroup;
@@ -67,10 +70,19 @@ export class RegistroPage implements OnInit {
     private actionSheetController: ActionSheetController,
     private platform: Platform,
     private file: File,
+    private route: ActivatedRoute,
     private navController: NavController,
     private storage: Storage) { }
 
   ngOnInit () {
+    this.id = this.route.snapshot.paramMap.get ('id');
+
+    if (this.id !== 'null') {
+      this.length = 8;
+    }
+
+    console.log (this.id);
+
     this.form_usernick = new FormGroup ({
       usernick: new FormControl ('', [Validators.required])
     });
@@ -154,75 +166,135 @@ export class RegistroPage implements OnInit {
   valid_step () {
     let returned: boolean = false;
 
-    if (this.index === 0) {
-      if (this.form_usernick.invalid) {
-        this.presentToast ('The given data was invalid.', 'danger');  
-      } else {
-        returned = true;
-      }
-    } else if (this.index === 1) {
-      const fecha = moment (this.form_birthday.value.year + '-' + this.form_birthday.value.month + '-' + this.form_birthday.value.day);
-      if (fecha.isValid ()) {
-        if (parseInt (moment ().format ('YYYY')) - parseInt (fecha.format ('YYYY')) < 18) {
-          returned = false;
-          this.presentToast ('The selected date is invalid.', 'danger');
+    if (this.id === 'null') {
+      if (this.index === 0) {
+        if (this.form_usernick.invalid) {
+          this.presentToast ('The given data was invalid.', 'danger');  
         } else {
           returned = true;
         }
-      } else {
-        this.presentToast ('The selected date is invalid.', 'danger');
-      }
-    } else if (this.index === 2) {
-      if (this.form_sexo.invalid) {
-        this.presentToast ('The given data was invalid.', 'danger');  
-      } else {
+      } else if (this.index === 1) {
+        const fecha = moment (this.form_birthday.value.year + '-' + this.form_birthday.value.month + '-' + this.form_birthday.value.day);
+        if (fecha.isValid ()) {
+          if (parseInt (moment ().format ('YYYY')) - parseInt (fecha.format ('YYYY')) < 18) {
+            returned = false;
+            this.presentToast ('The selected date is invalid.', 'danger');
+          } else {
+            returned = true;
+          }
+        } else {
+          this.presentToast ('The selected date is invalid.', 'danger');
+        }
+      } else if (this.index === 2) {
+        if (this.form_sexo.invalid) {
+          this.presentToast ('The given data was invalid.', 'danger');  
+        } else {
+          returned = true;
+        }
+      } else if (this.index === 3) {
+        if (this.generos_map.size <= 0) {
+          this.presentToast ('The given data was invalid.', 'danger');
+        } else {
+          returned = true;
+        }
+      } else if (this.index === 4) {
+        if (this.relaciones_map.size <= 0) {
+          this.presentToast ('The given data was invalid.', 'danger');
+        } else {
+          returned = true;
+        }
+      } else if (this.index === 5) {
+        if (this.form_email.hasError ('required')) {
+          this.presentToast ('The given data was invalid.', 'danger');
+        } else if (this.form_email.hasError ('equalTo')) {
+          this.presentToast ('The confirm email and email must match.', 'danger');
+        } else {
+          returned = true;
+        }
+      } else if (this.index === 6) {
+        if (this.form_password.invalid) {
+          this.presentToast ('The given data was invalid.', 'danger');  
+        } else {
+          returned = true;
+        }
+      } else if (this.index === 7) {
+        if (this.form_location.invalid) {
+          this.presentToast ('The given data was invalid.', 'danger');  
+        } else {
+          returned = true;
+        }
+      } else if (this.index === 8) {
+        if (this.profile_image === '') {
+          this.presentToast ('The given data was invalid.', 'danger');
+        } else {
+          returned = true;
+        }
+      } else if (this.index === 9) {
         returned = true;
+      } else if (this.index === 10) {
+        if (this.form_terms.invalid) {
+          this.presentToast ('The given data was invalid.', 'danger');  
+        } else {
+          returned = true;
+        }
       }
-    } else if (this.index === 3) {
-      if (this.generos_map.size <= 0) {
-        this.presentToast ('The given data was invalid.', 'danger');
-      } else {
+    } else {
+      if (this.index === 0) {
+        if (this.form_usernick.invalid) {
+          this.presentToast ('The given data was invalid.', 'danger');  
+        } else {
+          returned = true;
+        }
+      } else if (this.index === 1) {
+        const fecha = moment (this.form_birthday.value.year + '-' + this.form_birthday.value.month + '-' + this.form_birthday.value.day);
+        if (fecha.isValid ()) {
+          if (parseInt (moment ().format ('YYYY')) - parseInt (fecha.format ('YYYY')) < 18) {
+            returned = false;
+            this.presentToast ('The selected date is invalid.', 'danger');
+          } else {
+            returned = true;
+          }
+        } else {
+          this.presentToast ('The selected date is invalid.', 'danger');
+        }
+      } else if (this.index === 2) {
+        if (this.form_sexo.invalid) {
+          this.presentToast ('The given data was invalid.', 'danger');  
+        } else {
+          returned = true;
+        }
+      } else if (this.index === 3) {
+        if (this.generos_map.size <= 0) {
+          this.presentToast ('The given data was invalid.', 'danger');
+        } else {
+          returned = true;
+        }
+      } else if (this.index === 4) {
+        if (this.relaciones_map.size <= 0) {
+          this.presentToast ('The given data was invalid.', 'danger');
+        } else {
+          returned = true;
+        }
+      } else if (this.index === 5) {
+        if (this.form_location.invalid) {
+          this.presentToast ('The given data was invalid.', 'danger');  
+        } else {
+          returned = true;
+        }
+      } else if (this.index === 6) {
+        if (this.profile_image === '') {
+          this.presentToast ('The given data was invalid.', 'danger');
+        } else {
+          returned = true;
+        }
+      } else if (this.index === 7) {
         returned = true;
-      }
-    } else if (this.index === 4) {
-      if (this.relaciones_map.size <= 0) {
-        this.presentToast ('The given data was invalid.', 'danger');
-      } else {
-        returned = true;
-      }
-    } else if (this.index === 5) {
-      if (this.form_email.hasError ('required')) {
-        this.presentToast ('The given data was invalid.', 'danger');
-      } else if (this.form_email.hasError ('equalTo')) {
-        this.presentToast ('The confirm email and email must match.', 'danger');
-      } else {
-        returned = true;
-      }
-    } else if (this.index === 6) {
-      if (this.form_password.invalid) {
-        this.presentToast ('The given data was invalid.', 'danger');  
-      } else {
-        returned = true;
-      }
-    } else if (this.index === 7) {
-      if (this.form_location.invalid) {
-        this.presentToast ('The given data was invalid.', 'danger');  
-      } else {
-        returned = true;
-      }
-    } else if (this.index === 8) {
-      if (this.profile_image === '') {
-        this.presentToast ('The given data was invalid.', 'danger');
-      } else {
-        returned = true;
-      }
-    } else if (this.index === 9) {
-      returned = true;
-    } else if (this.index === 10) {
-      if (this.form_terms.invalid) {
-        this.presentToast ('The given data was invalid.', 'danger');  
-      } else {
-        returned = true;
+      } else if (this.index === 8) {
+        if (this.form_terms.invalid) {
+          this.presentToast ('The given data was invalid.', 'danger');  
+        } else {
+          returned = true;
+        }
       }
     }
 
@@ -239,145 +311,163 @@ export class RegistroPage implements OnInit {
   
       await loading.present ();
 
-      if (this.index === 0) {
-        this.auth.validar_campo ({campo: 'usernick', usernick: this.form_usernick.value.usernick}).subscribe ((res: any) => {
+      if (this.id === 'null') {
+        if (this.index === 0 || this.index === 1 || this.index === 2 ||
+            this.index === 3 || this.index === 4 || this.index === 7 ||
+            this.index === 8 || this.index === 9) {
           loading.dismiss ();
-          console.log (res);
+          this.slideNext ();
+        } else if (this.index === 5) {
+          let request: any = this.form_email.value;
+          request.campo = 'email';
+  
+          this.auth.validar_campo (request).subscribe ((res: any) => {
+            loading.dismiss ();
+            console.log (res);
+  
+            if (res.status) {
+              this.slideNext ();
+            } else {
+              this.show_api_error (res, ['email', 'confirm_email']);
+            }
+          }, error => {
+            loading.dismiss ();
+            console.log (error);
+          });
+        } else if (this.index === 6) {
+          let request: any = this.form_password.value;
+          request.campo = 'password';
+  
+          this.auth.validar_campo (request).subscribe ((res: any) => {
+            loading.dismiss ();
+            console.log (res);
+  
+            if (res.status) {
+              this.slideNext ();
+            } else {
+              this.show_api_error (res, ['password']);
+            }
+          }, error => {
+            loading.dismiss ();
+            console.log (error);
+          });
+        } else if (this.index === 10) {
+          let generos_interes: number [] = [];
+          let relaciones: number [] = [];
+  
+          this.generos_map.forEach ((value: boolean, key: string) => {
+            generos_interes.push (parseInt (key));
+          });
+  
+          this.relaciones_map.forEach ((value: boolean, key: string) => {
+            relaciones.push (parseInt (key));
+          });
+          
+          let request: any = {};
+          request.id = 0;
+          request.usernick = this.form_usernick.value.usernick;
+          request.lenguaje = this.lang;
+          request.sexo = this.form_sexo.value.sexo;
+          request.relaciones = relaciones;
+          request.generos_interes = generos_interes;
+          request.email = this.form_email.value.email;
+          request.password = this.form_password.value.password;
+          request.pais = this.form_location.value.pais.code + '-' + this.form_location.value.pais.name;
+          request.id_region = this.form_location.value.id_region.fipsCode;
+          request.nombre_region = this.form_location.value.id_region.name;
+          request.id_ciudad = this.form_location.value.ciudad.id;
+          request.nombre_ciudad = this.form_location.value.ciudad.name;
+          request.latitud = this.form_location.value.ciudad.latitude;
+          request.longitud = this.form_location.value.ciudad.longitude;
+          request.year = this.form_birthday.value.year;
+          request.month = this.form_birthday.value.month;
+          request.day = this.form_birthday.value.day;
+          request.imagen = this.profile_file;
+          request.galeria = this.photos_file;
 
-          if (res.status) {
-            this.slideNext ();
-          } else {
-            this.show_api_error (res, ['usernick']);
+          console.log (request);
+  
+          this.auth.registro (request).subscribe ((res: any) => {
+            console.log (res);
+            loading.dismiss ();
+  
+            if (res ['status'] === undefined) {
+              this.select_plan (res, request.sexo);
+            } else {
+              this.show_api_error (res, ['usernick', 'sexo', 'relaciones', 'generos_interes', 'email',
+              'password', 'pais', 'id_region', 'id_ciudad', 'latitud', 'longitud', 'year', 'month', 
+              'day', 'imagen', 'galeria']);
+            }
+          }, error => {
+            console.log (error);
+            loading.dismiss ();
+          });
+        }
+      } else {
+        if (this.index === 0 || this.index === 1 ||this.index === 2 ||
+            this.index === 3 || this.index === 4 || this.index === 5 ||
+            this.index === 6 || this.index === 7) {
+          loading.dismiss ();
+          this.slideNext ();
+        } else if (this.index === 8) {
+          let generos_interes: number [] = [];
+          let relaciones: number [] = [];
+  
+          this.generos_map.forEach ((value: boolean, key: string) => {
+            generos_interes.push (parseInt (key));
+          });
+  
+          this.relaciones_map.forEach ((value: boolean, key: string) => {
+            relaciones.push (parseInt (key));
+          });
+          
+          let request: any = {};
+          request.id = 0;
+          request.usernick = this.form_usernick.value.usernick;
+          request.lenguaje = this.lang;
+          request.sexo = this.form_sexo.value.sexo;
+          request.relaciones = relaciones;
+          request.generos_interes = generos_interes;
+          request.email = this.form_email.value.email;
+          request.password = this.form_password.value.password;
+          request.pais = this.form_location.value.pais.code + '-' + this.form_location.value.pais.name;
+          request.id_region = this.form_location.value.id_region.fipsCode;
+          request.nombre_region = this.form_location.value.id_region.name;
+          request.id_ciudad = this.form_location.value.ciudad.id;
+          request.nombre_ciudad = this.form_location.value.ciudad.name;
+          request.latitud = this.form_location.value.ciudad.latitude;
+          request.longitud = this.form_location.value.ciudad.longitude;
+          request.year = this.form_birthday.value.year;
+          request.month = this.form_birthday.value.month;
+          request.day = this.form_birthday.value.day;
+          request.imagen = this.profile_file;
+          request.galeria = this.photos_file;
+  
+          if (this.id !== 'null') {
+            request.social = true;
+            request.id = parseInt (this.id);
+            delete request.email;
+            delete request.password;
           }
-        }, error => {
-          loading.dismiss ();
-          console.log (error);
-        });
-      } else if (this.index === 1) {
-        loading.dismiss ();
-        this.slideNext ();
-        // let request: any = this.form_birthday.value;
-        // request.campo = 'birthday';
+  
+          console.log (request);
 
-        // this.auth.validar_campo (request).subscribe ((res: any) => {
-        //   loading.dismiss ();
-        //   console.log (res);
-
-        //   if (res.status) {
-        //     this.slideNext ();
-        //   } else {
-        //     this.show_api_error (res, ['year', 'month', 'day']);
-        //   }
-        // }, error => {
-        //   loading.dismiss ();
-        //   console.log (error);
-        // });
-      } else if (this.index === 2) {
-        loading.dismiss ();
-        this.slideNext ();
-        // let request: any = this.form_sexo.value;
-        // request.campo = 'sexo';
-
-        // this.auth.validar_campo (request).subscribe ((res: any) => {
-        //   loading.dismiss ();
-        //   console.log (res);
-
-        //   if (res.status) {
-        //     this.slideNext ();
-        //   } else {
-        //     this.show_api_error (res, ['sexo']);
-        //   }
-        // }, error => {
-        //   loading.dismiss ();
-        //   console.log (error);
-        // });
-      } else if (this.index === 3 || this.index === 4 || this.index === 7 || this.index === 8 || this.index === 9) {
-        loading.dismiss ();
-        this.slideNext ();
-      } else if (this.index === 5) {
-        let request: any = this.form_email.value;
-        request.campo = 'email';
-
-        this.auth.validar_campo (request).subscribe ((res: any) => {
-          loading.dismiss ();
-          console.log (res);
-
-          if (res.status) {
-            this.slideNext ();
-          } else {
-            this.show_api_error (res, ['email', 'confirm_email']);
-          }
-        }, error => {
-          loading.dismiss ();
-          console.log (error);
-        });
-      } else if (this.index === 6) {
-        let request: any = this.form_password.value;
-        request.campo = 'password';
-
-        this.auth.validar_campo (request).subscribe ((res: any) => {
-          loading.dismiss ();
-          console.log (res);
-
-          if (res.status) {
-            this.slideNext ();
-          } else {
-            this.show_api_error (res, ['password']);
-          }
-        }, error => {
-          loading.dismiss ();
-          console.log (error);
-        });
-      } else if (this.index === 10) {
-        let generos_interes: number [] = [];
-        let relaciones: number [] = [];
-
-        this.generos_map.forEach ((value: boolean, key: string) => {
-          generos_interes.push (parseInt (key));
-        });
-
-        this.relaciones_map.forEach ((value: boolean, key: string) => {
-          relaciones.push (parseInt (key));
-        });
-        
-        let request: any = {};
-        request.usernick = this.form_usernick.value.usernick;
-        request.lenguaje = this.lang;
-        request.sexo = this.form_sexo.value.sexo;
-        request.relaciones = relaciones;
-        request.generos_interes = generos_interes;
-        request.email = this.form_email.value.email;
-        request.password = this.form_password.value.password;
-        request.pais = this.form_location.value.pais.code + '-' + this.form_location.value.pais.name;
-        request.id_region = this.form_location.value.id_region.fipsCode;
-        request.nombre_region = this.form_location.value.id_region.name;
-        request.id_ciudad = this.form_location.value.ciudad.id;
-        request.nombre_ciudad = this.form_location.value.ciudad.name;
-        request.latitud = this.form_location.value.ciudad.latitude;
-        request.longitud = this.form_location.value.ciudad.longitude;
-        request.year = this.form_birthday.value.year;
-        request.month = this.form_birthday.value.month;
-        request.day = this.form_birthday.value.day;
-        request.imagen = this.profile_file;
-        request.galeria = this.photos_file;
-
-        console.log (request);
-
-        this.auth.registro (request).subscribe ((res: any) => {
-          console.log (res);
-          loading.dismiss ();
-
-          if (res ['status'] === undefined) {
-            this.select_plan (res, request.sexo);
-          } else {
-            this.show_api_error (res, ['usernick', 'sexo', 'relaciones', 'generos_interes', 'email',
-            'password', 'pais', 'id_region', 'id_ciudad', 'latitud', 'longitud', 'year', 'month', 
-            'day', 'imagen', 'galeria']);
-          }
-        }, error => {
-          console.log (error);
-          loading.dismiss ();
-        });
+          this.auth.registro (request).subscribe ((res: any) => {
+            console.log (res);
+            loading.dismiss ();
+  
+            if (res ['status'] === undefined) {
+              this.select_plan (res, request.sexo);
+            } else {
+              this.show_api_error (res, ['usernick', 'sexo', 'relaciones', 'generos_interes', 'email',
+              'password', 'pais', 'id_region', 'id_ciudad', 'latitud', 'longitud', 'year', 'month', 
+              'day', 'imagen', 'galeria']);
+            }
+          }, error => {
+            console.log (error);
+            loading.dismiss ();
+          });
+        }
       }
     }
   }

@@ -6,7 +6,7 @@ import { CompleteProfilePage } from '../../modals/complete-profile/complete-prof
 import { IonRouterOutlet } from '@ionic/angular';
 import { DatabaseService } from '../../services/database.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-profile-menu',
@@ -57,9 +57,11 @@ export class ProfileMenuPage implements OnInit {
             this.auth.logout ().subscribe (async (res: any) => {
               await loading.dismiss ();
               this.borrar_user_access ();
+              this.auth.logout_social ();
             }, async error => {
               await loading.dismiss ();
               this.borrar_user_access ();
+              this.auth.logout_social ();
             });
           }
         }

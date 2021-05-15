@@ -33,7 +33,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="cancelar ()">Cncelar</ion-button>
+  <ion-button (click)="MostrarReward2 ()">
+    Video
+  </ion-button>
+
+  <!-- <ion-button (click)="cancelar ()">Cncelar</ion-button> -->
   <ion-refresher slot="fixed" (ionRefresh)="get_data ($event, false, 'refresher')">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>

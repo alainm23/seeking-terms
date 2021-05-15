@@ -8,7 +8,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 // Native Storage
-import { Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
@@ -31,6 +32,9 @@ import { SelectPlanPageModule } from './modals/select-plan/select-plan.module';
 import { BuySingleCreditsPageModule } from './modals/buy-single-credits/buy-single-credits.module';
 import { UpgradeAccountMenuPageModule } from './modals/upgrade-account-menu/upgrade-account-menu.module';
 import { PaymentPageModule } from './modals/payment/payment.module';
+import { Facebook } from '@ionic-native/facebook/ngx';
+import { AdMobFree } from '@ionic-native/admob-free/ngx';
+import { AdmobService } from './services/admob.service';
 
 //Translation
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -63,16 +67,20 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     SelectPlanPageModule,
     BuySingleCreditsPageModule,
     UpgradeAccountMenuPageModule,
-    PaymentPageModule
+    PaymentPageModule,
+    IonicStorageModule.forRoot ()
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Storage,
     Camera,
+    Clipboard,
+    AdMobFree,
+    AdmobService,
     File,
     Crop,
     OneSignal,
-    GooglePlus
+    GooglePlus,
+    Facebook
   ],
   bootstrap: [AppComponent],
 })

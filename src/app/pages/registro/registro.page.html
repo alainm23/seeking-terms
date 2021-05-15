@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-progress-bar mode="ios" [value]="index / 10"></ion-progress-bar>
+  <ion-progress-bar mode="ios" [value]="index / length"></ion-progress-bar>
 
   <ion-slides (ionSlideWillChange)="slides_changed ()" pager="false" [options]="slideOpts">
     <ion-slide>
@@ -125,7 +125,7 @@
       </ion-grid>
     </ion-slide>
 
-    <ion-slide>
+    <ion-slide *ngIf="id === 'null'">
       <form [formGroup]="form_email">
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
@@ -145,7 +145,7 @@
       </form>
     </ion-slide>
 
-    <ion-slide>
+    <ion-slide *ngIf="id === 'null'">
       <form [formGroup]="form_password">
       <ion-grid class="grid-pagging">
         <ion-row style="display: flex;">
@@ -273,5 +273,5 @@
 </ion-content>
 <ion-footer class="ion-no-border ion-text-center">
   <ion-button (click)="next_step ()" class="btn-continuar-footer">{{ 'Next' | translate }}</ion-button>
-  <p class="p-footer">{{ 'Continue with Facebook' | translate }}</p>
+  <p class="p-footer">{{ 'Back' | translate }}</p>
 </ion-footer>
