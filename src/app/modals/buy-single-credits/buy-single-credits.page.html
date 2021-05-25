@@ -2,12 +2,12 @@
   <img src="assets/img/Grupo804.png" class="img-logo-genral">
   <h1>Get credits</h1>
   <p>Simply subscribe and gain access to our entire platform!</p>
-  <p>You have <span>00</span> credits left:</p>
+  <p>You have <span>{{ auth.USER_DATA.creditos }}</span> credits left:</p>
   <ion-card *ngFor="let item of prices" (click)="select_price (item)">
     <h5 class="ion-no-margin">{{ item.text }}</h5>
     <p class="p_card ion-no-margin">$ {{ item.value }}</p>
   </ion-card>
 </ion-content>
 <ion-footer class="ion-no-border">
-  <p class="ion-text-center p-footer">< Go back</p>
+  <p class="ion-text-center p-footer" (click)="close ()">< Go back</p>
 </ion-footer>

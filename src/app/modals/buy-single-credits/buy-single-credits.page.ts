@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // Services
 import { ModalController } from '@ionic/angular';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-buy-single-credits',
@@ -31,12 +32,17 @@ export class BuySingleCreditsPage implements OnInit {
       creditos: 200
     }
   ]
-  constructor (private modalController: ModalController) { }
+  constructor (private modalController: ModalController,
+    public auth: AuthService) { }
 
   ngOnInit() {
   }
 
   select_price (item: any) {
     this.modalController.dismiss (item, 'ok');
+  }
+
+  close () {
+    this.modalController.dismiss ();
   }
 }

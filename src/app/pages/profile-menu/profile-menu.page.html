@@ -28,11 +28,11 @@
   </ion-label>
   <div class="div-linea-bottom"></div>
   <h6 class="h6-amariilo">Credits left: {{ auth?.USER_DATA?.creditos }}</h6>
-  <ion-label class="label-menu">
+  <ion-label (click)="open_select_plan ()" class="label-menu">
     <img src="assets/img/iconos_Upgrade.png" class="img-configure-menu img-margin-right">
     {{ 'Upgrade my account' | translate }}
   </ion-label>
-  <ion-label class="label-menu">
+  <ion-label (click)="open_buy_credis ()" class="label-menu">
     <img src="assets/img/icono-no-favorito.png" class="img-corazon-menu img-margin-right">
     {{ 'Get more credits' | translate }}
   </ion-label>
@@ -54,7 +54,7 @@
     <img src="assets/img/iconos_Inbox.png" class="img-chat-footer">
     <!-- <ion-badge class="badge-chat" mode="ios">99</ion-badge> -->
   </ion-button> 
-  <ion-button mode="ios" class="btn-footer btn-footer-right">
+  <ion-button (click)="open_upgrade_menu ()" mode="ios" class="btn-footer btn-footer-right">
     <img src="assets/img/iconos_Upgrade.png" class="img-corona-footer">
   </ion-button> 
   <ion-button routerLink="/favorites" routerDirection="root" mode="ios" class="btn-footer btn-footer-right">

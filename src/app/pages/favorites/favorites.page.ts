@@ -130,4 +130,8 @@ export class FavoritesPage implements OnInit {
 
     return date.fromNow ();
   }
+
+  async open_upgrade_menu () {
+    this.database.open_upgrade_menu ();
+  }
 }

@@ -18,8 +18,10 @@
         <ion-row>
           <ion-col size="12" class="ion-no-padding">
             <h1 class="ion-text-center">{{ 'Type your nick' | translate }}</h1>
-            <ion-item class="item-llamas" lines="none">
-              <ion-label position="stacked" class="label-campo">{{ 'This is how you will appear in Seeking' | translate }}</ion-label>
+            <p class="color-plomo ion-text-center">
+              {{ 'This is how you will appear in Seeking' | translate }}
+            </p>
+            <ion-item class="item-llamas ion-item-center" lines="none">
               <ion-input (keyup.enter)="next_step ()" formControlName="usernick" type="text" class="input-llmas"></ion-input>
             </ion-item>
           </ion-col>
@@ -43,19 +45,50 @@
               <ion-col size="3" class="col-padding-dia">
                 <p class="p-dia-mes-ano">{{ 'Día' | translate }}</p>
                 <ion-item lines="none" class="item-dias">
-                  <ion-input #day_input (keyup.enter)="set_input_focus ('month_input')" formControlName="day" type="tel" maxlength="2" placeholder="{{ 'DD' | translate }}" class="input-dia"></ion-input>
+                  <ion-input
+                    [class.input-dia-focus]="date_input_focus === 'day'"
+                    (ionFocus)="change_focus ('day')"
+                    (ionChange)="change_month ($event, 'day')"
+                    #day_input
+                    (keyup.enter)="set_input_focus ('month_input')"
+                    formControlName="day"
+                    type="tel"
+                    maxlength="2"
+                    placeholder="{{ 'DD' | translate }}"
+                    class="input-dia">
+                  </ion-input>
                 </ion-item>
               </ion-col>
               <ion-col size="3" class="col-padding-mes">
                 <p class="p-dia-mes-ano">{{ 'Mes' | translate }}</p>
                 <ion-item lines="none" class="item-dias">
-                  <ion-input #month_input (keyup.enter)="set_input_focus ('year_input')" formControlName="month" type="tel" maxlength="2" placeholder="{{ 'MM' | translate }}" class="input-dia"></ion-input>
+                  <ion-input
+                    [class.input-dia-focus]="date_input_focus === 'month'"
+                    (ionFocus)="change_focus ('month')"
+                    (ionChange)="change_month ($event, 'month')"
+                    #month_input
+                    (keyup.enter)="set_input_focus ('year_input')"
+                    formControlName="month"
+                    type="tel"
+                    maxlength="2"
+                    placeholder="{{ 'MM' | translate }}"
+                    class="input-dia"></ion-input>
                 </ion-item>
               </ion-col>
               <ion-col size="4" class="col-padding-ano" >
                 <p class="p-dia-mes-ano">{{ 'Año' | translate }}</p>
                 <ion-item lines="none" class="item-dias">
-                  <ion-input #year_input (keyup.enter)="next_step ()" formControlName="year" type="tel" maxlength="4" placeholder="{{ 'AAAA' | translate }}" class="input-dia"></ion-input>
+                  <ion-input
+                    [class.input-dia-focus]="date_input_focus === 'year'"
+                    (ionFocus)="change_focus ('year')"
+                    #year_input
+                    (keyup.enter)="next_step ()"
+                    formControlName="year"
+                    type="tel"
+                    maxlength="4"
+                    placeholder="{{ 'AAAA' | translate }}"
+                    class="input-dia">
+                  </ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>
@@ -131,11 +164,11 @@
             <ion-col size="12" class="ion-no-padding">
               <h1 class="ion-text-center">{{ 'What is your email address?' | translate }}</h1>
               <!-- <p class="color-plomo ion-text-center">O regístrate con tu número de teléfono</p> -->
-              <ion-item class="item-llamas" lines="none">
+              <ion-item class="item-llamas ion-item-center" lines="none">
                 <ion-input formControlName="email" placeholder="{{ 'Email' | translate }}" type="email" class="input-llmas"></ion-input>
               </ion-item>
   
-              <ion-item class="item-llamas" lines="none">
+              <ion-item class="item-llamas ion-item-center" lines="none">
                 <ion-input formControlName="confirm_email" placeholder="{{ 'Confirm Email' | translate }}" type="email" class="input-llmas"></ion-input>
               </ion-item>
             </ion-col>
@@ -150,43 +183,8 @@
         <ion-row>
           <ion-col size="12" class="ion-no-padding">
             <h1 class="ion-text-center">{{ 'Password' | translate }}</h1>
-            <ion-item class="item-llamas" lines="none">
-              <ion-input formControlName="password" type="text" class="input-llmas"></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      </form>
-    </ion-slide>
-
-    <ion-slide>
-      <form [formGroup]="form_location">
-      <ion-grid class="ion-no-padding">
-        <ion-row>
-          <ion-col size="12" class="ion-no-padding">
-            <h1 class="ion-text-center">{{ 'Location' | translate }}</h1>
-            <ion-item (click)="select_country ()" class="item-llamas item-select-location" lines="none">
-              <ion-input readonly placeholder="{{ 'Country' | translate }}" formControlName="pais_nombre" type="text" class="input-llmas">
-              </ion-input>
-              <ion-icon style="font-size: 16px;color: #000;" slot="end" name="chevron-down-sharp"></ion-icon>
-            </ion-item>
-
-            <ion-item class="item-llamas item-select-location" lines="none">
-              <ion-select formControlName="id_region" (ionChange)="region_changed ($event)" interface="popover" placeholder="{{ 'Region' | translate }}" class="seletc-location">
-                <ion-select-option *ngFor="let item of regions" [value]="item">
-                  {{ item.name }}
-                </ion-select-option>
-              </ion-select>
-              <ion-icon style="font-size: 16px;color: #000;" slot="end" name="chevron-down-sharp"></ion-icon>
-            </ion-item>
-
-            <ion-item class="item-llamas item-select-location" lines="none">
-              <ion-select formControlName="ciudad" interface="popover" placeholder="{{ 'City' | translate }}" class="seletc-location">
-                <ion-select-option *ngFor="let item of cities" [value]="item">
-                  {{ item.name }}
-                </ion-select-option>
-              </ion-select>
-              <ion-icon style="font-size: 16px;color: #000;" slot="end" name="chevron-down-sharp"></ion-icon>
+            <ion-item class="item-llamas ion-item-center" lines="none">
+              <ion-input formControlName="password" type="password" class="input-llmas"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -274,9 +272,5 @@
 </ion-content>
 <ion-footer class="ion-no-border ion-text-center">
   <ion-button (click)="next_step ()" class="btn-continuar-footer">{{ 'Next' | translate }}</ion-button>
-<<<<<<< HEAD
-  <p class="p-footer">{{ 'Back' | translate }}</p>
-=======
-  <p class="p-footer">{{ 'Go back' | translate }}</p>
->>>>>>> 3e16ed47772cf5a35d77db3fda656522e69146eb
+  <p class="p-footer" (click)="back_step ()">{{ 'Go back' | translate }}</p>
 </ion-footer>

@@ -25,6 +25,8 @@ export class InboxPage implements OnInit {
   get_data (event: any, join: boolean) {
     this.page = this.page + 1;
     this.database.get_chats (this.page).subscribe ((res: any []) => {
+      console.log (res);
+
       if (join) {
         res.forEach ((e: any) => {
           this.items.push (e);
@@ -54,11 +56,15 @@ export class InboxPage implements OnInit {
     const modal = await this.modalController.create({
       component: ChatPage,
       componentProps: {
-        id: item.id,
-        receptor: item.receptor
+        chat_id: item.id,
+        perfil: item.receptor
       }
     });
 
     return await modal.present ();
+  }
+
+  async open_upgrade_menu () {
+    this.database.open_upgrade_menu ();
   }
 }

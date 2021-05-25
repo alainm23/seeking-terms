@@ -33,9 +33,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="MostrarReward2 ()">
+  <!-- <ion-button (click)="MostrarReward2 ()">
     Video
-  </ion-button>
+  </ion-button> -->
 
   <!-- <ion-button (click)="cancelar ()">Cncelar</ion-button> -->
   <ion-refresher slot="fixed" (ionRefresh)="get_data ($event, false, 'refresher')">
@@ -62,16 +62,18 @@
         <h6 class="h6-blanco">Get girls attention, put your photo right up here.</h6>
       </ion-card>
     </ion-slide>
-  </ion-slides> -->
+  </ion-slides> *ngIf="complete_perfil?.total < 100" -->
 
-  <div class="ion-text-center div-amarillo-profile">
-    <h5 class="h5-profile">{{ 'Profile status' | translate }}: {{ complete_perfil?.total }}% - {{ 'Weak' | translate }}</h5>
-    <p class="p-profile">{{ 'More detailed profiles get all the attention' | translate }}</p>
-  </div>
-
-  <div class="div-atenttion ion-text-center">
-    <ion-button class="btn-get-attention" mode="ios" (click)="complete_profile ()">{{ 'Get more attention!' | translate }}</ion-button>
-  </div>
+  <ng-container>
+    <div class="ion-text-center div-amarillo-profile">
+      <h5 class="h5-profile">{{ 'Profile status' | translate }}: {{ complete_perfil?.total }}% - {{ 'Weak' | translate }}</h5>
+      <p class="p-profile">{{ 'More detailed profiles get all the attention' | translate }}</p>
+    </div>
+  
+    <div class="div-atenttion ion-text-center">
+      <ion-button class="btn-get-attention" mode="ios" (click)="complete_profile ()">{{ 'Get more attention!' | translate }}</ion-button>
+    </div>
+  </ng-container>
 
   <ion-item class="item-select" lines="none">
     <ion-select (ionChange)="change_order ($event)" [(ngModel)]="order_by" interface="popover" placeholder="Sort by popularity" class="select-popu" mode="ios">
@@ -155,22 +157,6 @@
               </div>
             </ion-avatar>
             <img src="assets/img/grupo926.png" *ngIf="item.membresia === 1" class="img-circulo-amarrilo">
-            <!--<ion-item lines="none" class="item-blanco">
-              <ion-button (click)="toggled_favorite (item)" class="btn-iguales-tab btn-border-right">
-                <img *ngIf="item.tengo_favorito === false" src="assets/img/icono-no-favorito.png" class="img-widht-igules">
-                <img *ngIf="item.tengo_favorito === true" src="assets/img/icono-favorito.png" class="img-widht-igules">
-              </ion-button>
-              <ion-button (click)="send_wink (item)" class="btn-iguales-tab btn-border-right">
-                <img *ngIf="item.wink_loading === false || item.wink_loading === undefined" src="assets/img/iconos-Wink.png" class="img-widht-igules">
-                <ion-spinner *ngIf="item.wink_loading === true" color="dark" name="bubbles"></ion-spinner>
-              </ion-button>
-              <ion-button class="btn-iguales-tab btn-border-right">
-                <img src="assets/img/iconos_Inbox.png" class="img-widht-igules">
-              </ion-button>
-              <ion-button (click)="view_profile (item)" class="btn-iguales-tab">
-                <img src="assets/img/iconos_Minimize.png" class="img-right img-width-flecha">
-              </ion-button>
-            </ion-item>-->
           </ion-card>
         </ion-col>
       </ion-row>

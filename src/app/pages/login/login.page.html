@@ -1,28 +1,33 @@
 <ion-content>
   <div class="div-login">
-    <form [formGroup]="form">
-      <ion-card class="bajar_card">
-        <ion-card-content class="ion-text-center">
-            <img src="assets/img/Grupo804.png" class="img-logo-genral">
-            <ion-item class="item-lenguaje" lines="none">
-              <!--<ion-label>Language</ion-label>-->
-              <ion-select (ionChange)="change_lan ($event)" placeholder="Language" class="select-lenguaje">
-                <ion-select-option value="es">{{ 'Español' | translate }}</ion-select-option>
-                <ion-select-option value="en">{{ 'Ingles' | translate }}</ion-select-option>
-              </ion-select>
-              <ion-icon name="chevron-down-sharp" class="icon-select"></ion-icon>
-            </ion-item>
-            <h1>{{ 'Log in' | translate }}</h1>
+    <ion-card class="bajar_card">
+      <ion-card-content class="ion-text-center">
+          <img src="assets/img/Grupo804.png" class="img-logo-genral">
+          <ion-item class="item-lenguaje" lines="none">
+            <!--<ion-label>Language</ion-label>-->
+            <ion-select interface="popover" (ionChange)="change_lan ($event)" [(ngModel)]="lang" placeholder="Language" class="select-lenguaje">
+              <ion-select-option value="es">{{ 'Español' | translate }}</ion-select-option>
+              <ion-select-option value="en">{{ 'Ingles' | translate }}</ion-select-option>
+            </ion-select>
+            <ion-icon name="chevron-down-sharp" class="icon-select"></ion-icon>
+          </ion-item>
+          <h1>{{ 'Log in' | translate }}</h1>
+          <form [formGroup]="form">
             <ion-input formControlName="email" placeholder="{{ 'User name or email' | translate }}" mode="ios" class="ion-text-start" type="email"></ion-input>
-            <ion-input formControlName="password" placeholder="{{ 'Your password' | translate }}" mode="ios" class="ion-text-start" type="password"></ion-input>
-            <p class="ion-texto-center quitar_top">{{ 'Forgot your password?' | translate }} <span><u>{{ 'Get a new one.' | translate }}</u></span></p>
-            <ion-button mode="ios" class="btn-let-go" (click)="submit ()">{{ 'Lets go' | translate }}</ion-button>
-            <div class="div-linea-plomo"></div>
-            <ion-button mode="ios" class="btn-faccebook">Facebook</ion-button>
-            <ion-button mode="ios" class="btn-google" (click)="google ()">Google</ion-button>
-        </ion-card-content>
-      </ion-card>
-    </form>
+            <ion-input
+              (keyup.enter)="submit ()"
+              formControlName="password"
+              placeholder="{{ 'Your password' | translate }}"
+              mode="ios" class="ion-text-start"
+              type="password"></ion-input>
+          </form>
+          <p class="ion-texto-center quitar_top">{{ 'Forgot your password?' | translate }} <span><u>{{ 'Get a new one.' | translate }}</u></span></p>
+          <ion-button mode="ios" class="btn-let-go" (click)="submit ()">{{ 'Lets go' | translate }}</ion-button>
+          <div class="div-linea-plomo"></div>
+          <ion-button mode="ios" class="btn-faccebook" (click)="facebook ()">Facebook</ion-button>
+          <ion-button mode="ios" class="btn-google" (click)="google ()">Google</ion-button>
+      </ion-card-content>
+    </ion-card>
     <ion-card class="ion-no-margin">
       <ion-button mode="ios" class="btn_card" (click)="registro ()">{{ 'Im new here. Registe' | translate }}r</ion-button>
     </ion-card>

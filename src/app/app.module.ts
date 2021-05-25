@@ -23,6 +23,12 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderModule } from 'ngx-order-pipe';
 
+// Geo
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation/ngx';
+
 // Modals
 import { CountrySelectPageModule } from './modals/country-select/country-select.module';
 import { FilterPageModule } from './modals/filter/filter.module';
@@ -33,6 +39,9 @@ import { BuySingleCreditsPageModule } from './modals/buy-single-credits/buy-sing
 import { UpgradeAccountMenuPageModule } from './modals/upgrade-account-menu/upgrade-account-menu.module';
 import { PaymentPageModule } from './modals/payment/payment.module';
 import { Facebook } from '@ionic-native/facebook/ngx';
+import { EditProfileFormPageModule } from './modals/edit-profile-form/edit-profile-form.module';
+import { EditFotosPageModule } from './modals/edit-fotos/edit-fotos.module';
+
 import { AdMobFree } from '@ionic-native/admob-free/ngx';
 import { AdmobService } from './services/admob.service';
 
@@ -67,8 +76,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     SelectPlanPageModule,
     BuySingleCreditsPageModule,
     UpgradeAccountMenuPageModule,
+    EditProfileFormPageModule,
     PaymentPageModule,
-    IonicStorageModule.forRoot ()
+    IonicStorageModule.forRoot (),
+    EditFotosPageModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
@@ -80,7 +91,11 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     Crop,
     OneSignal,
     GooglePlus,
-    Facebook
+    Facebook,
+    LocationAccuracy,
+    AndroidPermissions,
+    Geolocation,
+    BackgroundGeolocation
   ],
   bootstrap: [AppComponent],
 })

@@ -21,16 +21,11 @@ export class AuthGuard implements CanActivate {
       if (user !== null) {
         this.auth.USER_ACCESS = JSON.parse (user);
         this.auth.USER_DATA = JSON.parse (await this.storage.get ('USER_DATA'));
+        
+        if (this.auth.USER_DATA.email_verified_at === null) {
+          this.navController.navigateRoot ('verify-email');
+        }
 
-        // this.auth.get_user ().subscribe (async (res: any) => {
-        //   console.log (res);
-        //   this.auth.USER_DATA = res;
-        //   await this.storage.set ('USER_DATA', JSON.stringify (res));
-        // }, error => {
-        //   console.log (error);
-        // });
-
-        this.websocket.init_websocket (this.auth.USER_DATA.id, this.auth.USER_ACCESS.access_token);
         return true;
       } else {
         this.navController.navigateRoot ('login');

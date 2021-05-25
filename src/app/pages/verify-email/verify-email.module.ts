@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PermisosCorreoPageRoutingModule } from './permisos-correo-routing.module';
+import { VerifyEmailPageRoutingModule } from './verify-email-routing.module';
 
-import { PermisosCorreoPage } from './permisos-correo.page';
+import { VerifyEmailPage } from './verify-email.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PermisosCorreoPageRoutingModule
+    VerifyEmailPageRoutingModule
   ],
-  declarations: [PermisosCorreoPage]
+  declarations: [VerifyEmailPage]
 })
-export class PermisosCorreoPageModule {}
+export class VerifyEmailPageModule {}

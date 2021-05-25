@@ -18,4 +18,8 @@ export class UpgradeAccountMenuPage implements OnInit {
   event (event: any) {
     this.modalController.dismiss (null, event);
   }
+
+  close () {
+    this.modalController.dismiss ();
+  }
 }

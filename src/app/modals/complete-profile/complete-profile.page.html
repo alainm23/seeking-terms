@@ -1,10 +1,10 @@
 
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar>
-    <ion-title>{{ 'COMPLETE_PERFIL' | translate }}</ion-title>
+    <ion-title>{{ 'Complete perfil' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="close ()" color="dark">
-        Close
+        {{ 'Close' | translate }}
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -27,7 +27,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Honestly, what are you looking for?</h1>
+              <h1 class="ion-text-center">{{ 'Honestly, what are you looking for?' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -46,11 +46,11 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Describe exactly what you are looking for</h1>
+              <h1 class="ion-text-center">{{ 'Describe exactly what you are looking for' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
-              <ion-textarea [(ngModel)]="estoy_buscando" class="textarea" row="10"></ion-textarea>
+              <ion-textarea [(ngModel)]="estoy_buscando" class="textarea" rows="10" autoGrow="true"></ion-textarea>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -61,36 +61,36 @@
           <ion-grid class="grid-pagging">
             <ion-row style="display: flex;">
               <ion-col size="12" class="ion-no-padding">
-                <h1 class="ion-text-center">Personal Data</h1>
+                <h1 class="ion-text-center">{{ 'Personal Data' | translate }}</h1>
               </ion-col>
     
               <ion-col size="6" class="ion-no-padding">
                 <ion-item mode="ios">
-                  <ion-label position="stacked">Name</ion-label>
+                  <ion-label position="stacked">{{ 'Name' | translate }}</ion-label>
                   <ion-input formControlName="name"></ion-input>
                 </ion-item>
               </ion-col>
     
               <ion-col size="6" class="ion-no-padding">
                 <ion-item mode="ios">
-                  <ion-label position="stacked">Phone</ion-label>
+                  <ion-label position="stacked">{{ 'Phone' | translate }}</ion-label>
                   <ion-input formControlName="telefono"></ion-input>
                 </ion-item>
               </ion-col>
     
               <ion-col size="12" class="ion-no-padding">
                 <ion-item mode="ios">
-                  <ion-label position="stacked">About me</ion-label>
-                  <ion-textarea row="5" formControlName="acerca_de_mi"></ion-textarea>
+                  <ion-label position="stacked">{{ 'About me' | translate }}</ion-label>
+                  <ion-textarea rows="5" formControlName="acerca_de_mi"></ion-textarea>
                 </ion-item>
               </ion-col>
     
               <ion-col size="12" class="ion-no-padding">
                 <ion-item mode="ios">
-                  <ion-label position="stacked">Height</ion-label>
+                  <ion-label position="stacked">{{ 'Height' | translate }}</ion-label>
                   <ion-select  formControlName="sistema" interface="popover" okText="Okay" cancelText="Dismiss">
-                    <ion-select-option value="imperial">Imperial</ion-select-option>
-                    <ion-select-option value="metric">Metric</ion-select-option>
+                    <ion-select-option value="imperial">{{ 'Imperial' | translate }}</ion-select-option>
+                    <ion-select-option value="metric">{{ 'Metric' | translate }}</ion-select-option>
                   </ion-select>
                 </ion-item>
     
@@ -108,7 +108,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Body Type</h1>
+              <h1 class="ion-text-center">{{ 'Body Type' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -129,7 +129,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Ethnicity</h1>
+              <h1 class="ion-text-center">{{ 'Ethnicity' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -150,7 +150,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Hair Color</h1>
+              <h1 class="ion-text-center">{{ 'Hair Color' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -171,7 +171,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Eye Color</h1>
+              <h1 class="ion-text-center">{{ 'Eye Color' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -192,7 +192,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Drinking</h1>
+              <h1 class="ion-text-center">{{ 'Drinking' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -213,7 +213,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Smoking</h1>
+              <h1 class="ion-text-center">{{ 'Smoking' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -234,7 +234,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Orientation</h1>
+              <h1 class="ion-text-center">{{ 'Orientation' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -255,7 +255,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Relationship</h1>
+              <h1 class="ion-text-center">{{ 'Relationship' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -276,7 +276,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Sexually</h1>
+              <h1 class="ion-text-center">{{ 'Sexually' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -297,7 +297,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Education</h1>
+              <h1 class="ion-text-center">{{ 'Education' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -318,7 +318,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Occupation</h1>
+              <h1 class="ion-text-center">{{ 'Occupation' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -339,7 +339,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Religion</h1>
+              <h1 class="ion-text-center">{{ 'Religion' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -360,7 +360,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">Children</h1>
+              <h1 class="ion-text-center">{{ 'Children' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -381,7 +381,7 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">¿Idiomas?</h1>
+              <h1 class="ion-text-center">{{ 'languages' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
@@ -400,11 +400,11 @@
         <ion-grid class="grid-pagging">
           <ion-row style="display: flex;">
             <ion-col size="12" class="ion-no-padding">
-              <h1 class="ion-text-center">What gifts would you like to receive</h1>
+              <h1 class="ion-text-center">{{ 'What gifts would you like to receive' | translate }}</h1>
             </ion-col>
   
             <ion-col size="12" class="ion-no-padding">
-              <ion-textarea [(ngModel)]="regalo_recibir" class="textarea" row="10"></ion-textarea>
+              <ion-textarea [(ngModel)]="regalo_recibir" class="textarea" rows="10"></ion-textarea>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -415,12 +415,12 @@
           <ion-grid class="grid-pagging">
             <ion-row style="display: flex;">
               <ion-col size="12" class="ion-no-padding">
-                <h1 class="ion-text-center">Extras</h1>
+                <h1 class="ion-text-center">{{ 'Extras' | translate }}</h1>
               </ion-col>
   
               <ion-col size="12" class="ion-no-padding">
                 <ion-item mode="ios">
-                  <ion-label position="stacked">Annual income
+                  <ion-label position="stacked">{{ 'Annual income' | translate }}
                   </ion-label>
                   <ion-select  formControlName="ingreso_anual" interface="popover" okText="Okay" cancelText="Dismiss">
                     <ion-select-option value="< $50,000">
@@ -447,7 +447,7 @@
 
               <ion-col size="12" class="ion-no-padding">
                 <ion-item mode="ios">
-                  <ion-label position="stacked">Net. worth</ion-label>
+                  <ion-label position="stacked">{{ 'Net. worth' | translate }}</ion-label>
                   <ion-select  formControlName="patrimonio" interface="popover" okText="Okay" cancelText="Dismiss">
                     <ion-select-option value="< $500,000">
                       < $500,000
@@ -472,7 +472,7 @@
               </ion-col>
               
               <ion-col size="12" class="ion-no-padding">
-                <h1 class="ion-text-left">Would I relocate?</h1>
+                <h1 class="ion-text-left">{{ 'Would I relocate?' | translate }}</h1>
               </ion-col>
 
               <ion-col size="12" class="ion-no-padding">
@@ -487,7 +487,7 @@
               </ion-col>
 
               <ion-col size="12" class="ion-no-padding">
-                <h1 class="ion-text-left">Passport ready</h1>
+                <h1 class="ion-text-left">{{ 'Passport ready' | translate }}</h1>
               </ion-col>
 
               <ion-col size="12" class="ion-no-padding">
@@ -504,11 +504,15 @@
           </ion-grid>
         </form>
       </ng-container>
+
+      <ng-container *ngIf="get_slide_type (slide) === 'gracias'">
+        Gracias por completarme
+      </ng-container>
     </ion-slide>
   </ion-slides>
 </ion-content>
 
 <ion-footer class="ion-no-border ion-text-center">
-  <ion-button (click)="next_step ()" class="btn-continuar-footer">Continuar</ion-button>
-  <p class="p-footer">Atras</p>
+  <ion-button (click)="next_step ()" class="btn-continuar-footer">{{ 'Next' | translate }}</ion-button>
+  <p (click)="back_step ()" class="p-footer">{{ 'Go back' | translate }}</p>
 </ion-footer>

@@ -4,8 +4,10 @@ import { Platform } from '@ionic/angular';
 // Services
 import { Storage } from '@ionic/storage-angular';
 import * as moment from 'moment';
-import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { TranslateService } from '@ngx-translate/core';
+import { WebsocketService } from './services/websocket.service';
+import { OnesignalService } from './services/onesignal.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,48 +15,50 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor (private storage: Storage, private platform: Platform,
-    private oneSignal: OneSignal, 
-    private translate: TranslateService) {
-    this.OnInit ();
+  constructor (private storage: Storage,
+    private platform: Platform,
+    private translate: TranslateService,
+    private websocket: WebsocketService,
+    private onesignal: OnesignalService,
+    private auth: AuthService) {
+      this.OnInit ();
   }
 
   async OnInit () {
     await this.storage.create ();
-    this.platform.ready ().then (async () => {
-      this.storage.get ('lang').then (async (lang: string) => {
-        if (lang === undefined || lang === null) {
-          await this.storage.set ('lang', 'en');
-          lang = 'en';
-        }
-
-        moment.locale (lang);
-        this.translate.setDefaultLang (lang);
+    if (this.platform.is ('cordova')) {
+      this.platform.ready ().then (() => {
+        this.init ();
       });
-
-      // Init OneSignal
-      this.init_onesignal (JSON.parse (await this.storage.get ('USER_DATA')));
-    });
+    } else {
+      this.init ();
+    }
   }
+  
+  async init () {
+    this.storage.get ('lang').then (async (lang: string) => {
+      if (lang === undefined || lang === null) {
+        await this.storage.set ('lang', 'en');
+        lang = 'en';
+      }
+      
+      moment.locale (lang);
+      this.translate.setDefaultLang (lang);
+    });
 
-  init_onesignal (user: any) {
-    if (this.platform.is ('cordova') === false || user == null || user == undefined) {
-      return;
+    let user_data: any = JSON.parse (await this.storage.get ('USER_DATA'));
+    let user_access: any = JSON.parse (await this.storage.get ('USER_ACCESS'));
+
+    if (user_data !== undefined && user_data !== null) {
+      console.log ('Iniciamos WebSocket & OneSignal');
+      this.websocket.init_websocket (user_data.id, user_access.access_token);
+      this.onesignal.init_onesignal ({USER_ACCESS: user_access, USER_DATA: user_data});
     }
 
-    console.log (user);
-
-    this.oneSignal.startInit ('44ce9816-3902-4d54-8ba0-dfb14bfb85e9', '905206280664');
-    this.oneSignal.inFocusDisplaying (this.oneSignal.OSInFocusDisplayOption.Notification);
-
-    this.oneSignal.handleNotificationReceived ().subscribe (() => {
-    // do something when notification is received
+    this.auth.get_user_observable ().subscribe ((res: any) => {
+      console.log ('Iniciamos WebSocket & OneSignal', res);
+      this.websocket.init_websocket (res.USER_DATA.id, res.USER_ACCESS.access_token);
+      this.onesignal.init_onesignal (res);
     });
-
-    this.oneSignal.handleNotificationOpened ().subscribe (() => {
-      // do something when a notification is opened
-    });
-
-    this.oneSignal.endInit ();
   }
 }

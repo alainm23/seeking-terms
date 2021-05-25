@@ -1,0 +1,122 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>perfil</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content>
+  <div style="position: relative;">
+    <ion-slides pager="true">
+      <ion-slide *ngFor="let item of galeria">
+        <ion-avatar class="avatar-slider">
+          <ion-img [src]="item.imagen"></ion-img>
+        </ion-avatar>
+      </ion-slide>
+    </ion-slides>
+    <img src="assets/img/Icon-feather-edit-3.png" (click)="edit_modal ('galeria')" class="img-edit">
+  </div>
+  <div class="div-padding-left-right" style="position: relative;">
+    <img (click)="edit_modal ('personal_data')" src="assets/img/icon-edit-plomo.png" class="img-edit-plomo">
+    <h1>{{ profile?.usernick }}, {{ profile?.edad }}</h1>
+    <p class="p-nombre-lima">{{ profile?.nombre_ciudad }}, {{ profile?.nombre_pais }}. {{ profile?.distance }}</p>
+    <p class="p-height">{{ 'Height' | translate }} <span>{{ profile?.altura }}m</span></p>
+    <ion-card class="card-note">
+      <ion-note class="note-idioma">English</ion-note>
+      <ion-note class="note-idioma">Italian</ion-note>
+      <ion-note class="note-idioma">Spanish</ion-note>
+    </ion-card>
+  </div>
+  <ion-card class="card-texto-blanco" style="position: relative;">
+    <img (click)="edit_modal ('estoy_buscando')" src="assets/img/icon-edit-plomo.png" class="img-edit-plomo">
+    <h6 class="h6-titulo">I’m looking for</h6>
+    <p class="p-descripcion-card">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,</p>
+  </ion-card>
+  <div class="div-padding-left-right" style="position: relative;">
+    <img (click)="edit_modal ('intereses')" src="assets/img/icon-edit-plomo.png" class="img-edit-plomo">
+    <h5 class="h5-im">Im interested in…</h5>
+    <ion-card class="card-btn">
+      <ion-button class="btn_activo" mode="ios">Open relationship</ion-button>
+      <ion-button class="btn_blanco" mode="ios">Casual dating</ion-button>
+      <ion-button class="btn_blanco" mode="ios">No strings attached</ion-button>
+      <ion-button class="btn_blanco" mode="ios">Romance</ion-button>
+      <ion-button class="btn_blanco" mode="ios">Friendship</ion-button>
+      <ion-button class="btn_blanco" mode="ios">Fine dining</ion-button>
+      <ion-button class="btn_blanco" mode="ios">Traveling</ion-button>
+      <ion-button class="btn_blanco" mode="ios">Open relationship</ion-button>
+      <ion-button class="btn_blanco" mode="ios">Casual dating</ion-button>
+      <ion-button class="btn_blanco" mode="ios">No strings attached</ion-button>
+      <ion-button class="btn_blanco" mode="ios">Romance</ion-button>
+      <ion-button class="btn_blanco" mode="ios">Friendship</ion-button>
+      <ion-button class="btn_blanco" mode="ios">Fine dining</ion-button>
+      <ion-button class="btn_blanco" mode="ios">Traveling</ion-button>
+    </ion-card>
+  </div>
+  <ion-card class="card-texto-blanco" style="position: relative;">
+    <img (click)="edit_modal ('sobre_mi')" src="assets/img/icon-edit-plomo.png" class="img-edit-plomo">
+    <h6 class="h6-titulo">About me</h6>
+    <p class="p-descripcion-card">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,</p>
+  </ion-card>
+  <div class="div-padding-left-right" style="position: relative;">
+    <img src="assets/img/icon-edit-plomo.png" class="img-edit-plomo">
+    <h5 class="h5-im">Validated:</h5>
+    <div class="div-img-redes">
+      <img src="assets/img/icon-awesome-facebook-f-1.png">
+      <img src="assets/img/icon-awesome-google.png">
+      <img src="assets/img/icon-zocial-instagram.png">
+      <img src="assets/img/icon-awesome-twitter.png">
+      <img src="assets/img/grupo-881.png">
+      <img src="assets/img/grupo-880.png">
+      <img src="assets/img/icon-awesome-phone-alt-1.png">
+    </div>
+  </div>
+  <div class="div-padding-left-right" style="position: relative;">
+    <img src="assets/img/icon-edit-plomo.png" class="img-edit-plomo">
+    <h5 class="h5-im">Validated:</h5>
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="4" class="col-bottom">
+          <p class="p-color-plomo-titulo">Drinking</p>
+          <p class="p-subtitulo-medium">Social Drinker</p>
+        </ion-col>
+        <ion-col size="8" class="col-bottom">
+          <p class="p-color-plomo-titulo">Smoking</p>
+          <p class="p-subtitulo-medium">No</p>
+        </ion-col>
+        <ion-col size="4">
+          <p class="p-color-plomo-titulo">Orientation</p>
+          <p class="p-subtitulo-medium">Bisexual</p>
+        </ion-col>
+        <ion-col size="4">
+          <p class="p-color-plomo-titulo">Relationship</p>
+          <p class="p-subtitulo-medium">Single</p>
+        </ion-col>
+        <ion-col size="4">
+          <p class="p-color-plomo-titulo">Sexually</p>
+          <p class="p-subtitulo-medium">Submissive</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-card class="card-texto-blanco card-top">
+    <p class="ion-text-center p-plomo-left">Let me know you like me</p>
+    <ion-button class="btn-cara-give"><img src="assets/img/iconos_Wink.png" class="img-cara">Give me a wink</ion-button>
+  </ion-card>
+</ion-content>
+<!--<ion-footer class="ion-no-border" mode="ios">
+  <ion-button mode="ios" class="btn-footer btn-footer-right">
+    <img src="assets/img/iconos_Magnifying-glass.png" class="img-buscador-footer">
+  </ion-button> 
+  <ion-button mode="ios" class="btn-footer btn-footer-right">
+    <img src="assets/img/iconos_Inbox.png" class="img-chat-footer">
+    <ion-badge class="badge-chat" mode="ios">99</ion-badge>
+  </ion-button> 
+  <ion-button mode="ios" class="btn-footer btn-footer-right">
+    <img src="assets/img/iconos_Upgrade.png" class="img-corona-footer">
+  </ion-button> 
+  <ion-button mode="ios" class="btn-footer btn-footer-right">
+    <img src="assets/img/iconos_favirtos.png" class="img-corazon-footer">
+  </ion-button> 
+  <ion-button mode="ios" class="btn-footer btn-activo-footer">
+    <img src="assets/img/iconos_Profile.png" class="img-persona-footer">
+  </ion-button> 
+</ion-footer>-->

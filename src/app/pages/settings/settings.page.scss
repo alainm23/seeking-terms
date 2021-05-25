@@ -141,6 +141,16 @@ ion-list
             --border-color-checked: #CB9229;
             --size: 25px;
         }
+        .delete_button {
+            --background: red;
+            --background-activated: red;
+            --border-radius: 13px;
+            font-family: AvenirHeavy;
+            margin-left: 10px;
+            margin-right: 10px;
+            font-size: 15px;
+            height: 30px;
+        }
         ion-button
         {
             --background: #77BDF0;

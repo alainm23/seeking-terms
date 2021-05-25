@@ -1,0 +1,126 @@
+@font-face{
+    font-family: AvenirMedium;
+    src : url('/assets/font/Avenir-Medium.ttf')
+}
+@font-face{
+    font-family: AvenirHeavy;
+    src : url('/assets/font/Avenir Heavy.ttf')
+}
+@font-face{
+    font-family: Avenirlight;
+    src : url('/assets/font/avenirltstd-light.otf')
+}
+ion-content
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    --padding-start:  1.25rem;
+    --padding-end: 1.25rem;
+    --padding-top: 70px;
+}
+h1
+{
+    color: #333333;
+    font-family: AvenirHeavy;
+    margin-bottom: 0px;
+}
+.p
+{
+    color: #555555;
+    font-family: Avenirlight;
+    margin-top: 30%;
+    padding: 0px 30px;
+
+}
+ion-button
+{
+    width: 90%;
+    --background: #77BDF0;
+    --background-activated: #77BDF0;
+    --color: #ffffff;
+    --color-activated: #ffffff;
+    font-family: AvenirHeavy;
+    margin-top: 20px;
+    --border-radius: 23px;
+    height: 45px;
+    text-transform: none;
+    --box-shadow: none;
+}
+
+.p-footer
+{
+    color: #555555;
+    font-family: AvenirMedium;
+    font-size: 18px;
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
+
+img
+{
+    margin-top: 30%;
+}
+@media (min-width: 411px)
+{
+    ion-content
+    {
+      --padding-start: 3.125rem;
+      --padding-end: 3.125rem;
+      --padding-top: 5rem
+    }
+    .p
+    {
+        margin-top: 50%;
+    }
+}
+@media (min-width: 480px)
+{
+    ion-content
+    {
+      --padding-start: 3.125rem;
+      --padding-end: 3.125rem;
+    }
+    ion-button
+    {
+        margin-top: 20px;
+    }
+}
+@media (min-width: 540px)
+{
+    .p
+    {
+        margin-top: 40%;
+    }
+}
+@media (min-width: 640px)
+{
+    ion-content
+    {
+      --padding-start: 7.5rem;
+      --padding-end: 7.5rem;
+    }
+    ion-button
+    {
+        margin-top: 20px;
+        margin-bottom: 50pxi;
+    }
+}
+@media (min-width: 768px)
+{
+    ion-content
+    {
+      --padding-start: 12.5rem;
+      --padding-end: 12.5rem;
+      --padding-top: 7rem;
+    }
+}
+@media (min-width: 1024px)
+{
+    ion-content
+    {
+      --padding-start: 18.75rem;
+      --padding-end: 18.75rem;
+    }
+}

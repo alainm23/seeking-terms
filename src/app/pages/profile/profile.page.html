@@ -5,7 +5,7 @@
 </ion-header>-->
 
 <ion-content>
-  <ion-button mode="ios" class="btn-regresar"><ion-icon name="arrow-back-sharp" class="icon-left"></ion-icon></ion-button>
+  <ion-button (click)="back ()" mode="ios" shape="round" class="btn-regresar"><ion-icon name="arrow-back-sharp" class="icon-left"></ion-icon></ion-button>
   <ion-slides pager="true" [options]="slideOpts">
     <ion-slide *ngFor="let item of galeria">
       <ion-thumbnail>
@@ -35,7 +35,7 @@
     </p>
   </ion-card>
   <ion-card class="card-mapa">
-    <img src="assets/img/4590781ec12ff6bdb0f06cef6a96764b.png" class="img-mapa">
+    <div #map id="map"></div>
   </ion-card>
   <div class="div-padding-left-right">
     <h5 class="h5-im">{{ 'Im interested in…' | translate }}</h5>
@@ -66,7 +66,9 @@
   </div>
   <ion-card class="card-texto-blanco card-top">
     <p class="ion-text-center p-plomo-left">{{ 'Let me know you like me' | translate }}</p>
-    <ion-button class="btn-cara-give"><img src="assets/img/iconos_Wink.png" class="img-cara">{{ 'Give me a wink' | translate }}</ion-button>
+    <ion-button (click)="send_wink ()" class="btn-cara-give"><img src="assets/img/iconos_Wink.png" class="img-cara">
+      {{ 'Give me a wink' | translate }}
+    </ion-button>
   </ion-card>
 </ion-content>
 <ion-footer class="ion-no-border" mode="ios">

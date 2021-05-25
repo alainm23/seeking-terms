@@ -15,13 +15,17 @@ import { WebsocketService } from '../../services/websocket.service';
 export class ChatPage implements OnInit {
   @ViewChild (IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild ('content') private content: any;
-  @Input () id: any;
-  @Input () receptor: any;
+  @Input () chat_id: any;
+  @Input () perfil: any;
+  
   id_sender: string;
+  id_recipient: string;
+
   message: string = '';
   messages: any [] = [];
   page: number = 0;
   is_loading: boolean = false;
+  
   constructor (private database: DatabaseService,
     private modalController: ModalController,
     public auth: AuthService,
@@ -32,10 +36,22 @@ export class ChatPage implements OnInit {
   }
 
   ionViewDidEnter () {
-    this.websocket.current_chat_opened = this.id;
+    this.websocket.current_chat_opened = this.chat_id;
     this.infiniteScroll.disabled = true;
+
+    this.id_recipient = this.perfil.id;
     this.id_sender = this.auth.USER_DATA.id;
+
+    console.log ('id_recipient', this.id_recipient);
+    console.log ('id_sender', this.id_sender);
+    
     this.get_data (null, false);
+
+    this.database.ver_mensajes_vistos (this.chat_id).subscribe ((res: any) => {
+      console.log (res);
+    }, error => {
+
+    });
   }
 
   ionViewDidLeave () {
@@ -44,8 +60,8 @@ export class ChatPage implements OnInit {
 
   get_data (event: any, join: boolean) {
     this.page++;
-    this.database.get_chat (this.id, this.page).subscribe ((res: any []) => {
-      console.log (res);
+    this.database.get_chat (this.chat_id, this.page).subscribe ((res: any []) => {
+      // console.log (res);
       if (join) {
         res.forEach ((e: any) => {
           this.messages.unshift (e);
@@ -57,6 +73,8 @@ export class ChatPage implements OnInit {
       } else {
         this.messages = res.reverse ();
       }
+
+      console.log (this.messages);
 
       if (event === null) {
         setTimeout (() => {
@@ -78,6 +96,14 @@ export class ChatPage implements OnInit {
     this.modalController.dismiss (null, 'close');
   }
 
+  format_message (message: string) {
+    if (message === 'wink') {
+      return '😉️';
+    }
+
+    return message;
+  }
+
   send_message () {
     if (this.message.trim () != "") {
       let message = new String (this.message);
@@ -86,17 +112,17 @@ export class ChatPage implements OnInit {
       this.messages.push ({
         created_at: new Date ().toISOString (),
         id: -1,
-        id_chat: this.id,
-        id_recipient: this.receptor.id,
+        id_chat: this.chat_id,
+        id_recipient: this.id_recipient,
         id_sender: this.id_sender,
-        message: this.message,
+        message: this.format_message (this.message),
         updated_at: new Date ().toISOString (),
         visto: 0
       });
       this.message = '';
       this.scrollToBottom ();
       
-      this.database.send_message (this.receptor.id, message).subscribe ((res: any) => {
+      this.database.send_message (this.perfil.id, message).subscribe ((res: any) => {
         this.is_loading = false;
         console.log (res);
         if (res.status === false) {
@@ -117,7 +143,8 @@ export class ChatPage implements OnInit {
 
   init_channel () {
     this.websocket.create_channel ().listen ('.message', (res: any) => {
-      if (res.chat.id_sender === this.receptor.id) {
+      console.log (res);
+      if (res.chat.id === this.chat_id) {
         this.messages.push (res.message);
         this.scrollToBottom ();
       }

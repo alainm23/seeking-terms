@@ -1,0 +1,21 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>purchase-confirmation</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content class="ion-text-center">
+  <img src="assets/img/Grupo804.png" class="img-logo-genral">
+  <h1>Great success!</h1>
+  <ng-container *ngIf="data?.type === 'credis'">
+    <p><b>Credits:</b> {{ data?.data.creditos }}</p>
+    <p><b>Price:</b> $ {{ data?.data.value }}</p>
+    <p><b>Date:</b> {{ get_current_data () }}</p>
+  </ng-container>
+  <ng-container *ngIf="data?.type !== 'credis'">
+    <p><b>Plan:</b> {{ data?.data.nombre }}</p>
+    <p><b>Price:</b> $ {{ data?.data.monto }} x month</p>
+    <p><b>Date:</b> {{ get_current_data () }}</p>
+  </ng-container>
+  <ion-button mode="ios" (click)="validar_direccion ()">Get back In the game</ion-button>
+</ion-content>

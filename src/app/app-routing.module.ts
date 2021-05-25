@@ -18,7 +18,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'registro/:id',
+    path: 'registro/:id/:location',
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
@@ -69,14 +69,6 @@ const routes: Routes = [
     loadChildren: () => import('./admin-imagenes/admin-imagenes.module').then( m => m.AdminImagenesPageModule)
   },
   {
-    path: 'edit-profile',
-    loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
-  },
-  {
-    path: 'permisos-correo',
-    loadChildren: () => import('./permisos-correo/permisos-correo.module').then( m => m.PermisosCorreoPageModule)
-  },
-  {
     path: 'select-plan',
     loadChildren: () => import('./modals/select-plan/select-plan.module').then( m => m.SelectPlanPageModule)
   },
@@ -91,6 +83,30 @@ const routes: Routes = [
   {
     path: 'payment',
     loadChildren: () => import('./modals/payment/payment.module').then( m => m.PaymentPageModule)
+  },
+  {
+    path: 'verify-email',
+    loadChildren: () => import('./pages/verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
+  },
+  {
+    path: 'purchase-message/:id/:data',
+    loadChildren: () => import('./pages/purchase-message/purchase-message.module').then( m => m.PurchaseMessagePageModule)
+  },
+  {
+    path: 'edit-profile',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
+  },
+  {
+    path: 'request-gps/:id',
+    loadChildren: () => import('./pages/request-gps/request-gps.module').then( m => m.RequestGpsPageModule)
+  },  {
+    path: 'edit-profile-form',
+    loadChildren: () => import('./modals/edit-profile-form/edit-profile-form.module').then( m => m.EditProfileFormPageModule)
+  },
+  {
+    path: 'edit-fotos',
+    loadChildren: () => import('./modals/edit-fotos/edit-fotos.module').then( m => m.EditFotosPageModule)
   }
 
 ];

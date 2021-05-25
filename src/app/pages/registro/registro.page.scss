@@ -20,6 +20,11 @@ ion-progress-bar
     --progress-background: #CB9229;
     height: 7px;
 }
+
+ion-slides {
+    height: 100%;
+}
+
 ion-title
 {
     font-family: AvenirHeavy;
@@ -97,7 +102,7 @@ h1
         --placeholder-opacity: 1;
         text-align: center;
     }
-    .input-dia:hover
+    .input-dia-focus
     {
         border-bottom: 3px solid #333333;
     }
@@ -105,6 +110,13 @@ h1
     {
         margin-left: 10px;
     }
+}
+
+.ion-item-center {
+    text-align: center;  
+}
+.item-dias:focus {
+    border-bottom: 3px solid #333333;
 }
 .col-padding-dia
 {

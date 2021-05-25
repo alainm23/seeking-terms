@@ -10,6 +10,11 @@
     font-family: Avenirlight;
     src : url('/assets/font/avenirltstd-light.otf')
 }
+
+ion-slide.swiper-slide {
+    left: 25%;
+}
+
 ion-content
 {
     display: flex;
@@ -98,11 +103,22 @@ ion-card
         margin-bottom: 16px;
         margin-top: 0px;
     }
-    ion-button
+    .plan_button
     {
         width: 90%;
         --background: #77BDF0;
         --background-activated: #77BDF0;
+        --border-radius: 27px;
+        --color: #ffffff;
+        --color-activated: #ffffff;
+        margin: 0px;
+        margin-top: 50px;
+        font-family: AvenirHeavy;
+    }
+    .plan_selected {
+        width: 90%;
+        --background: #C89530;
+        --background-activated: #C89530;
         --border-radius: 27px;
         --color: #ffffff;
         --color-activated: #ffffff;

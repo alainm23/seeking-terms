@@ -5,7 +5,7 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { LoadingController, NavController } from '@ionic/angular';
-
+import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,12 +15,21 @@ export class AuthService {
     foto_perfil: ''
   };
   URL: string;
+  private user_subject = new Subject<any> ();
   constructor (public http: HttpClient, private storage: Storage,
     private googlePlus: GooglePlus, private fb: Facebook,
     private clipboard: Clipboard,
     private loadingController: LoadingController,
     private navController: NavController) {
     this.URL = 'https://seekingterms.com/api/auth/';
+  }
+
+  usuario_changed (data: any) {
+    this.user_subject.next (data);
+  }
+
+  get_user_observable (): Subject<any> {
+    return this.user_subject;
   }
 
   login (email: string, password: string) {
@@ -90,17 +99,19 @@ export class AuthService {
       formData.append ('social', request.social);
     }
 
+    formData.append ('ciudad', request.ciudad);
     formData.append ('pais', request.pais);
-    formData.append ('id_region', request.id_region);
-    formData.append ('id_ciudad', request.id_ciudad);
-    formData.append ('nombre_ciudad', request.nombre_ciudad);
-    formData.append ('nombre_region', request.nombre_region);
+    formData.append ('pais_codigo', request.pais_codigo);
     formData.append ('latitud', request.latitud);
     formData.append ('longitud', request.longitud);
     formData.append ('year', request.year);
     formData.append ('month', request.month);
     formData.append ('day', request.day);
     formData.append ('imagen', request.imagen.file, request.imagen.name);
+
+    for (let i = 0; i < request.referencias.length; i++) {
+      formData.append ('referencias[]', request.referencias [i]);
+    }
 
     for (let i = 0; i < request.relaciones.length; i++) {
       formData.append ('relaciones[]', request.relaciones [i]);
@@ -114,6 +125,12 @@ export class AuthService {
       formData.append ('galeria[]', galeria [i].file, galeria [i].name);
     }
 
+    formData.forEach ((value: any, key: any) => {
+      console.log ('Key: ', key);
+      console.log ('Value: ', value);
+      console.log ('-----------------------')
+    });
+
     return this.http.post (url, formData);
   }
 
@@ -126,6 +143,7 @@ export class AuthService {
     this.USER_DATA = request.user;
 
     await this.storage.set ('USER_ACCESS', JSON.stringify (this.USER_ACCESS));
+    this.usuario_changed ({USER_ACCESS: this.USER_ACCESS, USER_DATA: this.USER_DATA});
     return await this.storage.set ('USER_DATA', JSON.stringify (this.USER_DATA));
   }
 
@@ -152,7 +170,7 @@ export class AuthService {
       this.login_social (request.userId, 'Google', request.displayName, request.email).subscribe ((res: any) => {-
         loading.dismiss ();
         if (res.user.registro_incompleto === 1) {
-          this.navController.navigateForward (['registro', res.user.id]);
+          this.navController.navigateForward (['request-gps', res.user.id]);
         } else {
           this.save_local_user (res).then (() => {
             this.navController.navigateRoot ('home');
@@ -170,6 +188,16 @@ export class AuthService {
 
   get_user () {
     let url = 'https://seekingterms.com/api/auth/user';
+
+    const headers = {
+      'Authorization': 'Bearer ' + this.USER_ACCESS.access_token
+    }
+
+    return this.http.get (url, { headers });
+  }
+
+  delete_account () {
+    let url = 'https://seekingterms.com/api/auth/delete/account';
 
     const headers = {
       'Authorization': 'Bearer ' + this.USER_ACCESS.access_token
@@ -209,7 +237,7 @@ export class AuthService {
       this.login_social (request.id, 'Facebook', request.first_name, '').subscribe ((res: any) => {
         loading.dismiss ();
         if (res.user.registro_incompleto === 1) {
-          this.navController.navigateForward (['registro', res.user.id]);
+          this.navController.navigateForward (['request-gps', res.user.id]);
         } else {
           this.save_local_user (res).then (() => {
             this.navController.navigateRoot ('home');
@@ -232,7 +260,19 @@ export class AuthService {
       name: name,
       email: email
     };
+
+    console.log (request);
     
     return this.http.post ('https://seekingterms.com/api/auth/login/social', request);
+  }
+  
+  get_fields (fields: any []) {
+    let url = 'https://seekingterms.com/api/auth/get/specifics/fields/user';
+
+    const headers = {
+      'Authorization': 'Bearer ' + this.USER_ACCESS.access_token
+    }
+
+    return this.http.post (url, {fields: fields}, { headers });
   }
 }

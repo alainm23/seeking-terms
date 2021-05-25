@@ -1,9 +1,26 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Pay</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div #paypal></div>
+  <div style="padding: 3rem;">
+    <ion-card mode="ios" class="ion-text-center">
+      <div *ngIf="data?.promovido === 1" class="div_bandera">
+        <img src="assets/img/Grupo-593.png" class="img_bandera">
+        <span>
+          {{ 'Mas vendido' | translate }}
+        </span>
+      </div>
+      <h5 *ngIf="type !== 'credis'" class="ion-no-margin ion-text-start">{{ data?.nombre }}</h5>
+      <h5 *ngIf="type === 'credis'" class="ion-no-margin ion-text-start">{{ data?.text }}</h5>
+      <p *ngIf="type !== 'credis'" class="p_card ion-no-margin ion-text-start">$ {{ data?.monto }} x month</p>
+      <p *ngIf="type === 'credis'" class="p_card ion-no-margin ion-text-start">$ {{ data?.value }}</p>
+      <ion-list mode="ios">
+        <ion-item mode="ios" *ngFor="let item of data?.detalles" lines="none">
+          <ion-icon name="checkmark-circle-sharp"></ion-icon>
+          <ion-label class="ion-no-margin">{{ item.nombre }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
+
+  <div style="padding: 3rem;">
+    <div #paypal></div>
+  </div>
 </ion-content>

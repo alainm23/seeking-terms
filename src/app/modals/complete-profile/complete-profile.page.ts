@@ -5,6 +5,7 @@ import { DatabaseService } from '../../services/database.service';
 import { IonSlides, Platform, ToastController, LoadingController, IonInput, ModalController, ActionSheetController, NavController } from '@ionic/angular'; 
 import { report } from 'process';
 import { FormGroup , FormControl, Validators } from '@angular/forms';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-complete-profile',
@@ -45,7 +46,8 @@ export class CompleteProfilePage implements OnInit {
   constructor (private database: DatabaseService,
     private toastController: ToastController,
     private loadingController: LoadingController,
-    private modalController: ModalController) { }
+    private modalController: ModalController,
+    private utils: UtilsService) { }
 
   ngOnInit () {
     this.personal_data_form = new FormGroup ({
@@ -65,6 +67,7 @@ export class CompleteProfilePage implements OnInit {
 
     this.database.get_data_faltante ().subscribe ((res: any) => {
       console.log (res);
+
       res.datos.forEach ((element: any) => {
         if (typeof element === 'string') {
           this.slides.push (element);
@@ -95,9 +98,24 @@ export class CompleteProfilePage implements OnInit {
         };
       });
 
+      if (res ['datos_personal_data'] !== undefined && res ['datos_personal_data'] !== null) {
+        this.personal_data_form.controls ['name'].setValue (res ['datos_personal_data'].name);
+        this.personal_data_form.controls ['telefono'].setValue (res ['datos_personal_data'].telefono);
+        this.personal_data_form.controls ['acerca_de_mi'].setValue (res ['datos_personal_data'].acerca_de_mi);
+        this.personal_data_form.controls ['altura'].setValue (res ['datos_personal_data'].altura);
+
+        if (res ['datos_personal_data'].metric_system === 1) {
+          this.personal_data_form.controls ['sistema'].setValue ('metric'); 
+        }
+      }
+
       this.idiomas = res.idiomas;
       this.extras = res.extras;
       this.loading = false;
+
+      this.slides.push ('gracias');
+
+      console.log (this.slides);
     }, error => {
       this.loading = false;
       console.log (error);
@@ -109,7 +127,6 @@ export class CompleteProfilePage implements OnInit {
   get_datos () {
     this.database.get_datos ('intereses').subscribe ((res: any) => {
       this.intereses = res;
-      console.log (res);
     }, error => {
       console.log (error);
     });
@@ -147,19 +164,19 @@ export class CompleteProfilePage implements OnInit {
 
     if (slide === 'intereses') {
       if (this.intereses_map.size <= 0) {
-        this.presentToast ('The given data was invalid.', 'danger');
+        this.presentToast (this.utils.get_translate ('The given data was invalid'), 'danger');
       } else {
         returned = true;
       }
     } else if (slide === 'estoy_buscando') {
       if (this.estoy_buscando.trim ().split ('').length <= 0) {
-        this.presentToast ('The given data was invalid.', 'danger');
+        this.presentToast (this.utils.get_translate ('The given data was invalid'), 'danger');
       } else {
         returned = true;
       }
     } else if (slide === 'personal_data') {
       if (this.personal_data_form.invalid) {
-        this.presentToast ('The given data was invalid.', 'danger');
+        this.presentToast (this.utils.get_translate ('The given data was invalid'), 'danger');
       } else {
         returned = true;
       }
@@ -169,7 +186,7 @@ export class CompleteProfilePage implements OnInit {
           if (this.apariencia_map.has ('apariencia_' + e.id)) {
             returned = true;
           } else {
-            this.presentToast ('The given data was invalid.', 'danger');
+            this.presentToast (this.utils.get_translate ('The given data was invalid'), 'danger');
           }
         }
       });
@@ -179,28 +196,30 @@ export class CompleteProfilePage implements OnInit {
           if (this.personalidad_map.has ('personalidad_' + e.id)) {
             returned = true;
           } else {
-            this.presentToast ('The given data was invalid.', 'danger');
+            this.presentToast (this.utils.get_translate ('The given data was invalid'), 'danger');
           }
         }
       });
     } else if (slide === 'idiomas') {
       if (this.idiomas_map.size <= 0) {
-        this.presentToast ('The given data was invalid.', 'danger');
+        this.presentToast (this.utils.get_translate ('The given data was invalid'), 'danger');
       } else {
         returned = true;
       }
     } else if (slide === 'regalo_recibir') {
       if (this.regalo_recibir.trim ().split ('').length <= 0) {
-        this.presentToast ('The given data was invalid.', 'danger');
+        this.presentToast (this.utils.get_translate ('The given data was invalid'), 'danger');
       } else {
         returned = true;
       }
     } else if (slide === 'extras') {
       if (this.extras_form.invalid) {
-        this.presentToast ('The given data was invalid.', 'danger');
+        this.presentToast (this.utils.get_translate ('The given data was invalid'), 'danger');
       } else {
         returned = true;
       }
+    } else if (slide === 'gracias') {
+      returned = true;
     }
 
     return returned;
@@ -417,7 +436,7 @@ export class CompleteProfilePage implements OnInit {
           loading.dismiss ();
 
           if (res.status) {
-            this.modalController.dismiss (null, 'update');
+            this.slideNext ();
           } else {
             this.show_api_error (res, ['estoy_buscando']);
           }
@@ -425,6 +444,9 @@ export class CompleteProfilePage implements OnInit {
           loading.dismiss ();
           console.log (error);
         });
+      } else if (slide === 'gracias') {
+        loading.dismiss ();
+        this.modalController.dismiss (null, 'update');
       }
     }
   }
@@ -478,6 +500,8 @@ export class CompleteProfilePage implements OnInit {
   }
 
   radio_changed (event: any, value: string, map: Map <string, number>) {
+    console.log (event);
+
     if (value === 'apariencia_') {
       map.set (value + event.detail.value.id_opcion_apariencia, event.detail.value.id);
     } else {
@@ -488,6 +512,19 @@ export class CompleteProfilePage implements OnInit {
   }
   
   close () {
-    this.modalController.dismiss ();
+    this.modalController.dismiss (null, 'update');
+  }
+
+  back_step () {
+    if (this.index > 0) {
+      this.ion_slides.lockSwipeToNext (false);
+      this.ion_slides.slidePrev ();
+
+      setTimeout (() => {
+        this.ion_slides.lockSwipeToNext (true);
+      }, 400);
+    } else {
+      this.modalController.dismiss (null, 'update');
+    }
   }
 }

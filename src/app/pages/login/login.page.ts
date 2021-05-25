@@ -7,6 +7,12 @@ import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage-angular';
 
+// Geo
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
+declare var google: any;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -15,6 +21,7 @@ import { Storage } from '@ionic/storage-angular';
 export class LoginPage implements OnInit {
   form: FormGroup;
   lang: string;
+  location: any;
   constructor (private auth: AuthService, 
     private navController: NavController,
     private toastController: ToastController,
@@ -22,7 +29,10 @@ export class LoginPage implements OnInit {
     private websocket: WebsocketService,
     private translate: TranslateService,
     private storage: Storage,
-    private platform: Platform) { }
+    private platform: Platform,
+    private locationAccuracy: LocationAccuracy,
+    private androidPermissions: AndroidPermissions,
+    private geolocation: Geolocation) { }
 
   ngOnInit () {
     this.storage.get ('lang').then (async (lang: string) => {
@@ -30,6 +40,10 @@ export class LoginPage implements OnInit {
       if (lang === undefined || lang === null) {
         this.lang = 'en';
       }
+
+      moment.locale (this.lang);
+      this.translate.setDefaultLang (this.lang);
+      await this.storage.set ('lang', this.lang);
     });
 
     this.form = new FormGroup ({
@@ -37,7 +51,7 @@ export class LoginPage implements OnInit {
       password: new FormControl ('', [Validators.required])
     });
   }
-
+  
   async submit () {
     const loading = await this.loadingController.create ({
       translucent: true,
@@ -56,11 +70,12 @@ export class LoginPage implements OnInit {
     }, error => {
       loading.dismiss ();
       console.log (error);
+      this.presentToast (this.translate.instant ('The access data is incorrect'), 'danger');
     });
   }
 
   registro () {
-    this.navController.navigateForward (['registro', 'null']);
+    this.navController.navigateForward (['request-gps', 'null']);
   }
 
   async presentToast (message: any, color: string) {
@@ -85,20 +100,20 @@ export class LoginPage implements OnInit {
       this.auth.google ();
     } else {
       let request: any = {
-          "accessToken":"ya29.a0AfH6SMBvrBLLrvmH29sCMjRBCMSVy7jhi_QQEesqr6BqRplwu0lLey5lCCRDDbSrLoFoCCTTGhopQ3DBr_E-hO5LbbkBZxLDhnbCxYbEJxryqeR-7pp34xvo99laK3i6sE7alZfg-k6srTjSMsm6VX_MqnpE",
+          "accessToken":"ssya29.a0AfH6SMBvrBLLrvmH29sCMjRBCMSVy7jhi_QQEesqr6BqRplwu0lLey5lCCRDDbSrLoFoCCTTGhopQ3DBr_E-hO5LbbkBZxLDhnbCxYbEJxryqeR-7pp34xvo99laK3i6sE7alZfg-k6srTjSMsm6VX_MqnpE",
           "expires":1620843027,
           "expires_in":1166,
-          "email":"alainhuntt@gmail.com",
-          "userId":"1157010887712530483424848484848",
+          "email":"cccccd@gmail.com",
+          "userId":"cccccdssss",
           "displayName":"Alain",
           "givenName":"Alain",
           "imageUrl":"https://lh3.googleusercontent.com/a-/AOh14GiBhVvYRxAalxzaYLaRSoKgw-fGUGXy44KhO7_lCw"
       };
-
+      
       this.auth.login_social (request.userId, 'Google', request.displayName, request.email).subscribe ((res: any) => {
         console.log (res);
-        if (res.user.registro_incompleto === 1) {
-          this.navController.navigateForward (['registro', res.user.id]);
+        if (res.user.registro_incompleto == 1) {
+          this.navController.navigateForward (['request-gps', res.user.id]);
         } else {
           this.auth.save_local_user (res).then (() => {
             this.navController.navigateRoot ('home');
@@ -115,9 +130,9 @@ export class LoginPage implements OnInit {
       this.auth.facebook ();
     } else {
       let request: any = {
-        "id":"474482330467820",
+        "id":"ffffffffffffddddddd",
         "name":"Alain Meza",
-        "first_name":"Alain",
+        "first_name":"Alain aaaa",
         "last_name":"Meza",
         "picture_large":{
           "data":{
@@ -131,8 +146,8 @@ export class LoginPage implements OnInit {
 
       this.auth.login_social (request.id, 'Facebook', request.first_name, '').subscribe ((res: any) => {
         console.log (res);
-        if (res.user.registro_incompleto === 1) {
-          this.navController.navigateForward (['registro', res.user.id]);
+        if (res.user.registro_incompleto == 1) {
+          this.navController.navigateForward (['request-gps', res.user.id]);
         } else {
           this.auth.save_local_user (res).then (() => {
             this.navController.navigateRoot ('home');
@@ -142,5 +157,15 @@ export class LoginPage implements OnInit {
         console.log (error);
       });
     }
+  }
+
+  show_api_error (res: any, values: string []) {
+    values.forEach ((value: string) => {
+      if (res.errors [value]) {
+        res.errors [value].forEach ((error: string) => {
+          this.presentToast (error, 'danger');
+        });
+      }
+    });
   }
 }

@@ -18,6 +18,9 @@
     </ion-card>
   </div>
   <div class="div-flex">
+    <div *ngIf="is_loading === true" class="ion-text-center loading-box">
+      <ion-spinner></ion-spinner>
+    </div>
     <ion-item *ngFor="let item of items" (click)="view_chat (item)" class="item-inbox" lines="none">
       <div class="div-linea"></div>
       <ion-avatar>
@@ -47,7 +50,7 @@
     <img src="assets/img/iconos_Inbox.png" class="img-chat-footer">
     <!-- <ion-badge class="badge-chat" mode="ios">99</ion-badge> -->
   </ion-button> 
-  <ion-button mode="ios" class="btn-footer btn-footer-right">
+  <ion-button (click)="open_upgrade_menu ()" mode="ios" class="btn-footer btn-footer-right">
     <img src="assets/img/iconos_Upgrade.png" class="img-corona-footer">
   </ion-button> 
   <ion-button routerLink="/favorites" routerDirection="root" mode="ios" class="btn-footer btn-footer-right">

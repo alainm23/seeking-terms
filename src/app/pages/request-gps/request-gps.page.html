@@ -1,0 +1,13 @@
+<ion-content class="ion-text-center">
+  <h1 class="ion-text-center">{{ 'Help us find you' | translate }}</h1>
+  {{ error_message }}
+  <img src="assets/img/ubicacion.PNG">
+  <p class="p">
+    {{ 'Before creating your account, we need to know where you are.' | translate }}
+    <br>
+    <br>
+    {{ 'We will never share your location, without your permission.' | translate }}
+  </p>
+  <ion-button (click)="check_gps ()">{{ 'Let’s go' | translate }}</ion-button>
+  <p class="p-footer" (click)="back_step ()">{{ 'Go back' | translate }}</p>
+</ion-content>

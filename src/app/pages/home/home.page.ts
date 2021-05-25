@@ -99,7 +99,12 @@ export class HomePage implements OnInit {
 
     modal.onDidDismiss ().then ((response: any) => {
       if (response.role === 'update') {
-        
+        this.database.get_porcentaje_perfil ().subscribe (async (res: any) => {
+          console.log (res);
+          this.complete_perfil = res;
+        }, error => {
+          console.log (error);
+        });
       }
     });
 
@@ -272,7 +277,7 @@ export class HomePage implements OnInit {
       translucent: true,
       mode: 'ios'
     });
-
+    
     await loading.present ();
 
     const modal = await this.modalController.create ({
@@ -368,128 +373,6 @@ export class HomePage implements OnInit {
   }
 
   async open_upgrade_menu () {
-    const modal = await this.modalController.create ({
-      component: UpgradeAccountMenuPage,
-      swipeToClose: true,
-      cssClass: 'modal-verify',
-      showBackdrop: false,
-      mode: 'ios'
-    });
-
-    modal.onDidDismiss ().then ((response: any) => {
-      if (response.role === 'upgrade') {
-        this.open_select_plan ();
-      } else if (response.role === 'credits') {
-        this.open_buy_credis ();
-      }
-    });
-
-    return await modal.present ();
-  }
-
-  async open_select_plan () {
-    const modal = await this.modalController.create({
-      component: SelectPlanPage,
-      componentProps: {
-        gender: 0
-      }
-    });
-
-    modal.onWillDismiss ().then ((response: any) => {
-      if (response.role === 'free') {
-        
-      } else if (response.role === 'free-spirit') {
-        this.open_buy_credis ();
-      } else if (response.role === 'subscription') {
-        this.open_payment (response.data, 'subscription');
-      }
-    });
-    
-    return await modal.present ();
-  }
-
-  async open_buy_credis () {
-    const modal = await this.modalController.create ({
-      component: BuySingleCreditsPage,
-      componentProps: {
-        page: 'home'
-      }
-    });
-
-    modal.onWillDismiss ().then ((response: any) => {
-      if (response.role === 'ok') {
-        this.open_payment (response.data, 'credis');
-      }
-    });
-    
-    return await modal.present ();
-  }
-
-  async open_payment (data: any, type: string) {
-    const modal = await this.modalController.create ({
-      component: PaymentPage,
-      componentProps: {
-        data: data,
-        type: type
-      }
-    });
-
-    modal.onWillDismiss ().then (async (response: any) => {
-      if (response.role === 'PAID') {
-        const loading = await this.loadingController.create ({
-          translucent: true,
-          spinner: 'lines-small',
-          mode: 'ios'
-        });
-    
-        await loading.present ();
-
-        if (response.data.type === 'credis') {
-          let request: any = {
-            creditos: response.data.data.creditos,
-            codigo_transaccion: response.data.response.id,
-            total_pagado: response.data.data.value
-          };
-  
-          console.log (request);
-  
-          this.database.guardar_pago_creditos (request).subscribe (async (res: any) => {
-            if (res.status === true) {
-              this.auth.USER_DATA.creditos += request.creditos;
-              this.storage.set ('USER_DATA', JSON.stringify (this.auth.USER_DATA)).then (() => {
-                loading.dismiss ();
-              });
-            } 
-          }, error => {
-            loading.dismiss ();
-            console.log (error);
-          });
-        } else {
-          let request: any = {
-            id_plan: response.data.data.id,
-            id_suscripcion: response.data.response.subscriptionID
-          };
-
-          this.database.guardar_membresia (request).subscribe ((res: any) => {
-            console.log (res);
-            loading.dismiss ();
-          }, error => {
-            console.log (error);
-            loading.dismiss ();
-          });
-          console.log (response);
-        }
-      }
-    });
-    
-    return await modal.present ();
-  }
-
-  cancelar () {
-    this.database.cancelar_mebresia ().subscribe ((res: any) => {
-      console.log (res);
-    }, error => {
-      console.log (error);
-    });
+    this.database.open_upgrade_menu ();
   }
 }

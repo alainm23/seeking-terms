@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { loadScript } from "@paypal/paypal-js";
 
 @Component({
@@ -12,9 +12,17 @@ export class PaymentPage implements OnInit {
   @Input () data: any;
   @Input () type: any;
   client_id: string = 'AaMqrxSoRQMkGCUZxyI1-XbxaCob6agKPn1COjZNX4R3Hd2R_iXtlk_HJyQ0rf1SoZbTX0i6dxK5cabb';
-  constructor (private modalController: ModalController) { }
+  constructor (private modalController: ModalController, private loadingController: LoadingController) { }
 
-  ngOnInit () {
+  async ngOnInit () {
+    const loading = await this.loadingController.create ({
+      translucent: true,
+      spinner: 'lines-small',
+      mode: 'ios'
+    });
+
+    await loading.present ();
+
     console.log (this.data);
     console.log (this.type);
 
@@ -44,7 +52,9 @@ export class PaymentPage implements OnInit {
             onError: (err: any) => {
               console.log (err);
             }
-          }).render(this.paypalElement.nativeElement);
+          }).render(this.paypalElement.nativeElement).then (() => {
+            loading.dismiss ();
+          });
         }).catch((err) => {
             console.error("failed to load the PayPal JS SDK script", err);
         });
@@ -63,6 +73,7 @@ export class PaymentPage implements OnInit {
               });
             },
             onApprove: (data: any, actions: any) => {
+              console.log ('onApprove');
               return actions.order.capture ().then ((details: any) => {
                 console.log (details)
                 if (details.status === 'COMPLETED') {
@@ -77,7 +88,9 @@ export class PaymentPage implements OnInit {
             onError: (err: any) => {
               console.log (err);
             }
-          }).render(this.paypalElement.nativeElement);
+          }).render(this.paypalElement.nativeElement).then (() => {
+            loading.dismiss ();
+          });
         }).catch((err) => {
             console.error("failed to load the PayPal JS SDK script", err);
         });
