@@ -12,7 +12,7 @@
 }
 
 ion-slide.swiper-slide {
-    left: 25%;
+    left: 0%;
 }
 
 ion-content
@@ -73,7 +73,7 @@ ion-card
             {
                 color: #8F8F8F;
                 font-family: AvenirMedium;
-                font-size: 14px;
+                font-size: 18px;
                 margin-left: 5px;
                 .span_morado
                 {
@@ -108,12 +108,14 @@ ion-card
         width: 90%;
         --background: #77BDF0;
         --background-activated: #77BDF0;
-        --border-radius: 27px;
+        --border-radius: 23px;
         --color: #ffffff;
         --color-activated: #ffffff;
         margin: 0px;
         margin-top: 50px;
         font-family: AvenirHeavy;
+        font-size: 20px;
+        height: 50px;
     }
     .plan_selected {
         width: 90%;
@@ -144,10 +146,10 @@ ion-card
             font-family: AvenirHeavy;
             position: absolute;
             z-index: 3;
-            left: 25px;
+            left: 29px;
             font-size: 18px;
-            transform: rotate(43deg);
-            top: 20px;
+            transform: rotate(42deg);
+            top: 21px;
         }
     }
 }
@@ -165,6 +167,7 @@ ion-slides
 .img-logo-genral
 {
     width: 138px;
+    margin-top: 50px;
 }
 .item-toogle
 {

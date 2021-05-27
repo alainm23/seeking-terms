@@ -113,12 +113,12 @@
       </ion-item>
     </div>
     
-    <ion-grid>
+    <ion-grid style="padding-left: 0px;padding-right: 0px;">
       <ion-row>
         <ion-col size="6" *ngFor="let item of items">
-          <ion-card class="card-perfil" (click)="view_profile (item)">
-            <ion-avatar class="avatar-img">
-              <img [src]="item.thumbnail" class="img-persona">
+          <ion-card class="card-perfil" (click)="view_profile (item)" mode="ios">
+            <ion-thumbnail class="avatar-img">
+              <ion-img [src]="item.thumbnail" class="img-persona"></ion-img>
               <div class="div-sombra">
                 <p class="p-nombre">{{ item.usernick }}</p><div *ngIf="item.online === true" class="div-circulo-activo"></div>
                 <div class="item-badge">
@@ -155,7 +155,7 @@
                   <ion-icon name="heart-sharp" class="icon-activo-favorito"></ion-icon>-->
                 </div>
               </div>
-            </ion-avatar>
+            </ion-thumbnail>
             <img src="assets/img/grupo926.png" *ngIf="item.membresia === 1" class="img-circulo-amarrilo">
           </ion-card>
         </ion-col>

@@ -33,9 +33,17 @@ ion-item
     --color: #000000;
     font-family: Avenirlight;
 }
+.item-paddint-bottom
+{
+    --padding-bottom: 5px;
+}
+.item-padding-top
+{
+    --padding-top: 5px;
+}
 ion-list
 {
-    padding: 20px 30px;
+    padding: 15px 30px;
     position: relative;
     .btn-close-modal
     {

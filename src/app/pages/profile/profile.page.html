@@ -26,7 +26,7 @@
         {{ item.nombre }}
       </ion-note>
     </ion-card>
-    <ion-button class="btn-send" mode="ios">{{ 'Send me a message' | translate }}</ion-button>
+    <ion-button class="btn-send" mode="ios"><ion-icon name="mail-outline" style="margin-right: 8px;"></ion-icon> {{ 'Send me a message' | translate }}</ion-button>
   </div>
   <ion-card class="card-texto-blanco">
     <h6 class="h6-titulo">{{ 'I’m looking for' | translate }}</h6>
@@ -44,6 +44,14 @@
         {{ item.valor }}
       </ion-button>
     </ion-card>
+  </div>
+  <ion-card class="card-texto-blanco ion-no-margin">
+    <h6 class="h6-titulo">{{ 'About me' | translate }}</h6>
+    <p class="p-descripcion-card">
+      {{ profile?.acerca_de_mi }}
+    </p>
+  </ion-card>
+  <div class="div-padding-left-right div-margin-top">
     <ion-grid class="ion-no-padding">
       <ion-row>
         <ion-col *ngFor="let item of profile?.personalidades" size="4" class="col-bottom">
@@ -52,11 +60,6 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <h5 class="h5-im">{{ 'About me' | translate }}</h5>
-    <p class="p-descripcion-card">
-      {{ profile?.acerca_de_mi }}
-    </p>
-    
     <ng-container *ngFor="let item of profile?.extras">
       <h5 class="h5-im">{{ item.extra }}</h5>
       <p class="p-descripcion-card">
@@ -66,18 +69,19 @@
   </div>
   <ion-card class="card-texto-blanco card-top">
     <p class="ion-text-center p-plomo-left">{{ 'Let me know you like me' | translate }}</p>
-    <ion-button (click)="send_wink ()" class="btn-cara-give"><img src="assets/img/iconos_Wink.png" class="img-cara">
+    <ion-button (click)="send_wink ()" class="btn-cara-give" mode="ios"><img src="assets/img/iconos_Wink.png" class="img-cara">
       {{ 'Give me a wink' | translate }}
     </ion-button>
   </ion-card>
 </ion-content>
+<!--
 <ion-footer class="ion-no-border" mode="ios">
   <ion-button routerLink="/home" routerDirection="root" mode="ios" class="btn-footer btn-footer-right btn-activo-footer">
     <img src="assets/img/iconos_Magnifying-glass.png" class="img-buscador-footer">
   </ion-button> 
   <ion-button routerLink="/inbox" routerDirection="root" mode="ios" class="btn-footer btn-footer-right">
     <img src="assets/img/iconos_Inbox.png" class="img-chat-footer">
-    <!-- <ion-badge class="badge-chat" mode="ios">99</ion-badge> -->
+     <ion-badge class="badge-chat" mode="ios">99</ion-badge> 
   </ion-button> 
   <ion-button (click)="open_upgrade_menu ()" mode="ios" class="btn-footer btn-footer-right">
     <img src="assets/img/iconos_Upgrade.png" class="img-corona-footer">
@@ -89,3 +93,4 @@
     <img src="assets/img/iconos_Profile.png" class="img-persona-footer">
   </ion-button> 
 </ion-footer>
+-->

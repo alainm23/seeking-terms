@@ -22,7 +22,7 @@ ion-progress-bar
 }
 
 ion-slides {
-    height: 100%;
+    height: 95%;
 }
 
 ion-title
@@ -72,7 +72,7 @@ h1
 {
     color: #333333;
     font-family: AvenirHeavy;
-    margin-top: 30px;
+    margin-top: 0px;
     font-size: 21px;
 }
 .color-plomo
@@ -142,7 +142,7 @@ ion-footer
         width: 100%;
         --background: #77BDF0;
         --box-shadow: none;
-        --border-radius: 10px;
+        --border-radius: 23px;
         height: 50px;
         text-transform: none;
         font-family: AvenirMedium;
@@ -157,15 +157,23 @@ ion-footer
         margin-bottom: 22px;
     }
 }
+.card-foto-fondo
+{
+    background-image: url('/assets/img/galeria-daddies-uno.jpg');
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 .card-foto
 {
     --background: #F9F6FF;
-    width: 70%;
+    width: 90%;
     box-shadow: none;
     border-radius: 34px;
-    margin: 20% 15% 0px 15%;
+    margin: 10% 5% 0px 5%;
     text-align: center;
     padding: 30px 0px;
+    height: 250px;
     .p-subir-foto
     {
         color: #555555;
@@ -187,11 +195,11 @@ ion-footer
 .card-fotos
 {
     --background: #F9F6FF;
-    width: 30%;
+    width: 46%;
     box-shadow: none;
     border-radius: 10px;
     margin: 0px;
-    height: 98px;
+    height: 105px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -213,6 +221,32 @@ ion-footer
         color: #CB9229;
     }
 }
+.card-fotos-fondo
+{
+    background-image: url('/assets/img/galeria-daddies-uno.jpg');
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.card-fotos-fondo-general
+{
+    background-image: url('/assets/img/galeria-daddies-uno.jpg');
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.item-radio-height
+{
+    align-items: baseline;
+    height: 30px;
+    margin-bottom: 5px;
+}
+.item-check-height
+{
+    align-items: baseline;
+    height: 30px;
+    margin-bottom: 10px;
+}
 .item-radio
 {
     --padding-start: 0px;
@@ -221,6 +255,8 @@ ion-footer
     {
         font-family: AvenirMedium;
         font-size: 18px;
+        margin-top: 0px;
+        margin-bottom: 0px;
     }
     .label-policy
     {
@@ -232,6 +268,8 @@ ion-footer
         margin-right: 15px;
         --color-checked: #CB9229;
         --color: #E3E3E3;
+        margin-top: 4px;
+        margin-bottom: 0px;
     }
     .checbox
     {
@@ -242,6 +280,8 @@ ion-footer
         --background-checked: #CB9229;
         --border-color-checked: #CB9229;
         --size: 25px;
+        margin-top: 0px;
+        margin-bottom: 0px;
     }
 }
 ion-select
@@ -250,11 +290,55 @@ ion-select
 }
 ion-slide
 {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+    align-items: flex-start;
     form
     {
         width: 100%;
+    }
+}
+.list-scroll
+{
+    height: 85%;
+    overflow-y: scroll;
+}
+.list-scroll::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+.list-scroll::-webkit-scrollbar-thumb {
+    background: #cdcdd1;
+    border-radius: 0px;
+}
+.list-scroll::-webkit-scrollbar-thumb:hover{
+    background: #CDCDD1;
+}
+.list-scroll::-webkit-scrollbar-track{
+    background: #ffffff;
+    border-radius: 0px;
+}
+@media(min-width: 375px) and (min-height: 667px)
+{
+    .list-scroll
+    {
+        height: 90%;
+    }
+    .card-fotos
+    {
+        height: 112px;
+    }
+}
+@media(min-width: 375px) and (min-height: 812px)
+{
+    .list-scroll
+    {
+        height: 100%;
+    }
+    .card-fotos
+    {
+        height: 130px;
     }
 }
 @media(min-width: 411px)
@@ -262,11 +346,16 @@ ion-slide
     .card-foto
     {
         padding: 45px 0px;
+        height: 300px;
     }
     .card-fotos
     {
         width: 31%;
-        height: 110px;
+        height: 130px;
+    }
+    .list-scroll
+    {
+        height: 100%;
     }
 }
 @media(min-width: 480px)
@@ -274,10 +363,11 @@ ion-slide
     .card-foto
     {
         padding: 50px 0px;
+        height: 350px;
     }
     .card-fotos
     {
-        height: 130px;
+        height: 160px;
     }
 }
 @media(min-width: 540px)
@@ -291,6 +381,11 @@ ion-slide
     {
         padding-left: 70px;
         padding-right: 70px;
+    }
+    .card-fotos
+    {
+        height: 160px;
+        width: 31%;
     }
 }
 @media(min-width: 768px)
@@ -307,12 +402,17 @@ ion-slide
     }
     .card-fotos
     {
-        height: 140px;
+        height: 195px;
     }
     ion-slide
     {
         padding-left: 80px;
         padding-right: 80px;
+    }
+    .card-foto
+    {
+        width: 60%;
+        margin: 10% 20% 0px 20%;
     }
 }
 @media(min-width: 1024px)
@@ -326,7 +426,8 @@ ion-slide
     {
         padding: 60px 0px;
         width: 50%;
-        margin: 20% 25% 0px 25%;
+        margin: 5% 25% 0px 25%;
+        height: 400px;
     }
     ion-footer
     {
@@ -336,7 +437,7 @@ ion-slide
     .card-fotos
     {
         width: 32%;
-        height: 200px;
+        height: 240px;
     }
     ion-slide
     {

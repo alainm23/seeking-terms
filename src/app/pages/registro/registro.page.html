@@ -108,7 +108,7 @@
           <ion-col size="12" class="ion-no-padding">
             <ion-list>
               <ion-radio-group formControlName="sexo">            
-                <ion-item *ngFor="let item of generos" class="item-radio" lines="none">
+                <ion-item *ngFor="let item of generos" class="item-radio item-radio-height" lines="none">
                   <ion-label class="label-chech-radio">{{ item.nombre }}</ion-label>
                   <ion-radio slot="start" [value]="item.id"></ion-radio>
                 </ion-item>
@@ -128,7 +128,7 @@
           </ion-col>
           <ion-col size="12" class="ion-no-padding">
             <ion-list>
-              <ion-item *ngFor="let item of generos" class="item-radio" lines="none">
+              <ion-item *ngFor="let item of generos" class="item-radio item-check-height" lines="none">
                 <ion-label class="label-chech-radio">{{ item.nombre }}</ion-label>
                 <ion-checkbox (ionChange)="checkbox_changed ($event, item.id, generos_map)" slot="start" class="checbox"></ion-checkbox>
               </ion-item>
@@ -146,8 +146,8 @@
             <p class="color-plomo ion-text-center">{{ 'Check on or may' | translate }}</p>
           </ion-col>
           <ion-col size="12" class="ion-no-padding">
-            <ion-list>
-              <ion-item *ngFor="let item of relaciones" lines="none" class="item-radio">
+            <ion-list class="list-scroll">
+              <ion-item *ngFor="let item of relaciones" lines="none" class="item-radio item-check-height">
                 <ion-label class="label-chech-radio">{{ item.nombre }}</ion-label>
                 <ion-checkbox (ionChange)="checkbox_changed ($event, item.id, relaciones_map)" slot="start" class="checbox"></ion-checkbox>
               </ion-item>
@@ -197,10 +197,12 @@
         <ion-row>
           <ion-col size="12" class="ion-no-padding">
             <h1 class="ion-text-center">{{ 'A little smile!' | translate }}<br>{{ 'You need at least one photo to use Seeking' | translate }}</h1>
-            <ion-card (click)="selectImageSource ('profile', 0, fileInput)" class="card-foto">
+            <ion-card (click)="selectImageSource ('profile', 0, fileInput)" class="card-foto card-foto-fondo">
               <img *ngIf="profile_image === ''" src="assets/img/iconos_Photo.png">
-              <img *ngIf="profile_image !== ''" [src]="get_profile_image ()" alt="">
-              <p class="p-subir-foto">Subir una foto</p>
+              <!--<ion-avatar style="width: 100%;height: 100%;">
+                <img *ngIf="profile_image !== ''" [src]="get_profile_image ()" alt="">
+              </ion-avatar>-->
+              <p class="p-subir-foto" *ngIf="profile_image === ''">Subir una foto</p>
               <input hidden multiple type="file" accept="image/*" #fileInput (change)="changeListener($event)">
             </ion-card>
           </ion-col>
@@ -214,12 +216,12 @@
           <ion-col size="12" class="ion-no-padding">
             <h1 class="ion-text-center">{{ 'Very good photo!' | translate }}<br>{{ 'The more photos you have, the better' | translate }}</h1>
             <div class="div-fotos">
-              <ion-card class="card-fotos">
+              <ion-card class="card-fotos card-fotos-fondo">
                 <ion-avatar>
                   <img [src]="profile_image">
                 </ion-avatar>
               </ion-card>
-              <ion-card (click)="selectImageSource ('photos', 0)" class="card-fotos">
+              <ion-card (click)="selectImageSource ('photos', 0)" class="card-fotos card-fotos-fondo-general">
                 <ion-icon *ngIf="photos [0] === ''" name="add-outline" class="icon-add"></ion-icon>
                 <img *ngIf="photos [0] !== ''" [src]="get_photos_index (0)">
               </ion-card>

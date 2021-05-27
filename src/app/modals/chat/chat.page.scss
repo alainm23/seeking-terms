@@ -124,7 +124,7 @@ h1
             }
             .p-conversacion-blanco
             {
-                color: #ffffff !important;
+                color: #5e5555 !important;
             }
             .span-hora
             {
@@ -202,7 +202,10 @@ h1
 }
 .img-llave
 {
-    margin-top: 30px;
+   position: absolute;
+   right: 30px;
+   bottom: 15px;
+   z-index: 1;
 }
 ion-footer
 {

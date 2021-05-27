@@ -17,12 +17,27 @@
 ion-content
 {
     --background: #F5F5F5;
+    position: relative;
 }
 h1
 {
     color: #333333;
     font-family: AvenirHeavy;
     margin-bottom: 0px;
+}
+.btn-regresar
+{
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    --background: transparent;
+    --background-activated: transparent;
+    z-index: 2;
+    margin: 0px;
+    .icon-left
+    {
+        font-size: 30px;
+    }
 }
 .div-padding-left-right
 {
@@ -107,7 +122,7 @@ h1
         --color: #FFFFFF;
         font-family: AvenirHeavy;
         text-transform: none;
-        --border-radius: 32px;
+        --border-radius: 23px;
         position: relative;
         --padding-start: 0px;
         --padding-end: 0px;
@@ -116,6 +131,7 @@ h1
         width: 80%;
         margin-left: 10%;
         margin-top: 10px;
+        font-size: 20px;
         .img-cara
         {
             position: absolute;

@@ -5,6 +5,7 @@
 </ion-header>-->
 
 <ion-content>
+  <ion-button (click)="back ()" mode="ios" shape="round" class="btn-regresar"><ion-icon name="arrow-back-sharp" class="icon-left"></ion-icon></ion-button>
   <div style="position: relative;">
     <ion-slides pager="true">
       <ion-slide *ngFor="let item of galeria">
@@ -99,7 +100,7 @@
   </div>
   <ion-card class="card-texto-blanco card-top">
     <p class="ion-text-center p-plomo-left">Let me know you like me</p>
-    <ion-button class="btn-cara-give"><img src="assets/img/iconos_Wink.png" class="img-cara">Give me a wink</ion-button>
+    <ion-button class="btn-cara-give" mode="ios"><img src="assets/img/iconos_Wink.png" class="img-cara">Give me a wink</ion-button>
   </ion-card>
 </ion-content>
 <!--<ion-footer class="ion-no-border" mode="ios">

@@ -8,6 +8,8 @@
     <br>
     {{ 'We will never share your location, without your permission.' | translate }}
   </p>
-  <ion-button (click)="check_gps ()">{{ 'Let’s go' | translate }}</ion-button>
-  <p class="p-footer" (click)="back_step ()">{{ 'Go back' | translate }}</p>
 </ion-content>
+<ion-footer class="ion-no-border ion-text-center">
+  <ion-button (click)="check_gps ()" mode="ios">{{ 'Let’s go' | translate }}</ion-button>
+  <p class="p-footer" (click)="back_step ()">{{ 'Go back' | translate }}</p>
+</ion-footer>

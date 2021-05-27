@@ -179,7 +179,7 @@ ion-slides
 {
     display: flex;
     flex-wrap: wrap;
-    padding: 0px 15px;
+    padding: 0px 6px;
     --background: transparent;
     box-shadow: none;
     margin-top: 30px;
@@ -191,7 +191,7 @@ ion-slides
         height: 250px;
         overflow: hidden;
         box-shadow: 0px 6px 12px #00000029;
-        margin-bottom: 17px;
+        margin-bottom: 0px;
         position: relative;
         .img-circulo-amarrilo
         {
@@ -314,6 +314,36 @@ ion-slides
                 border-right: 1px solid #EBEBEB;
             }
         }*/
+    }
+    .card-foto-fondo
+    {
+        width: 100%;
+        border-radius: 0px;
+        margin: 0px;
+        height: 250px;
+        overflow: hidden;
+        box-shadow: 0px 6px 12px #00000029;
+        margin-bottom: 17px;
+        position: relative;
+        background-position: top center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .card-img-uno
+    {
+        background-image: url('/assets/img/galeria-daddies-uno.jpg');
+    }
+    .card-img-dos
+    {
+        background-image: url('/assets/img/galeria-daddies-tres.jpg');
+    }
+    .card-img-tres
+    {
+        background-image: url('/assets/img/galeria-daddies-dos.jpg');
+    }
+    .card-img-cuatro
+    {
+        background-image: url('/assets/img/PR7YYadKBn6HdrhjKASlTZXnMdQVEx4p4MPtrUJX.jpeg');
     }
     /*.card-perfil:hover .avatar-img
     {
@@ -450,11 +480,13 @@ ion-footer
         --background-activated: #77BDF0;
         --color: #ffffff;
         font-family: AvenirHeavy;
-        --border-radius: 21px;
+        --border-radius: 23px;
         width: 75%;
         margin-top: -28px;
         margin-bottom: 0px;
         --box-shadow: 0px 3px 6px #00000029;
+        font-size: 20px;
+        height: 50px;
     }
 }
 .item-select
@@ -504,12 +536,13 @@ ion-footer
     --background-activated: #77BDF0;
     --color: #ffffff;
     font-family: AvenirHeavy;
-    --border-radius: 21px;
+    --border-radius: 23px;
     width: 75%;
     margin-top: 10px;
     margin-bottom: 0px;
     --box-shadow: 0px 3px 6px #00000029;
     font-size: 20px;
+    height: 50px;
 }
 @media(min-width: 411px)
 {

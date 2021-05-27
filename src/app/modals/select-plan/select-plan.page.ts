@@ -15,9 +15,21 @@ export class SelectPlanPage implements OnInit {
   @Input () page: string; 
   planes: any [] = [];
   slideOpts = {
-    initialSlide: 2,
+    initialSlide: 3,
     slidesPerView: 1.2,
-    spaceBetween: 20,
+    spaceBetween: 10,
+    breakpoints: {
+      // when window width is >= 480px
+      480: {
+        slidesPerView: 1.5,
+        spaceBetween: 10
+      },
+      // when window width is >= 640px
+      640: {
+        slidesPerView: 4,
+        spaceBetween: 40
+      }
+    }
   };
   lang: string;
   membresia: any;
